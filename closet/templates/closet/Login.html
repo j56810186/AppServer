@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <title>Log In</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+      <img class="logo" src="{% static 'images/smalllogo.png' %}" alt="logo">
+        <div id="container1">
+            <font size="5"><h3>登入帳號</h3></font>
+                {{ message }}
+                <form action="" method="post"> {% csrf_token %}
+                    <input type="text" id="username" name="username" placeholder="帳號" required class="likeinput">
+                    <input type="password" id="password" name="password" placeholder="密碼" required class="likeinput">
+                    <input type="submit" id="sub" value="登入" class="submit" class="likeinput">
+                </form>
+                <a href="{% url 'register' %}"><h5 onclick="show_hide()">註冊帳號</h5></a>
+                <a href="{% url 'forgot_password' %}"><h5 onclick="show_hide()">忘記密碼</h5></a>
+
+        </div>
+    </body>
+</html>

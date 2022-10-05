@@ -1,0 +1,3721 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%
+
+}
+
+.content-title {
+  font-family:微軟正黑體;
+  text-align:center;
+  margin:0 auto;
+  }
+
+
+*{
+    font-family:微軟正黑體;
+  }
+
+  /*註冊頁面的填寫區*/
+  #username, #password, #fullname, #comfirm_password,#username2, #password2, #content{
+    width: 300px;
+    height: 30px;
+    margin: 10px auto;
+    color: #a29587;
+    position:relative;
+  }
+  /*編輯個人檔案字區*/
+  #content{
+    width: 300px;
+    height: 60px;
+    color: rgba(0, 0, 0, 0.5);
+    margin: 10px auto;
+    position:relative;
+  }
+
+  /*註冊/登入頁面的提交按鈕*/
+  #sub{
+    text-align:center;
+    position:relative;
+    margin:0 auto;
+  }
+   /*註冊/登入頁面的title*/
+  h3{
+    margin: 20px;
+    color: #a29587;
+  }
+  /*登入頁註冊與忘記密碼*/
+  h5{
+    margin: 20px;
+    color: #a3a2a3;
+  }
+  h5:hover{
+    color: black;
+  }
+
+  /*註冊/登入頁整體*/
+  #container1{
+    margin: 50px;
+    padding: 10px;
+    width: 80%;
+    height: 90%;
+    background-color: rgba(255,252,247,1);
+    border-radius: 20px;
+    box-shadow: 0 0px 70px rgba(0, 0, 0, 0.1);
+    text-align:center;
+    position:relative;
+    margin:0 auto;
+    top: 10px;
+  }
+
+  /*留言頁*/
+  #containerC{
+    margin: 50px;
+    padding: 40px;
+    width: 70%;
+    height: 80%;
+    background-color: white;
+    box-shadow: 0 0px 70px rgba(0, 0, 0, 0.1);
+    position:relative;
+    margin:0 auto;
+    top: 170px;
+  }
+
+  .system_name{
+    position:relative;
+    margin: auto;
+    top: 100px;
+    text-align:center;
+  }
+
+  .submit{
+    background: #c4b2bc;
+    width: 300px;
+    height: 50px;
+    margin: 10px;
+    position: absolute;
+    left: auto;
+    top: 2px;
+    bottom: 45px;
+    border-radius: 15px;
+    border-style: none;
+    display: inline;
+    color: rgba(255,254,247,1);
+    font-family: Inter;
+    font-weight:  Bold;
+    font-size: 20px;
+    opacity: 1;
+    
+  }
+
+  .submit:hover{
+    background: #551a3e;
+  }
+  
+  .editclothes_submit{
+    background: #c4b2bc;
+    width: 450px;
+    height: 50px;
+    margin: 10px;
+    position: relative;
+    left: auto;
+    top: auto;
+    bottom: 38px;
+    border-radius: 15px;
+    border-style: none;
+    display: inline;
+    color: rgba(255,254,247,1);
+    font-family: Inter;
+    font-weight:  Bold;
+    font-size: 20px;
+    opacity: 1;
+    
+  }
+
+  .editclothes_submit:hover{
+    background: #551a3e;
+  }
+
+  .editclothes_submit1{
+    background: #c4b2bc;
+    width: 450px;
+    height: 50px;
+    margin: 10px;
+    position: absolute;
+    left: 150px;
+    top: 1050px;
+    border-radius: 15px;
+    border-style: none;
+    display: inline;
+    color: rgba(255,254,247,1);
+    font-family: Inter;
+    font-weight:  Bold;
+    font-size: 20px;
+    opacity: 1;
+    
+  }
+
+  .editclothes_submit1:hover{
+    background: #551a3e;
+  }
+
+  .reset1{
+    background: #d9d9d9;
+    width: 450px;
+    height: 50px;
+    margin: 10px;
+    position: absolute;
+    top: 405px;
+    left: 800px;
+    border-radius: 15px;
+    border-style: none;
+    display: inline;
+    color: rgba(255,254,247,1);
+    font-family: Inter;
+    font-weight:  Bold;
+    font-size: 20px;
+    opacity: 1;
+      
+  }
+
+  .reset1:hover{
+    background: #a9a9a9;
+  }
+
+  .reset{
+    background: #d9d9d9;
+    width: 450px;
+    height: 50px;
+    margin: 10px;
+    position: relative;
+    right: -730px;
+    top: auto;
+    bottom: 100px;
+    border-radius: 15px;
+    border-style: none;
+    display: inline;
+    color: rgba(255,254,247,1);
+    font-family: Inter;
+    font-weight:  Bold;
+    font-size: 20px;
+    opacity: 1;
+      
+  }
+
+  .reset:hover{
+    background: #a9a9a9;
+  }
+
+  .login_submit{
+    background: #c4b2bc;
+    width: 300px;
+    height: 55px;
+    margin: 10px;
+    position: absolute;
+    top: 400px;
+    left: 39.5%;
+    border-radius: 15px;
+    border-style: none;
+    display: inline;
+    color: rgba(255,254,247,1);
+    font-family: Inter;
+    font-weight:  Bold;
+    font-size: 20px;
+    opacity: 1;
+  }
+
+  .login_submit:hover{
+    background: #551a3e;
+  }
+
+  .login_submit1{
+    background: #d4d4d4;
+    width: 120px;
+    height: 55px;
+    margin: 10px;
+    position: absolute;
+    top: 128px;
+    right: 2%;
+    border-radius: 15px;
+    border-style: none;
+    display: inline;
+    color: rgba(255,254,247,1);
+    font-family: Inter;
+    font-weight:  Bold;
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px;
+    opacity: 1;
+  }
+
+  .login_line{
+    position: absolute;
+    width: 375px;
+    height: 932px;
+    left: 0px;
+    top: 0px;
+    
+  }
+
+  #container2{
+    visibility: hidden; /*剛開始消失*/
+    height: 350px;
+  }
+
+  .logo{
+    width: 645px;
+    height: 163px;
+    display:block;
+    margin:auto;
+  }
+
+@font-face {
+    font-family: Freight-sans;
+    src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2053557/Freight%20Sans%20Medium.otf');
+}
+body, button {
+    font-family: Freight-sans, sans-serif;
+}
+body, h1, h2, p {
+    margin: 0;
+    padding: 0;
+}
+button {
+    border: 0;
+    outline: 0;
+    background: transparent;
+}
+a {
+    text-decoration: none;
+}
+/*個人檔案整體*/
+.container {
+    margin: 0 auto;
+    padding-bottom: 50px;
+    max-width: 90%;
+}
+/*個人檔案top bar*/
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding: 10px 15px;
+}
+.top-bar__title {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+.top-bar__title__text {
+    font-size: 18px;
+
+}
+.top-bar__title__verified-icon {
+    margin-left: 4px;
+    width: 15px;
+    height: 14px;
+}
+
+/*留言top bar*/
+.top-barr {
+    display: flex;
+    justify-content: space-between;
+    text-align:center;
+    position:relative;
+    margin:0 auto;
+}
+
+/*個人檔案的頭貼,貼文追蹤等格式*/
+.stats {
+    padding: 0 15px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-column-gap: 10px;
+}
+/*個人檔案的頭貼格式*/
+.stats__img-holder {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 1px solid #d8d8d8;
+    background: center / 150% no-repeat;
+}
+/*個人檔案的頭貼,貼文追蹤等格式*/
+.stats__data {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+/*個人檔案的頭貼,貼文追蹤等文字*/
+.stats__data__point {
+    font-family: sans-serif;
+}
+/*個人檔案的頭貼,貼文追蹤等文字*/
+.stats__data__point__value {
+    font-size: 25px;
+    font-weight: 600;
+}
+/*個人檔案的頭貼,貼文追蹤等文字*/
+.stats__data__point__description {
+    font-weight: 300;
+    font-size: 25px;
+    margin-top: 2px;
+}
+/*個人檔案的姓名及敘述*/
+.description {
+    padding: 0 15px;
+}
+/*個人檔案的姓名及敘述*/
+.description h1 {
+    font-size: 32px;
+    margin: 0;
+    margin-top: 16px;
+    padding: 0;
+}
+.description p {
+    margin-top: 10px;
+    color: #444;
+    font-size: 23px;
+}
+.description a {
+    margin-top: 2px;
+    color: #0d3a6b;
+}
+/*個人檔案的修改按鈕*/
+.actions {
+    padding: 0 15px;
+    margin-top: 14px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 40px;
+    grid-column-gap: 6px;
+
+}
+/*個人檔案的修改按鈕*/
+.actions__btn {
+    font-size: 25px;
+    border-radius: 4px;
+    border: 1px solid #d8d8d8;
+    background: #9b6e87;
+    color: white;
+    height: 43px;
+    display: block;
+    width: 100%;
+    text-align: center;
+    line-height: 43px;
+}
+.actions__btn--icon {
+    display: flex;
+}
+.actions__btn--icon i {
+    margin: auto;
+    font-size: 16px;
+}
+.actions__btn--active {
+    background: #fcf7b4;
+    color: Black;
+    border-radius: 4px;
+}
+.stories {
+    margin-top: 14px;
+    padding: 0 10px;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: scroll;
+    scrollbar-width: none;
+   /* Firefox */
+    -ms-overflow-style: none;
+   /* Internet Explorer 10+ */
+}
+.stories::-webkit-scrollbar {
+   /* WebKit */
+    width: 0;
+    height: 0;
+}
+.stories__single {
+    display: inline-block;
+}
+.stories__single__img-holder {
+    display: inline-block;
+    border-radius: 50%;
+    border: 1px solid #d8d8d8;
+    padding: 3px;
+    position: relative;
+    left: 50%;
+    transform: translatex(-50%);
+    margin-right: 12px;
+}
+.stories__single__img-holder__inner {
+    border-radius: 50%;
+    border: 1px solid #d8d8d8;
+    width: 60px;
+    height: 60px;
+    background: center / cover no-repeat;
+}
+.stories__single__description {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 2px;
+    color: #444;
+}
+/*個人檔案切換欄*/
+.tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid #d8d8d8;
+    margin-top: 20px;
+    background-color:rgb(231, 230, 230);
+}
+/*追蹤頁切換欄*/
+.following_tabs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-top: 1px solid #d8d8d8;
+    margin-top: 20px;
+    background-color:rgb(231, 230, 230);
+}
+/*個人檔案top bar*/
+.tabs__btn {
+    display: flex;
+    padding-top: 6px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid transparent;
+}
+/*個人檔案top bar的箭頭*/
+.tabs__btn__icon {
+    margin: auto;
+    max-width: 40px;
+    vertical-align : middle;
+}
+
+/*留言的箭頭*/
+.tabs__btn__iconn {
+    margin: auto;
+    max-width: 30px;
+    vertical-align : middle;
+
+}
+
+/*個人檔案切換欄顯示現在在哪的槓槓*/
+.tabs__btn--active {
+    border-bottom: 3px solid #9b6e87;
+}
+/*個人檔案、社群二手拍追蹤頁圖片九宮格*/
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 33.3% 33.3% 33.3%;
+    grid-gap: 1px;
+}
+/*個人檔案、社群二手拍追蹤頁圖片九宮格*/
+.grid__photo {
+    display: block;
+    width: 100%;
+    height: calc(800px / 3);
+    background: center / cover no-repeat;
+}
+/*個人檔案的bottom bar*/
+.bottom-bar {
+    width:100%;
+    height: 8%;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translatex(-50%);
+    z-index: 1;
+    background: #f0f0f0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+/*個人檔案的bottom bar*/
+.bottom-bar__btn__icon {
+    width: 40px;
+    text-align: center;
+}
+/*個人檔案的錢包錢錢*/
+.money {
+    margin: auto;
+    max-width: 20px;
+}
+.bottom-bar__btn__icon1 {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+  @media (max-width: 414px){
+    .footer {
+      width:100%;
+    }
+  }
+
+  .title{
+    height: 56px;
+    background: rgba(0,0,0,0,76);
+  }
+
+  .login-form {
+    max-width: 30%;
+    margin: 20px auto;
+    color: #3D1101;
+    font-size: 16px;
+    background: #EFE9E7;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+    border-color:#C4B2BC;
+    border-top: 3px solid #C4B2BC;
+    padding: 20px;
+  }
+
+  .login-form legend {
+    font-family: NotoSansCJKtc-Black;
+    font-size: 18px;
+    color: #3D1101;
+    font-weight:bold;
+    text-align: center;
+  }
+/*input改一下class*/
+  .login-form label{
+    width: 100%;
+    display: block;
+    margin: 10px 0;
+  }
+
+  .likeinput{
+    display: block;
+    margin: 10px 0;
+        width: 300px;
+        height: 60px;
+        background: rgba(238,236,231,1);
+        border: 1px solid rgba(148,122,136,1);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        position: absolute;
+        font-size: 15px;
+        color: rgba(148,122,136,0.699999988079071);
+        text-align:left;
+  }
+
+  .likeinput1{
+    display: block;
+    margin: 10px 0;
+        width: 300px;
+        height: 60px;
+        background: rgba(238,236,231,1);
+        border: 1px solid rgba(148,122,136,1);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        position: absolute;
+        font-size: 15px;
+        color: rgba(148,122,136,0.699999988079071);
+        text-align:left;
+    position: absolute;
+    top: 300px;
+    left: 0%;
+  }
+
+  .likeinput2{
+    display: block;
+    margin: 10px 0;
+        width: 300px;
+        height: 60px;
+        background: rgba(238,236,231,1);
+        border: 1px solid rgba(148,122,136,1);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        position: absolute;
+        font-size: 15px;
+        color: rgba(148,122,136,0.699999988079071);
+        text-align:left;
+    position: absolute;
+    top: 320px;
+    left: 0%;
+  }
+
+  .likeinput3{
+    display: block;
+    margin: 10px 0;
+        width: 300px;
+        height: 60px;
+        background: rgba(238,236,231,1);
+        border: 1px solid rgba(148,122,136,1);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        position: absolute;
+        font-size: 15px;
+        color: rgba(148,122,136,0.699999988079071);
+        text-align:left;
+    position: absolute;
+    top: 340px;
+    left: 0%;
+  }
+
+  .likeinput4{
+    display: block;
+    margin: 10px 0;
+        width: 300px;
+        height: 60px;
+        background: rgba(238,236,231,1);
+        border: 1px solid rgba(148,122,136,1);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        position: absolute;
+        font-size: 15px;
+        color: rgba(148,122,136,0.699999988079071);
+        text-align:left;
+    position: absolute;
+    top: 360px;
+    left: 0%;
+  }
+
+  .likeinput5{
+    display: block;
+    margin: 10px 0;
+        width: 300px;
+        height: 60px;
+        background: rgba(238,236,231,1);
+        border: 1px solid rgba(148,122,136,1);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        font-size: 15px;
+        color: rgba(148,122,136,0.699999988079071);
+        text-align:left;
+    position: absolute;
+    top: 150px;
+    left: 0%;
+  }
+
+  .likeinput7{
+    display: block;
+    margin: 10px 0;
+        width: 300px;
+        height: 60px;
+        background: rgb(236, 236, 236);
+        border: 1px solid rgb(177, 177, 177);
+        position: absolute;
+        font-size: 15px;
+        color: rgba(148,122,136,0.699999988079071);
+        text-align:left;
+    position: absolute;
+    top: 200px;
+    right: 510px;
+  }
+
+  .likeinput8{
+    display: block;
+    margin: 10px 0;
+        width: 300px;
+        height: 60px;
+        background: rgb(236, 236, 236);
+        border: 1px solid rgb(177, 177, 177);
+        position: absolute;
+        font-size: 15px;
+        color: rgba(148,122,136,0.699999988079071);
+        text-align:left;
+    position: absolute;
+    top: 200px;
+    right: 510px;
+  }
+
+  .login-form span {
+    font-family: '-apple-system,BlinkMacSystemFont',"Segoe UI",'Roboto', 'Helvetica', 'Arial','sans-serif';
+    font-size: 14px;
+    color: #A4948D;
+    margin: 10px 0;
+  }
+
+  .login-form button {
+    width: 46%;
+    margin:0px 1%;
+  }
+
+  .pure-button  {
+    font-family: PingFangTC-Regular;
+    font-size: 14px;
+    color: #FFFFFF;
+    background: rgba(0,0,0,0.35);
+    border-radius: 3px;
+    width: 125px;
+    height: 32px;
+  }
+
+
+.pure-form-stacked input:not([type]) {
+    display: block;
+    margin: 0.25em 0;
+}
+
+
+.pure-form input.pure-input-rounded,
+.pure-form .pure-input-rounded {
+    border-radius: 2em;
+    padding: 0.5em 1em;
+}
+
+
+.pure-form input:not([type])[disabled] {
+  cursor: not-allowed;
+  background-color: #eaeded;
+  color: #cad2d3;
+}
+
+.pure-button-primary {
+  font-family: PingFangTC-Regular;
+  font-size: 14px;
+  color: #FFFFFF;
+  background: #A4948D;
+  border-radius: 3px;
+  width: 125px;
+  height: 32px;
+}
+
+.email {
+
+  width: 200px;
+  height: 40px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+@media (min-width: 375px) {
+    p {
+      font-size: 20px;
+    }
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*:focus{
+    outline: none;
+}
+
+.body{
+    width: 100%;
+    background: #fafafa;
+    position: relative;
+    font-family: 微軟正黑體;
+}
+
+/*Home Page的Logo Bar*/
+.navbar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 65px;
+    background: #fff;
+    border-bottom: 1px solid #dfdfdf;
+    display: flex;
+    justify-content: center;
+    padding: 5px 0;
+}
+
+.nav-wrapper{
+    width: 80%;
+    max-width: 1000px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand-img{
+    height: 70%;
+    margin-top: 5px;
+    float: left;
+}
+
+
+.container_search{
+  width: 100%;
+  margin-top: 8%;
+  vertical-align: middle;
+  white-space: nowrap;
+  position: relative;
+}
+
+.container_search input#search{
+  width: 90%;
+  height: 60px;
+  background: #d9d9d9;
+  border: none;
+  font-size: 10pt;
+  color: #262626;
+  padding-left: 55px;
+  margin-top: 5%;
+  margin-left: 5%;
+  border-radius: 5px;
+  transition: background .55s ease;
+}
+
+.container_search input#search:-ms-input-placeholder {  
+  color: #65737e;  
+}
+
+.container_search input#search:hover, .container_search input#search:focus, .containe_search input#search:active{
+  outline:none;
+  background: #b3b3b3;
+}
+
+.container_search_icon{
+  position: absolute;
+  top: 50%;
+  margin-left: 6%;
+  margin-top: 1.45%;
+  z-index: 1;
+  color: #4f5b66;
+  cursor: pointer;
+}
+
+.nav-items{
+    height: 22px;
+    position: relative;
+}
+
+.outfit_icon{
+    height: 50%;
+    cursor: pointer;
+    margin: 0 px;
+    display: inline-block;
+    width: 50%
+}
+
+.outfit_icon1{
+  height: 2%;
+  cursor: pointer;
+  margin: 0 px;
+  display: inline-block;
+  width: 2%
+}
+
+.iconn{
+    height: 60%;
+    cursor: pointer;
+    margin: 10 px;
+    display: inline-block;
+}
+
+.iconbar{
+    height: 100%;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.user-profile{
+    width: 22px;
+    border-radius: 50%;
+    background-image: url(img/profile-pic.png);
+    background-size: cover;
+}
+
+/* Home Page的整個區塊*/
+.main{
+    width: 100%;
+    height: 1450px;
+    padding: 50px 0;
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+}
+
+.search_outfits_main{
+    width: 100%;
+    height: 1450px;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+
+}
+/* Home Page的主區塊 */
+.left-col{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.addOutfit_left-col{
+  display:contents;
+  flex-direction: column;
+  width: 100%;
+}
+
+.status-wrapper{
+    width: 100%;
+    height: 120px;
+    background: #fff;
+    border: 1px solid #dfdfdf;
+    border-radius: 2px;
+    padding: 10px;
+    padding-right: 0;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    overflow-x: auto;
+}
+
+.status-wrapper::-webkit-scrollbar{
+    display: none;
+}
+
+.status-card{
+    flex: 0 0 auto;
+    width: 80px;
+    max-width: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.profile-pic{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    padding: 3px;
+}
+
+.profile-pic img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+.username1{
+    width: 100%;
+    overflow: hidden;
+    font-size: 20px;
+    margin-top:5px;
+    margin-left: 10px;
+    color: rgba(0, 0, 0, 0.5)
+    font-weight bold;
+
+}
+
+/* Home Page社群、二手拍切換bar*/
+.switchBar{
+    position: fixed;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    display: grid;
+    justify-content: center;
+    padding: 5px 0;
+    border: 1px solid #d8d8d8;
+    grid-template-columns: 1fr 1fr 40px;
+    margin-top: 20px;
+    background-color:rgb(231, 230, 230);
+
+}
+
+/* Home Page的貼文區塊 */
+.post{
+    width: 100%;
+    height: auto;
+    background: #fff;
+    border: 1px solid #dfdfdf;
+    margin-top: 5px;
+}
+
+.second_post{
+  width: 100%;
+  height: auto;
+  background: #fff;
+  border: 1px solid #dfdfdf;
+  margin-top: 10px;
+}
+
+/* 個人頁的貼文區塊 */
+.postP{
+    width: 90%;
+    height: auto;
+    background: #fff;
+    border: 1px solid #dfdfdf;
+    position:relative;
+    margin:0 auto;
+    margin-top: 20px;
+}
+
+.postS{
+    width: 70%;
+    height: auto;
+    background: #fff;
+    border: 1px solid #dfdfdf;
+    margin-top: 40px;
+
+}
+
+/* Home Page的貼文區塊最上方發文者橫bar */
+.info{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+/* Home Page的貼文區塊最上方發文者資訊 */
+.info .user{
+    display: flex;
+    align-items: center;
+}
+/* Home Page的貼文區塊最上方發文者帳號 */
+.info .username{
+    width: auto;
+    font-weight: bold;
+    color: #000;
+    font-size: 22px;
+    margin-left: 10px;
+}
+
+/* Home Page的貼文區塊右上方貼文設定 */
+.info .options{
+    height: 10px;
+    cursor: pointer;
+}
+
+/* 新增穿搭的貼文區塊左上方編輯icon */
+.info .edit{
+  height: 30px;
+}
+
+.outfit_content{
+    width: 97%;
+    height: 250px;
+    border: 0;
+    margin-left: 3%;
+    margin-top: 15px;
+    background-color:#ffffff;
+    font-size: 20px;
+    color: #77616d;
+}
+
+::placeholder{
+  color: #957a89;
+  font-size: large;
+  left: 5%;
+}
+
+/* Home Page的貼文區塊最上方發文者頭貼 */
+.info .profile-pic{
+    height: 40px;
+    width: 40px;
+    padding: 0;
+    background: none;
+}
+/* Home Page的貼文區塊最上方發文者頭貼外框 */
+.info .profile-pic img{
+    border: none;
+}
+
+/* Home Page的貼文區塊貼文圖片 */
+.post-image{
+    width: 100%;
+    height: 800px;
+    object-fit: contain;
+}
+
+.post_camera{
+    position: absolute;
+    height: 20%;
+    width: 90%;
+    margin: 5% 5%;
+}
+
+/* 新增穿搭頁面上傳檔案點擊區塊*/
+.post_fileInput{
+  position: absolute;
+  top: 20%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  width: auto;
+  height: 720px;
+  display: block;
+  clear: both;
+}
+
+/*復刻穿搭上傳檔案點擊區塊*/
+.remake_fileInput{
+  position: absolute;
+  top: 30%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  width: auto;
+  height: 720px;
+  display: block;
+  clear: both;
+}
+
+/* Home Page的貼文區塊貼文內文區塊 */
+.post-content{
+    width: 100%;
+    padding: 20px;
+}
+
+.post-words{
+    font-size: 20px;
+    color: #000;
+    text-align: left;
+    left:5px;
+
+}
+/* Home Page的貼文區塊貼文按讚數 */
+.likes{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* Home Page的貼文區塊發文時間 */
+.post-time{
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 20px;
+}
+
+.postS-time{
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 10px;
+    position: absolute;
+}
+
+/* Home Page的留言區塊、新增穿搭按鈕區塊 */
+.comment-wrapper{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comment-wrapper1{
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comment-wrapperr{
+    width: 90%;
+    height: 50px;
+    border-radius: 1px solid #dfdfdf;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position:absolute;
+    bottom:0px;
+    right: 5px;
+}
+
+/* Home Page的留言icon*/
+.comment-wrapper .icon{
+    height: 30px;
+    margin: 20px;
+}
+/* Home Page的留言box */
+.comment-box{
+    width: 90%;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 20px;
+}
+/* Home Page的留言buttom */
+.comment-btn,
+.action-btn{
+    width: 70px;
+    height: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    text-transform: capitalize;
+    font-size: 16px;
+    color: rgb(0, 162, 255);
+    opacity: 0.5;
+}
+/* Home Page的貼文區塊按讚留言收藏橫bar */
+.reaction-wrapper{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    margin-top: -20px;
+    align-items: center;
+}
+/* Home Page的貼文區塊按讚留言分享icon */
+.reaction-wrapper .icon{
+    height: 25px;
+    margin: 0;
+    margin-right: 20px;
+    color: #d9d9d9;
+}
+/* Home Page的貼文區塊收藏icon */
+.reaction-wrapper .icon.save{
+    margin-left: auto;
+}
+
+
+/*個人檔案的姓名及敘述*/
+.description{
+
+    font-size: 20;
+     margin: 5px;
+     line-height: 20px;
+}
+/*個人檔案的bottom bar*/
+.bottom-bar {
+    width: 100%;
+    height: 8%;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translatex(-50%);
+    z-index: 1;
+    background:#F0F0F0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+/*個人檔案的bottom bar*/
+.bottom-bar__btn__icon {
+    width: 40px;
+    text-align: center;
+
+}
+/*個人檔案的bottom bar的個人檔案頭貼*/
+.bottom-bar__btn__icon1 {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+/*設定個人資料頭像ㄋ*/
+.img-holder {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 1px solid #d8d8d8;
+    background: center / 150% no-repeat;
+    display:block;
+    margin:auto;
+    position: absolute;
+    top: 160px;
+    left: 45%;
+}
+
+/*錢包設定的bottom bar*/
+.bottom-bar1 {
+    width:100%;
+    height: 8%;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translatex(-50%);
+    z-index: 1;
+    background: #f0f0f0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #a29587;
+}
+/*購物車的bottom bar*/
+.bottom-bar2 {
+    width:100%;
+    height: 8%;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translatex(-50%);
+    z-index: 1;
+    background: #551a3e;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #ffffff;
+}
+
+/*錢包設定的卡片*/
+#container3{
+    margin: 50px;
+    padding: 10px;
+    width: 70%;
+    height: 250px;
+    border-radius: 10px;
+    background-color: #a29587;
+    text-align:center;
+    position:relative;
+    margin:0 auto;
+    top: 10px;
+    bottom: 20px;
+  }
+
+  /*購物車的卡片*/
+#container4{
+    margin: 30px;
+    padding: 10px;
+    width: 40%;
+    height: 80%;
+    background-color:#7c7c7c;
+    top: 10px;
+    bottom: 20px;
+  }
+
+  /*錢包設定、推薦的背景*/
+  #container1_5{
+    margin: 50px;
+    padding: 10px;
+    width: 80%;
+    height: 630px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 0px 70px rgba(0, 0, 0, 0.1);
+    text-align:center;
+    position:relative;
+    margin:0 auto;
+    top: 10px;
+    bottom: 20px;
+  }
+
+  .trash{
+    margin: 3px;
+    width: 40px;
+    float: right;
+  }
+
+  .cardtext{
+    padding: 15px;
+    text-align:left;
+    font-size: 25px;
+    color: white;
+  }
+
+  .cardID{
+    text-align:center;
+  }
+
+  /*穿搭推薦上傳匡*/
+    .aui-info {
+        position: relative;
+    }
+
+     .fileInput{
+        display: none;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        opacity: 0;
+        display: block;
+        width: 3.5rem;
+        clear: both;
+        display: block;
+        margin: auto;
+    }
+
+    /*新增衣物、穿搭推薦選項格*/
+    .sttyle{
+      width: 1240px;
+      height: 55px;
+      top: 750px;
+      left: -45px;
+      background: #f5f5f5;
+      border-radius: 8px;
+      border-color: #fffff8;
+      opacity: 1;
+      font-family: 'Inter';
+      font-style: normal;
+      font-style: bold;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 18px;
+      color: #957A89;
+    }
+    /*穿搭推薦選項格2*/
+    #containerR{
+        margin: 10px;
+        padding: 12px;
+        width: 65%;
+        height: 80px;
+        border-radius: 5px;
+        background-color: white;
+        text-align:center;
+        position:relative;
+        margin:0 auto;
+        top: 10px;
+        bottom: 30px;
+        border:1px rgb(199, 199, 199) solid;
+        color: #5c5347;
+        font-size: 13px;
+
+    }
+
+    /*新增衣物適合天氣*/
+    #containerWeather{
+        margin: 10px;
+        padding: 12px;
+        width: 400px;
+        height: 80px;
+        border-radius: 5px;
+        background-color: white;
+        text-align:center;
+        position:relative;
+        margin:0 auto;
+        top: 10px;
+        bottom: 30px;
+        border:1px rgb(199, 199, 199) solid;
+        color: #5c5347;
+        font-size: 13px;
+
+    }
+
+    /*設定的背景框框*/
+    #setting_container{
+        margin: 50px;
+        padding: 15px;
+        width: 80%;
+        height: 1000px;
+        background-color: white;
+        border-radius: 20px;
+        box-shadow: 0 0px 70px rgba(0, 0, 0, 0.1);
+        text-align:center;
+        position:relative;
+        margin:0 auto;
+        top: 10px;
+        bottom: 20px;
+      }
+
+    /*設定選項 */
+    #setting_choiceBar{
+        margin: 50px;
+        padding: 15px 25px ;
+        width: 100%;
+        height: 100px;
+        border-radius: 10px;
+        background-color: #f0f0f0;
+        text-align:center;
+        position:relative;
+        margin:0 auto;
+        top: 10px;
+        bottom: 20px;
+      }
+
+      /*cart*/
+      #cartbar{
+        margin: 5px;
+        padding: 15px 25px ;
+        width: 100%;
+        height: 50%;
+        border-radius: 10px;
+        background-color: #f0f0f0;
+        text-align: left;
+        margin:0 auto;
+        top: 10px;
+        bottom: 20px;
+      }
+
+
+    /*設定文字 */
+    .setting_choiceBar_text{
+        padding: 15px;
+        text-align:left;
+        font-size: 25px;
+        color: #5c5347;
+      }
+
+    /* 新增衣物圖片按鈕*/
+    .images_btn{
+        color: white;
+        background: #c4b2bc;
+        width: 200px;
+        height: 30px;
+        margin: 10px;
+        padding: 5px;
+        border-radius: 5px;
+        border: 0px;
+    }
+
+    .images_btn:hover{
+        background: #551a3e;
+    }
+
+    /*衣櫃、編輯衣物的切換按鈕*/
+    .closet_switchBar{
+        top: 40px;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        display: grid;
+        justify-content: center;
+        padding: 5px 0;
+        border-top: 1px solid #d8d8d8;
+        grid-template-columns: 1fr 1fr 40px;
+        margin-top: 20px;
+        background-color:rgb(231, 230, 230);
+    }
+
+    /*編輯衣物、瀏覽衣物、新增衣物、發文、上架商品的背景*/
+    #container_background{
+        margin: 50px;
+        padding: 10px;
+        width: 80%;
+        height: 100%;
+        background-color: white;
+        border-radius: 20px;
+        box-shadow: 0 0px 70px rgba(0, 0, 0, 0.1);
+        text-align:center;
+        position:relative;
+        margin:0 auto;
+        top: 10px;
+        bottom: 20px;
+      }
+
+      /*購物車圖片*/
+    .grid__photo1 {
+    margin: 20px;
+    padding: 5px;
+    top: 10%;
+    display: block;
+    width: 70%;
+    height: 20%;
+    background: center / cover no-repeat
+    }
+
+    .box{
+        margin: 3px;
+        padding: 5px;
+        width: 20px;
+        height:20px;
+        float: left;
+    }
+
+    /*追蹤頁的追蹤按鈕*/
+    .follow_actions {
+        padding: 0 15px;
+        margin-top: 14px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 40px;
+        grid-column-gap: 6px;
+
+    }
+    /*追蹤頁的追蹤按鈕*/
+    .follow_actions__btn {
+        font-size: 25px;
+        border-radius: 4px;
+        border: 1px solid #d8d8d8;
+        background: #9b6e87;
+        color: white;
+        height: 43px;
+        display: block;
+        width: 100%;
+    }
+
+    dialog{
+        border: none;
+        box-shadow: 0 2px 6px rgb(116, 115, 115);
+        border-radius: 5px;
+        position:relative;
+        top: 800px;
+        left: 15%;
+
+      }
+      dialog::backdrop {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+
+
+    /* 衣櫃圖片水平滑列*/
+    .imageList0{
+      position: relative;
+      height:100px;
+      width:100%;
+      height:20%;
+      margin-right:10px;
+      top: 150px;
+      left: 38%;
+}
+
+    /* 衣櫃圖片水平滑列*/
+      .imageList{
+            overflow-x: auto;
+            overflow-y: hidden;
+            position: relative;
+            height:180px;
+            white-space: nowrap;
+            width:100%;
+            height:20%;
+            margin-right:10px;
+            top: 300px;
+            background-color: #f5f5f5;
+      }
+
+      /* 衣櫃圖片水平滑列*/
+      .imageList2{
+        overflow-x: auto;
+        overflow-y: hidden;
+        position: relative;
+        height:180px;
+        white-space: nowrap;
+        width:100%;
+        height:20%;
+        margin-right:10px;
+        top: 420px;
+        background-color: #f5f5f5;
+  }
+
+      /* 衣櫃圖片水平滑列*/
+      .imageList3{
+        overflow-x: auto;
+        overflow-y: hidden;
+        position: relative;
+        height:180px;
+        white-space: nowrap;
+        width:100%;
+        height:20%;
+        margin-right:10px;
+        top: 540px;
+        background-color: #f5f5f5;
+  }
+
+
+    .two_grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 50%,50%;
+        grid-gap: 20px;
+        grid-template-rows:5px;
+    }
+    /*二手拍首頁圖片九宮格*/
+    .two_grid__photo {
+        display: inline;
+        width: 50%;
+        height: calc(500px / 2);
+        background: center / cover no-repeat;
+        position:relative;
+
+    }
+
+    #container_secondhand_index{
+        padding: 40px;
+        width: 70%;
+        height: 100%;
+        background-color: #f5f5f5;
+        box-shadow: 0 0px 400px rgba(0, 0, 0, 0);
+        position: relative;
+        margin: 25px 25px 200px 200px;
+        top: 17.5%;
+    }
+
+
+    .containerrr {
+        width: 100%;
+        height: 126px;
+        background: rgba(196,178,187,1);
+        position: absolute;
+        top: 0px;
+        left: 0px;
+
+      }
+    .mycloset {
+        color: rgba(255,254,247,1);
+        position: relative;
+        top: 30px;
+        font-family: Inter;
+        font-weight:  Bold;
+        font-size: 45px;
+        opacity: 1;
+        text-align: center;
+      }
+
+    .icon{
+        width: 35px;
+        height: 35px;
+        position: absolute;
+        top: 46px;
+        left: 35%;
+    }
+
+    .icon_add{
+        width: 35px;
+        height: 35px;
+        position: absolute;
+        top: 46px;
+        left: 60%;
+    
+    }
+
+    .icon6{
+      width: 27px;
+      height:27px;
+      position: absolute;
+      top: 87px;
+      left: 220px;
+  }
+
+    .icon2{
+        width: 35px;
+        height:35px;
+        position: absolute;
+        top: 69px;
+        right: 6%;
+    }
+
+    .icon22{
+      width: 35px;
+      height:35px;
+      position: absolute;
+      top: 69px;
+      right: 10%;
+  }
+
+    .icon3{
+        width: 35px;
+        height:35px;
+        position: absolute;
+        top: 69px;
+        right: 2%;
+    }
+
+    .icon4{
+        width: 30px;
+        height:30px;
+        position: absolute;
+        top: 150px;
+        right: 5%;
+    }
+
+    .icon5{
+      width: 30px;
+      height:30px;
+      position: absolute;
+      top: 150px;
+      left: 3%;
+  }
+
+    .titlee {
+        width: 121px;
+        color: rgba(148,122,136,1);
+        position: absolute;
+        top: 150px;
+        left: 45%;
+        font-size: 28px;
+        opacity: 1;
+      }
+
+      .titlee2 {
+        width: 121px;
+        color: rgb(202, 202, 202);
+        position: absolute;
+        top: 150px;
+        right: 30px;
+        font-size: 28px;
+        opacity: 1;
+      }
+
+      .titlee3 {
+        width: 121px;
+        color: rgb(202, 202, 202);
+        position: absolute;
+        top: 150px;
+        left: 5%;
+        font-size: 28px;
+        opacity: 1;
+      }
+
+      .titlee33 {
+        width: 50px;
+        position: absolute;
+        top: 150px;
+        left: 5%;
+        font-size: 28px;
+        opacity: 1;
+      }
+
+      .word1 {
+        width: 200px;
+        color: rgb(255, 255, 255);
+        position: absolute;
+        top: 680px;
+        left: 130px;
+        font-family: Inter;
+        font-weight: Regular;
+        font-size: 30px;
+        opacity: 1;
+        text-align: left;
+        text-shadow:2px 3px 5px #4d4d4d;
+        z-index: 10;
+      }
+      @media screen and (max-width:1000px){ 
+        .word1{
+          top: 530px;
+          left: 130px;
+        }
+       }
+
+      .word11 {
+        color: rgba(148,122,136,1);
+        position: absolute;
+        top: 780px;
+        left: 50px;
+        font-family: Inter;
+        font-weight: Regular;
+        font-size: 24px;
+        opacity: 1;
+        text-align: left;
+      }
+
+      .word12 {
+        color: rgb(146, 50, 101);
+        position: absolute;
+        top: 930px;
+        left: 50px;
+        font-family: Inter;
+        font-weight: Regular;
+        font-size: 24px;
+        opacity: 1;
+        text-align: left;
+      }
+
+      .word13 {
+        color: rgba(148,122,136,1);
+        position: absolute;
+        top: 1080px;
+        left: 30px;
+        font-family: Inter;
+        font-weight: bold;
+        font-size: 18px;
+        opacity: 1;
+        text-align: left;
+      }
+
+      .word14 {
+        color: rgba(148,122,136,1);
+        position: absolute;
+        top: 1020px;
+        left: 450px;
+        font-family: Inter;
+        font-weight: Regular;
+        font-size: 24px;
+        opacity: 1;
+        text-align: left;
+      }
+
+      .block1 {
+        margin-right: 210px;
+        margin-bottom: 50px;
+        width: 500px;
+        height: 500px;
+        opacity: 1;
+        position: relative;
+        top: 250px;
+        left: 100px;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        object-fit:cover
+      }
+      @media screen and (max-width:1000px){ 
+        .block1{
+          width: 350px;
+          height: 350px;
+          margin-right: 80px;
+          margin-bottom: 95px;
+        }
+       }
+
+      .buyicon {
+        width: 35px;
+        height:35px;
+        position: absolute;
+        top: 280px;
+        right: 30px;
+      }
+      .block11 {
+        width: 340px;
+        height: 340px;
+        background: rgb(202, 202, 202);
+        opacity: 1;
+        position: absolute;
+        top: 290px;
+        left: 100px;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+      }
+
+      .addnew {
+        color: rgba(148,122,136,1);
+        position: absolute;
+        top: 230px;
+        left: 100px;
+        font-size: 28px;
+      }
+      .more {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 240px;
+        left: 220px;
+      }
+
+      .more1 {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 790px;
+        left: 220px;
+      }
+
+      .more2 {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 1360px;
+        left: 220px;
+      }
+
+      .addnew2 {
+        color: rgba(148,122,136,1);
+        position: absolute;
+        top: 780px;
+        left: 100px;
+        font-size: 28px;
+      }
+
+      .addnew3 {
+        color: rgba(148,122,136,1);
+        position: absolute;
+        top: 1350px;
+        left: 100px;
+        font-size: 28px;
+      }
+
+      .word2 {
+        width: 200px;
+        color: rgba(255,254,247,1);
+        position: absolute;
+        top: 680px;
+        right: 360px;
+        font-family: Inter;
+        font-weight: Regular;
+        font-size: 30px;
+        opacity: 1;
+        text-align: left;
+        text-shadow:2px 3px 5px #4d4d4d;
+      }
+      @media screen and (max-width:1000px){ 
+        .word2{
+          top: 530px;
+          right: 210px;
+        }
+       }
+
+      .block2 {
+        width: 500px;
+        height: 500px;
+        opacity: 1;
+        position: absolute;
+        top: 250px;
+        right: 100px;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        object-fit:cover
+      }
+      @media screen and (max-width:1000px){ 
+        .block2{
+          width: 350px;
+          height: 350px;
+        }
+       }
+
+
+      .word3 {
+        width: 200px;
+        color: rgba(255,254,247,1);
+        position: absolute;
+        top: 1230px;
+        left: 130px;
+        font-family: Inter;
+        font-weight: Regular;
+        font-size: 30px;
+        opacity: 1;
+        text-align: left;
+        text-shadow:2px 3px 5px #4d4d4d;
+      }
+      @media screen and (max-width:1000px){ 
+        .word3{
+          top: 980px;
+          left: 130px;
+        }
+       }
+
+      .block3 {
+        width: 500px;
+        height: 500px;
+        opacity: 1;
+        position: absolute;
+        top: 800px;
+        left: 100px;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        object-fit:cover
+      }
+      @media screen and (max-width:1000px){ 
+        .block3{
+          width: 350px;
+          height: 350px;
+          top: 700px;
+        }
+       }
+
+      .word4 {
+        width: 200px;
+        color: rgba(255,254,247,1);
+        position: absolute;
+        top: 1230px;
+        right: 360px;
+        font-family: Inter;
+        font-weight: Regular;
+        font-size: 30px;
+        opacity: 1;
+        text-align: left;
+        text-shadow:2px 3px 5px #4d4d4d;
+      }
+      @media screen and (max-width:1000px){ 
+        .word4{
+          top: 980px;
+          right: 210px;
+        }
+       }
+
+      .block4 {
+        width: 500px;
+        height: 500px;
+        opacity: 1;
+        position: absolute;
+        top: 800px;
+        right: 100px;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        object-fit:cover
+      }
+      @media screen and (max-width:1000px){ 
+        .block4{
+          width: 350px;
+          height: 350px;
+          top: 700px;
+        }
+       }
+
+      .word5 {
+        width: 200px;
+        color: rgba(255,254,247,1);
+        position: absolute;
+        top: 1780px;
+        left: 130px;
+        font-family: Inter;
+        font-weight: Regular;
+        font-size: 30px;
+        opacity: 1;
+        text-align: left;
+        text-shadow:2px 3px 5px #4d4d4d;
+      }
+      @media screen and (max-width:1000px){ 
+        .word5{
+          top: 1430px;
+          left: 130px;
+        }
+       }
+
+      .block5 {
+        width: 500px;
+        height: 500px;
+        opacity: 1;
+        position: absolute;
+        top: 1350px;
+        left: 100px;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        object-fit:cover
+      }
+      @media screen and (max-width:1000px){ 
+        .block5{
+          width: 350px;
+          height: 350px;
+          top: 1150px;
+        }
+       }
+
+      .word6 {
+        width: 200px;
+        color: rgba(255,254,247,1);
+        position: absolute;
+        top: 1780px;
+        right: 360px;
+        font-family: Inter;
+        font-weight: Regular;
+        font-size: 30px;
+        opacity: 1;
+        text-align: left;
+        text-shadow:2px 3px 5px #4d4d4d;
+      }
+      @media screen and (max-width:1000px){ 
+        .word6{
+          top: 1430px;
+          right: 210px;
+        }
+       }
+
+      .block6 {
+        width: 500px;
+        height: 500px;
+        opacity: 1;
+        position: absolute;
+        top: 1350px;
+        right: 100px;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        object-fit:cover
+      }
+      @media screen and (max-width:1000px){ 
+        .block6{
+          width: 350px;
+          height: 350px;
+          top: 1150px;
+        }
+       }
+
+      .word7 {
+        width: 200px;
+        color: rgba(255,254,247,1);
+        position: absolute;
+        top: 2330px;
+        left: 130px;
+        font-family: Inter;
+        font-weight: Regular;
+        font-size: 30px;
+        opacity: 1;
+        text-align: left;
+        text-shadow:2px 3px 5px #4d4d4d;
+      }
+      @media screen and (max-width:1000px){ 
+        .word7{
+          left: 130px;
+          top: 1880px;
+        }
+       }
+
+      .block7 {
+        width: 1240px;
+        height: 500px;
+        opacity: 1;
+        position: absolute;
+        top: 1900px;
+        right: 100px;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        object-fit:cover
+      }
+      @media screen and (max-width:1000px){ 
+        .block7{
+          width: 780px;
+          height: 350px;
+          top: 1600px;
+        }
+       }
+    
+    /*新增、編輯衣物圖片*/
+    .camera{
+      position: absolute;
+      width: 205px;
+      height: 205px;
+      left: 40%;
+      top: 168px;
+      
+    }
+
+    .camera_icon{
+      position: absolute;
+      height: 150px;
+      left: 35px;
+      top: 25px;
+    }
+
+    .camera_icon1{
+      position: absolute;
+      left: 650px;
+      top: 25px;
+    }
+
+    /*新增、編輯衣物選項*/
+    .clothes_setting{
+      position: absolute;
+      width: 205px;
+      height: 205px;
+      left: 10%;
+      top: 65%;
+      
+    }
+
+    /*新增衣物鍵*/
+    .new_clothes_submit{
+      position: relative;
+      width: 1240px;
+      height: 50px;
+      left:auto;
+      top: auto;
+      bottom: 45px;
+      background: #c4b2bc;
+      border-radius: 15px;
+    }
+
+    .new_clothes_submit:hover{
+      background: #551a3e;
+    }
+
+    .new_clothes_submit_font {
+      color: rgba(255,254,247,1);
+      position: relative;
+      font-family: Inter;
+      font-weight:  Bold;
+      font-size: 20px;
+      opacity: 1;
+      
+    }
+
+    /*新增穿搭鍵*/
+    .new_outfit_submit{
+      position: relative;
+      width: 90%;
+      height: 50px;
+      left: -5%;
+      top: 200px;
+      background: #c4b2bc;
+      border-radius: 15px;
+    }
+
+    .new_outfit_submit:hover{
+      background: #551a3e;
+    }
+
+    .new_outfit_submit_font {
+      color: rgba(255,254,247,1);
+      position: relative;
+      font-family: Inter;
+      top: 5px;
+      font-weight:  Bold;
+      font-size: 20px;
+      opacity: 1;
+      
+    }
+    /*編輯儲存鍵*/
+    .edit_outfit_submit{
+      position: relative;
+      width: 40%;
+      height: 50px;
+      right: 7%;
+      top: 200px;
+      background: #c4b2bc;
+      border-radius: 15px;
+    }
+
+    .edit_outfit_submit:hover{
+      background: #551a3e;
+    }
+
+    .edit_outfit_submit_font {
+      color: rgba(255,254,247,1);
+      position: relative;
+      font-family: Inter;
+      top: 5px;
+      font-weight:  Bold;
+      font-size: 20px;
+      opacity: 1;
+      
+    }
+
+    /*編輯刪除鍵*/
+    .edit_outfit_delete{
+      position: relative;
+      width: 40%;
+      height: 50px;
+      left: -11%;
+      top: 200px;
+      background: #d9d9d9;
+      border-radius: 15px;
+    }
+
+    .edit_outfit_delete:hover{
+      background: #c4b2bc;
+    }
+
+    .edit_outfit_delete_font {
+      color: #957A89;
+      position: relative;
+      font-family: Inter;
+      top: 5px;
+      font-weight:  Bold;
+      font-size: 20px;
+      opacity: 1;
+      
+    }
+
+    /*復刻穿搭之復刻單品文字*/
+    .remake_clothes_font {
+      color: rgb(148,122,136,1);
+      position: relative;
+      left: 5%;
+      top: 110%;
+      font-size: 27px;
+      font-weight: bold;
+    }
+
+    /*新增穿搭標註單品鍵*/
+    .new_outfit_tag_clothes_font {
+      color: rgb(148,122,136,1);
+      position: absolute;
+      left: 5%;
+      top: 1295px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    /*新增穿搭 標註單品之圖片框*/
+    .tag_clothes_block1 {
+      width: 110px;
+      height: 110px;
+      background: #f4f3ee;
+      opacity: 1;
+      position: absolute;
+      left: 45px;
+      top: 1345px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+
+    .tag_clothes_block2 {
+      width: 110px;
+      height: 110px;
+      background: #f4f3ee;
+      opacity: 1;
+      position: absolute;
+      left: 180px;
+      top: 1345px;
+      margin-bottom: 10%;      
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+
+    .tag_clothes_block3 {
+      width: 110px;
+      height: 110px;
+      background: #f4f3ee;
+      opacity: 1;
+      position: absolute;
+      left: 315px;
+      top: 1345px;
+      margin-bottom: 10%;      
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+
+    .tag_clothes_block4 {
+      width: 110px;
+      height: 110px;
+      background: #f4f3ee;
+      opacity: 1;
+      position: absolute;
+      left: 450px;
+      top: 1345px;
+      margin-bottom: 10%;      
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+
+    .tag_clothes_block5 {
+      width: 110px;
+      height: 110px;
+      background: #f4f3ee;
+      opacity: 1;
+      position: absolute;
+      left: 585px;
+      top: 1345px;
+      margin-bottom: 10%;      
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+
+    /*復刻穿搭之復刻單品圖片框*/
+    .remake_clothes_block1 {
+      width: 20%;
+      max-height: 30%;
+      background: #f4f3ee;
+      opacity: 1;
+      position: absolute;
+      left: 5%;
+      top: 1160px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain; 
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+
+
+    .remake_clothes_block2 {
+      width: 20%;
+      max-height: 30%;
+      background: #f4f3ee;
+      opacity: 1;
+      position: absolute;
+      left: 28.3%;
+      top: 1160px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain; 
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+
+    .remake_clothes_block3 {
+      width: 20%;
+      max-height: 30%;
+      background: #f4f3ee;
+      opacity: 1;
+      position: absolute;
+      left: 51.6%;
+      top: 1160px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain; 
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+
+    .remake_clothes_block4 {
+      width: 20%;
+      max-height: 30%;
+      background: #f4f3ee;
+      opacity: 1;
+      position: absolute;
+      left: 74.9%;
+      top: 1160px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain; 
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+
+    .purplewords{
+      color: rgba(148,122,136,1);
+        position: absolute;
+        top: 230px;
+        left: 100px;
+        font-size: 24px;
+    }
+
+    .purplewords1{
+      color: rgba(148,122,136,1);
+        position: absolute;
+        top: 270px;
+        left: 100px;
+        font-size: 18px;
+    }
+
+    .purplewords2{
+      color: rgba(148,122,136,1);
+        position: absolute;
+        top: 700px;
+        left: 100px;
+        padding-bottom: 3%;
+        font-size: 24px;
+    }
+
+    .stats__img-holder1{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 1px solid #d8d8d8;
+    background: center / 150% no-repeat;
+    position: absolute;
+    top: 210px;
+    right: 100px;
+    }
+
+    .aaa{
+    position: absolute;
+    top: 370px;
+    }
+
+    .aab{
+      position: absolute;
+      top: 650px;
+      }
+
+      .ccc{
+        position: absolute;
+        top: 870px;
+        }
+
+        .ddd{
+          position: absolute;
+          top: 1000px;
+          }
+
+        .ddc{
+          position: absolute;
+          top: 1400px;
+          }
+
+    .up{
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: 440px;
+    left: 100px;
+    }
+
+    .up1{
+      width: 80px;
+      height: 80px;
+      position: absolute;
+      top: 440px;
+      left: 320px;
+      }
+
+      .up2{
+        width: 80px;
+        height: 80px;
+        position: absolute;
+        top: 450px;
+        right: 320px;
+        }
+
+      .up3{
+          width: 80px;
+          height: 80px;
+          position: absolute;
+          top: 440px;
+          right: 100px;
+          }
+      .buycart{
+        position: absolute;
+        top: 540px;
+        left: 110px; 
+        color: #957A89;
+        font-size: 24px;
+      }
+
+      .listm{
+        position: absolute;
+        top: 540px;
+        left: 315px; 
+        color: #957A89;
+        font-size: 24px; 
+      }
+
+      .listg{
+        position: absolute;
+        top: 540px;
+       right: 315px; 
+        color: #957A89;
+        font-size: 24px; 
+      }
+
+      .mypurse{
+        position: absolute;
+        top: 540px;
+        right: 90px; 
+        color: #957A89;
+        font-size: 24px;
+      }
+
+      .buybox {
+        margin-bottom: 60px;
+        margin-right: 200px;
+        width: 350px;
+        height: 415px;
+        position: relative;
+        top: 50%;
+        left: 15%;
+        border: 2px solid rgba(196,178,187,1);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        display: inline-block;
+      }
+      @media screen and (max-width:1000px){ 
+        .buybox{
+          left: 8%;
+          margin-right: 100px;
+        }
+       }
+
+      .pic0{
+        width: 200px;
+        height: 200px;
+        object-fit: contain;
+        position: absolute;
+        top:1120px;
+        left: 50px;
+      }
+
+      .pic9{
+        width: 200px;
+        height: 200px;
+        object-fit: contain;
+        position: absolute;
+        top:1080px;
+        left: 450px;
+      }
+
+      .pic{
+        width: 250px;
+        height: 250px;
+        object-fit: contain;
+        position: relative;
+        top: 5%;
+        left: 13%;
+      }
+
+        .pic1{
+          width: 250px;
+          height: 250px;
+          object-fit: contain;
+          position: relative;
+          left: 13%;
+      }
+
+      .pic2{
+        width: 250px;
+        height: 250px;
+        object-fit: contain;
+        position: absolute;
+        top: 320px;
+        right: 150px;
+      }
+
+      .moreeee{
+        color: rgb(155, 155, 155);
+        padding-left: 25px;
+      }
+
+      .goodword{
+        color: #957A89;
+        font-size: 22px;
+        position: relative;
+        top: 80%;
+        left: 13%;
+      }
+
+      .goodword1{
+        color: #957A89;
+        font-size: 22px;
+        position: absolute;
+        top: 600px;
+        right: 225px;
+      }
+
+      .addcart1
+      {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        top: 600px;
+        right: 150px;
+      }
+
+      .addcart
+      {
+        width: 73px;
+        height: 69px;
+        position: relative;
+        top: 25%;
+        right: 7%;
+      }
+
+      .addcart0
+      {
+        width: 50px;
+        height: 50px;
+        position: relative;
+        top: 18%;
+        right: 6%;
+      }
+
+      .wallet_title1{
+        color: #957A89;
+        font-size: 23px;
+        position: absolute;
+        top: 180px;
+        left: 150px;
+      }
+
+      .wallet_title2{
+        color: #957A89;
+        font-size: 23px;
+        position: absolute;
+        top: 350px;
+        left: 150px;
+        cursor:pointer;
+      }
+
+      .account_title{
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        position: relative;
+        font-size: 15px;
+        left: 180px;
+        top: 250px;
+        line-height: 18px;
+        color: #6A5460;
+      }
+
+      .account_number{
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        position: relative;
+        font-size: 12px;
+        left: 250px;
+        top: 250px;
+        line-height: 18px;
+        color: #957a89;
+      }
+
+      .account_name{
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        position: relative;
+        font-size: 12px;
+        left: 320px;
+        top: 250px;
+        line-height: 18px;
+        color: #957a89;
+      }
+
+      .add_account_title1{
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        position: relative;
+        font-size: 15px;
+        left: 180px;
+        top: 100px;
+        color: #6A5460;
+      }
+
+      .add_account_title2{
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        position: relative;
+        font-size: 15px;
+        left: 180px;
+        top: 140px;
+        color: #6A5460;
+      }
+
+      .add_account_title3{
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        position: relative;
+        font-size: 15px;
+        left: 180px;
+        top: 180px;
+        color: #6A5460;
+      }
+
+      .add_account_title4{
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        position: relative;
+        font-size: 15px;
+        left: 180px;
+        top: 220px;
+        color: #6A5460;
+      }
+
+      .new_account_submit{
+        position: relative;
+        width: 40%;
+        height: 50px;
+        left: 25%;
+        top: 270px;
+        bottom: 45px;
+        background: #c4b2bc;
+        border-radius: 12px;
+      }
+  
+      .new_account_submit:hover{
+        background: #551a3e;
+      }
+  
+      .new_account_submit_font {
+        color: rgba(255,254,247,1);
+        position: relative;
+        font-family: Inter;
+        font-weight:  Bold;
+        font-size: 20px;
+        opacity: 1;
+      }
+
+      .myWallet_title1{
+        color: #957A89;
+        font-size: 23px;
+        font-weight: 500;
+        position: relative;
+        text-align: center;
+        top: 180px;
+      }
+
+      .myWallet_title2{
+        color: #957A89;
+        font-size: 23px;
+        font-weight: 500;
+        position: relative;
+        text-align: center;
+        top: 40px;
+      }
+
+      .myWallet_title3{
+        color: #957A89;
+        font-size: 23px;
+        font-weight: 500;
+        position: relative;
+        text-align: center;
+        top: 70px;
+      }
+
+      .balance_title{
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: bolder;
+        position: relative;
+        font-size: 30px;
+        text-align: center;
+        color: #6A5460;
+      }
+
+      .withdraw_input{
+        position: relative; 
+        text-align: center; 
+        top: 30px; 
+        width:25%; 
+        height:45px; 
+        border-radius: 5px; 
+        border-color: #957a89; 
+        border-width: 2px; 
+        color:#957a89; 
+        background-color: #f7f7f7; 
+        font-size: 15px;
+        font-weight: bold;
+      }
+
+      .withdraw_input::placeholder{
+        color:#bfafb8;
+        font-size: 15px;
+      }
+
+      .withdraw_submit{
+        position: relative;
+        width: 25%;
+        height: 45px;
+        text-align: center;
+        top: 80px;
+        background: #c4b2bc;
+        border-radius: 5px;
+      }
+  
+      .withdraw_submit:hover{
+        background: #551a3e;
+      }
+  
+      .withdraw_submit_font {
+        color: rgba(255,254,247,1);
+        position: relative;
+        font-family: Inter;
+        font-weight:  Bold;
+        font-size: 20px;
+        opacity: 1;
+      }
+
+      .transaction_record{
+          overflow: scroll;
+          overflow-x: hidden;
+          overflow-y: auto;
+          position: relative;
+          white-space: nowrap;
+          margin-left: 12.5%;
+          height: 300px;
+          width: 75%;
+          top: 50px;
+          margin-bottom: 10px;
+          background-color: #d9d9d9;
+          border-color: #957a89;
+          border-radius: 5px;
+          color: #957a89;
+          font-size: 15px;
+          font-family: 'Inter';
+          font-style: normal;
+          font-weight: 400;
+      }
+
+      .shopping_cart1 {
+        width: 80%;
+        height: 560px;
+        text-align: center;
+        position: relative;
+        top: 180px;
+        left: 10%;
+        border: 2px solid rgba(196,178,187,1);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
+
+      .shopping_cart1_checkbox{
+        position: relative;
+        top: 7%;
+        left: -45%;
+        width: 20px;
+        height: 20px;
+      }
+
+      .shopping_cart_content_checkbox{
+        position: relative;
+        top: 5%;
+        left: 25%;
+        width: 20px;
+        height: 20px;
+      }
+
+      .shopping_cart_username{
+        position: relative;
+        font-weight: bold;
+        color: #6a5460;
+        font-size: 16px;
+        width: auto;
+        top: 2%;
+        left: -34%;
+      }
+
+      .shopping_cart_profile-pic{
+        width: 40px;
+        height: 40px;
+        position: relative;
+        top: -3%;
+        left: -40%;
+        border-radius: 50%;
+        overflow: hidden;
+        padding: 3px;
+    }
+
+      .shopping_cart_profile-pic img{
+        border: none;
+    }
+
+      .shopping_cart_content{
+        overflow: scroll;
+        overflow-x: hidden;
+        overflow-y: auto;
+        position: relative;
+        white-space: nowrap;
+        height: 400px;
+        width: 100%;
+        top: 5px;
+        margin-bottom: 10px;
+        background-color: #e8e8e8;
+        border-color: #957a89;
+        border-radius: 5px;
+        color: #957a89;
+        font-size: 15px;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+      }
+
+      .shopping_cart_pic{
+        width: 75px;
+        height: 75px;
+        top: 5%;
+        left: -15%;
+        object-fit: contain;
+        position: relative;
+      }
+
+      .shopping_cart_goods_name{
+        position: relative;
+        top: 5%;
+        text-align: center;
+        left: -20%;
+        color: #957a89;
+        font-size: 15px;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+      }
+
+      .shopping_cart_price{
+        position: relative;
+        top: 5%;
+        text-align: left;
+        left: -10%;
+        color: #957a89;
+        font-size: 18px;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 600;
+      }
+
+      .shopping_cart_trash{
+        width: 20px;
+        height: 20px;
+        position: relative;
+        text-align: left;
+        top: 5%;
+        left: -30%;      
+    }
+
+      .shopping_cart_balance{
+        position: relative;
+        text-align: right;
+        left: 70%;
+        color: #957a89;
+        font-size: 20px;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+    }
+
+      .shopping_cart_submit{
+        position: relative;
+        width: 10%;
+        height: 45px;
+        top: 5%;
+        left: 72%;
+        background: #c4b2bc;
+        border-radius: 5px;
+    }
+
+      .shopping_cart_submit:hover{
+        background: #551a3e;
+    }
+    
+      .shopping_cart_submit_font {
+        color: rgba(255,254,247,1);
+        position: relative;
+        font-family: Inter;
+        font-weight:  Bold;
+        font-size: 20px;
+        opacity: 1;
+    }
+
+      .shipping_method{
+        position: relative;
+        text-align: right;
+        left: 35%;
+        color: #fffff8;
+        font-size: 17px;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: bold;
+    }
+
+      .order_account{
+        position: relative;
+        text-align: center;
+        left: 5%;
+        color: #fffff8;
+        font-size: 15px;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+  }
+
+      .order_order{
+        position: relative;
+        top: 5%;
+        left: 130%;
+        color: #957a89;
+        font-size: 15px;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 600;
+      }
+
+      .order_pic{
+        width: 75px;
+        height: 75px;
+        top: 5%;
+        left: 25%;
+        object-fit: contain;
+        position: relative;
+    }
+
+      .order_goods_name{
+        position: relative;
+        top: 5%;
+        text-align: center;
+        left: -5%;
+        color: #957a89;
+        font-size: 15px;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+    }
+
+      .order_price{
+        position: relative;
+        top: 5%;
+        text-align: left;
+        left: -5%;
+        color: #957a89;
+        font-size: 18px;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 600;
+    }
+
+      .order_username{
+        position: relative;
+        font-weight: bold;
+        color: #6a5460;
+        font-size: 16px;
+        width: auto;
+        top: 4%;
+        left: -39%;
+    }
+
+      .order_profile-pic{
+        width: 40px;
+        height: 40px;
+        position: relative;
+        top: -1.5%;
+        left: -45%;
+        border-radius: 50%;
+        overflow: hidden;
+        padding: 3px;
+    }
+
+      .order_profile-pic img{
+        border: none;
+    }
+
+      .goods_bar{
+        width: 100%;
+        height: 500px;
+        top: 126px;
+    }
+
+      .goods_icon1{
+        width: 35px;
+        height:35px;
+        position: absolute;
+        top: 145px;
+        left: 5%;
+    }
+
+      .goods_icon2{
+        width: 35px;
+        height:35px;
+        position: absolute;
+        top: 145px;
+        right: 6%;
+    }
+
+      .goods_pic{
+        width: 450px;
+        height: auto;
+        object-fit: contain;
+        margin-top: 185px;
+        margin-bottom: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+      .goods_detail{
+        width: 100%;
+        height: 10%;
+        margin-top: auto;
+    }
+
+    .goods_detail1{
+      width: 100%;
+      height: 10%;
+      margin-top: 180px;
+  }
+
+      .goods_label{
+        width: 15%;
+        border-radius: 15px;
+        background-color: #957a89;
+        color: #fffff8;
+        font-size: 24px;
+        font-family: 'Inter';
+        font-weight: 400;
+        margin: 2%;
+    }
+
+      .goods_note{
+        font-family: 'Inter';
+        font-weight: 500;
+        font-size: 18px;
+        color: #957A89;
+        text-align: left;
+        margin-left: 2%;
+    }
+
+      .recommendation{
+        width: 100%;
+        height: 240px;
+        margin-top: auto;
+    }
+
+      .recommendation_title{
+        font-family: 'Inter';
+        font-weight: bold;
+        font-size: 18px;
+        color: #957A89;
+        margin-left: 2%;
+        margin-bottom: 80%;
+        position: relative;
+    }
+
+      .recommendation_pic{
+        width: 150px;
+        height: 150px;
+        object-fit: contain;
+        position: relative;
+        margin: 0 0 30px 60px;
+    }
+
+      .recommendation_pic2{
+        width: 200px;
+        height: 200px;
+        object-fit: contain;
+        position: absolute;
+        margin: 50px 50px 50px 0;
+    }
+
+      .recommendation_pic3{
+        width: 200px;
+        height: 200px;
+        object-fit: contain;
+        position: absolute;
+        margin: 50px 50px 50px 0;
+    }
+
+      .goods_function{
+        width: 100%;
+        height: 200px;
+        margin-top: auto;
+    }
+
+      .goods_function_button{
+        width: 20%;
+        height: 50%;
+        border-radius: 10px;
+        font-size: medium;
+        text-align: center;
+        font-family: 'Inter';
+        font-weight: bolder;
+        margin: 3% 0% 2% 10%;
+        cursor: pointer;
+    }
+
+      .add_goods_pic{
+        width: 250px;
+        height: auto;
+        object-fit: contain;
+        margin-top: 185px;
+        margin-bottom: 30px;
+        margin-left: 5%;
+        margin-right: auto;
+    }
+
+    .goods_fileInput{
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 300px;
+      right: 0;
+      opacity: 0;
+      width: 250px;
+      height: 250px;
+      margin-top: 185px;
+      margin-bottom: 30px;
+      margin-left: 5%;
+      margin-right: auto;
+      clear: both;
+      display: block;
+  }
+
+      .add_goods_name{
+        font-family: 'Inter';
+        font-weight: bold;
+        font-size: 18px;
+        color: #957A89;
+        margin-left: 2%;
+        margin-top: 20%;
+        position: relative;
+      }
+
+      .add_goods_name_input{
+        position: relative; 
+        top: 20px; 
+        margin-left: 5%; 
+        width:95%; 
+        height:25px; 
+        border: 0; 
+        color: #957a89; 
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .add_goods_name_input::placeholder{
+        font-family: 'Inter';
+        font-size: 18px;
+        color: #957A89;
+        font-weight: 400;
+      }
+
+      .add_goods_condition{
+        font-family: 'Inter';
+        font-weight: bold;
+        font-size: 18px;
+        color: #957A89;
+        margin-left: 2%;
+        margin-top: 20%;
+        position: relative;
+      }
+
+      .condition{
+        width: 100%;
+        height: 60px;
+        margin-top: auto;
+    }
+
+    .condition_button{
+      width: 10%;
+      height: 40%;
+      border-radius: 25px;
+      font-size: medium;
+      text-align: center;
+      color: #957A89;
+      border-color: #957A89;
+      background-color: #ececec;
+      font-family: 'Inter';
+      font-weight: bolder;
+      margin-left: 5%;
+      cursor: pointer;
+  }
+
+  .condition_button:hover{
+    background: #551a3e;
+    color: #fffff8;
+  }
+
+  .add_goods_price{
+    width: 100%;
+    height: 60px;
+    margin-top: 20px;
+}
+
+  .goods_price_title{
+    font-family: 'Inter';
+    font-weight: bold;
+    font-size: 18px;
+    color: #957A89;
+    margin-left: 2%;
+    margin-top: 2%;
+    position: relative;
+  }
+
+  .add_goods_label{
+    width: 100%;
+    height: 10%;
+    margin-top: 0;
+}
+
+  .add_goods_description{
+    width: 100%;
+    height:130px;
+    margin-top: 20px;
+}
+
+  .add_goods_description_title{
+    font-family: 'Inter';
+    font-weight: bold;
+    font-size: 18px;
+    color: #957A89;
+    margin-left: 2%;
+    margin-top: 2%;
+    position: relative;
+}
+        .add_goods_submit{
+          background: #c4b2bc;
+          width: 90%;
+          height: 50px;
+          margin-left: 5%;
+          margin-top: 5%;
+          position: relative;
+          left: auto;
+          top: auto;
+          border-radius: 15px;
+          border-style: none;
+          display: inline;
+          color: rgba(255,254,247,1);
+          font-family: Inter;
+          font-weight:  Bold;
+          font-size: 20px;
+          opacity: 1;
+      }
+
+        .add_goods_submit:hover{
+          background: #551a3e;
+      }
+
+      .goods_delete{
+        background: #e0e0e0;
+        width: 90%;
+        height: 50px;
+        margin-left: 5%;
+        margin-top: 5%;
+        position: relative;
+        left: auto;
+        top: auto;
+        border-radius: 15px;
+        border-style: none;
+        display: inline;
+        color: #c4b2bc;
+        font-family: Inter;
+        font-weight:  Bold;
+        font-size: 20px;
+        opacity: 1;
+    }
+
+      .goods_delete:hover{
+        background: #c4b2bc;
+        color: #551a3e;
+    }
+
+        /*復刻穿搭 選擇下一個鍵*/
+    .remake_submit1{
+      position: relative;
+      width: 42.5%;
+      height: 50px;
+      left: 5%;
+      top: 2.5%;
+      bottom: 45px;
+      background: #d9d9d9;
+      border-radius: 15px;
+      color: #957a89;
+    }
+
+    .remake_submit1:hover{
+      background: #957a89;
+      color: rgba(255,254,247,1);
+
+    }
+
+    .remake_submit1_font {
+      position: relative;
+      font-family: Inter;
+      font-weight:  Bold;
+      font-size: 28px;
+      opacity: 1;
+      
+    }
+
+    .remake_submit2{
+      position: relative;
+      width: 42.5%;
+      height: 50px;
+      margin-left: 10%;
+      top: 2.5%;
+      bottom: 45px;
+      background: #c4b2bc;
+      border-radius: 15px;
+    }
+
+    .remake_submit2:hover{
+      background: #551a3e;
+    }
+
+    .remake_submit2_font {
+      color: rgba(255,254,247,1);
+      position: relative;
+      font-family: Inter;
+      font-weight:  Bold;
+      font-size: 28px;
+      opacity: 1;
+      
+    }
+    .overlay {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.7);
+      transition: opacity 500ms;
+      visibility: hidden;
+      opacity: 0;
+    }
+    .overlay:target {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    .popup {
+      margin: 70px auto;
+      padding: 20px;
+      background: rgba(238,236,231,1);;
+      border-radius: 5px;
+      width: 30%;
+      position: relative;
+      transition: all 5s ease-in-out;
+    }
+    
+    .popup h2 {
+      margin-top: 0;
+      color: #333;
+      font-family: Tahoma, Arial, sans-serif;
+    }
+    .popup .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      transition: all 200ms;
+      font-size: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      color: #333;
+    }
+    .popup .close:hover {
+      color: #c4b2bc;
+    }
+
+
+  .popup .likeinput{
+    display: block;
+    margin: 10px 0;
+        width: 300px;
+        height: 60px;
+        background: #F0F0F0;
+        border: 1px solid rgba(148,122,136,1);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        position: absolute;
+        font-size: 15px;
+        color: rgba(148,122,136,0.699999988079071);
+        text-align:left;
+  }
+
+  .popup .cate_submit{
+    display: block;
+    background: #c4b2bc;
+    width: 150px;
+    height: 50px;
+    margin: 5px;
+    position: relative;
+    border-radius: 15px;
+    border-style: none;
+    color: rgba(255,254,247,1);
+    font-family: Inter;
+    font-weight:  Bold;
+    font-size: 20px;
+    opacity: 1;
+    margin: 0 auto;
+  }
+    
+    @media screen and (max-width: 700px){
+      .box{
+        width: 70%;
+      }
+      .popup{
+        width: 70%;
+      }
+    }
