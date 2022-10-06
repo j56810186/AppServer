@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Recommend</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+
+    <body>
+        <div class="container">
+            <section class="top-bar">
+                <a href="{% url 'clothes' %}" class="tabs__btn">
+                    <img class="tabs__btn__icon" src="{% static 'images/back.svg' %}" alt="arrow_back_ios">
+                </a>
+            </section>
+
+            <div id="container1_5">
+                    <font size="5"><h3>穿搭推薦</h3></font>
+                    <div class="aui-info">
+                        <img src="{% static 'images/plus.png' %}" style="width: 7rem" />
+                        <input type="file" accept="image/*" class="fileInput" />
+                    </div>
+
+                        <select name="正式度" class="sttyle" style="border:1px rgb(199, 199, 199) solid;">
+                            <option>正式度</option>
+                            <option value="10">休閒</option>
+                            <option value="20">半正式</option>
+                            <option value="30">正式</option>
+                        </select>
+                    <br>
+                        <select name="風格" class="sttyle" style="border:1px rgb(199, 199, 199) solid;">
+                            <option>風格</option>
+                            <option value="1">日系</option>
+                            <option value="2">韓系</option>
+                            <option value="3">歐美</option>
+                            <option value="4">工裝</option>
+                            <option value="5">簡約</option>
+                            <option value="6">街頭潮流</option>
+                            <option value="7">運動</option>
+                            <option value="8">復古</option>
+                    </select>
+                    </br>
+
+                    <div id="containerR">
+                        <label>適合溫度</label>
+                        <br>
+                        <br>
+                        <label><input type="radio" name="weather" value="loww" >🥶</label>
+                        <text style="color:white">ab</style>
+                        <label><input type="radio" name="weather" value="low" >😰</label>
+                        <text style="color:white">ab</style>
+                        <label><input type="radio" name="weather" value="mid"checked>😀</label>
+                        <text style="color:white">ab</style>
+                        <label><input type="radio" name="weather" value="hight" >😡</label>
+                        <text style="color:white">ab</style>
+                        <label><input type="radio" name="weather" value="heightt" >🥵</label>
+                        </br>
+                    </div>
+                    <br>
+
+                    <div id="containerR">
+                    <form>
+                        搭配單品來源：(可複選)
+                        <br>
+                        <br>
+                        <input type="checkbox" value="100" name="mine">我的衣櫃</input>
+
+                        <input type="checkbox" value="200" name="no" >上網查詢</input>
+                    </form>
+                    </div>
+
+                    <br>
+                    <br>
+                        <input type="submit" id="sub" value="給我建議" class="submit" style="background-color: #551a3e;">
+                    <br>
+                    <br>
+                        <input type="submit" id="sub" value="沒有指定要求 直接生成建議" class="submit">
+
+            </div>
+        </div>
+    </body>
+</html>

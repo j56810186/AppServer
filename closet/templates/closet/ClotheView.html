@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+            <title>View My Clothes</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+
+    <body>
+        <div class="containerrr">
+            <div class="mycloset">
+                我的衣櫃
+            </div>
+
+            <a href="{% url 'edit_clothe' clothe.id %}">
+                <img src="{% static 'images/icon-svg/edit.png' %}" class="icon2">
+            </a>
+
+            <a href="{% url 'profile' user.id %}">
+                <img src="{% static 'images/icon-svg/user.png' %}" class="icon3">
+            </a>
+        </div>
+
+        <div class="goods_bar">
+            <a href="{% url 'single_clothe' clothe.id %}">
+                <img class="goods_icon1" src="{% static 'images/icon-svg/arrow_left.png' %}">
+            </a>
+
+            <img class="goods_icon2" src="{% static 'images/icon-svg/more.png' %}">
+
+            <img src="{{ clothe.image.url }}" class="goods_pic">
+
+            <div style="margin-top: 10px; padding-top: 20px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
+
+        </div>
+        <div class="goods_detail">
+            <button type="value" name="type" class="goods_label">{{ clothe.type }}</button>
+            <button type="value" name="color" class="goods_label">{{ clothe.color }}</button>
+            <button type="value" name="style" class="goods_label">{{ clothe.style }}</button>
+            <button type="value" name="company" class="goods_label">{{ clothe.company.name }}</button>
+            <button type="value" name="isFormal" class="goods_label">{% if clothe.isFormal %}正式{% else %}休閒{% endif %}</button>
+
+            <div style="margin-top: 10px; padding-top: 10px;"> </div>
+
+            <span class="goods_note" name="note" style="font-weight: bold;">備註:</span>
+            <span class="goods_note" name="note">{{ clothe.note }}</span>
+
+            <div style="margin-top: 10px; margin-bottom: 20px; padding-top: 20px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
+
+
+        </div>
+
+        <div class="recommendation"><span class="recommendation_title">相關穿搭</span>
+            <div style="margin-top: 10px; margin-bottom: 10px; padding-top: 10px;">  </div>
+
+            {% for post in related_posts %}
+            <a href="{% url 'viewPost' postPk=post.id %}">
+                <img src="{{ post.image.url }}" class="recommendation_pic">
+            </a>
+            {% endfor %}
+
+            <div style="margin-top: 10px; margin-bottom: 30px; padding-top: 2px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
+
+        </div>
+
+        <div class="goods_function">
+            <a href="{% url 'create_outfit' %}">
+                <button type="value" name="type" class="goods_function_button" style="background-color: #c4b2bb; color: #6a5460">
+                    <img src="{% static 'images/icon-svg/shirt.png' %}" style="width: 30px;">
+                    <br>新增穿搭
+                </button>
+            </a>
+
+            <a href="{% url 'product_post_create' clothe.id %}">
+            <button type="value" name="color" class="goods_function_button" style="background-color: #b8b8b8; color: #676767">
+            <img src="{% static 'images/icon-svg/add_bag.png' %}" style="width: 30px;"><br>商品上架</button>
+            </a>
+
+            <a href="RecommendOutfits.html">
+            <button type="value" name="style" class="goods_function_button" style="background-color: #e9e7be; color: #787764">
+            <img src="{% static 'images/icon-svg/light.png' %}" style="width: 30px;"><br>穿搭推薦</button>
+            </a>
+
+        </div>
+
+    <body>
+<html>

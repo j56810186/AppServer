@@ -1,0 +1,191 @@
+{% extends 'closet/Base.html' %}
+{% load static %}
+
+{% block title %}
+    Add New Clothes to My Closet
+{% endblock %}
+
+{% block style %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        div.loadingdiv {
+            height: 100%;
+            width: 100%;
+            position: fixed;
+            z-index: 99999;
+            top: 0;
+            left: 0;
+            display: block;
+            background: #000;
+            opacity: 0.6;
+            text-align: center;
+        }
+
+        div.loadingdiv img {
+            position: relative;
+            vertical-align: middle;
+            text-align: center;
+            margin: 0 auto;
+            margin-top: 50vh;
+        }
+    </style>
+{% endblock %}
+
+{% block closet_name %}
+    {% if not clothe %}
+        新增衣物
+    {% else %}
+        我的衣櫃
+    {% endif %}
+{% endblock %}
+
+{% block header_right %}
+    <button class="tabs__btn">
+        {% if clothe %}
+            <a href="{% url 'single_clothe' clothe.id %}">
+        {% else %}
+            <a href="{% url 'clothes' %}">
+            <img class="icon" src="{% static 'images/icon-svg/arrow_left.png' %}">
+        {% endif %}
+        </a>
+    </button>
+{% endblock %}
+
+{% block header_left %}
+{% endblock %}
+
+{% block content %}
+    <div class="loadingdiv" style="display: none">
+        <img src="{% static 'images/loading.gif' %}" />
+    </div>
+
+        <form class="camera" action="" enctype="multipart/form-data" method="post">{% csrf_token %}
+            {% for i in form %}{{ i.errors }}{% endfor %}
+            <div class="camera_icon">
+                    {% if not clothe %}
+                        <img id="photo" src="{% static 'images/icon-svg/camera.jpg' %}" style="width: 18rem" />
+                    {% else %}
+                        <img id="photo" src="{{ clothe.image.url }}" style="width: 18rem;" />
+                    {% endif %}
+                    <input id="photo" name="image" type="file" accept="image/*" class="fileInput" style="width: 18rem" multiple=""/>
+                    <input type="hidden" name="new_image" value=1 />
+                    <input type="hidden" name="user" value={{ user.id }} />
+                    <input type="hidden" name="closet" value={{ user.closets.first.id }} />
+            </div>
+
+            <br><br><br>
+            <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+            <script>
+
+                    $('input').on('change', function(e){
+                        const file = this.files[0];
+                        const objectURL = URL.createObjectURL(file);
+                        $("#photo").attr("src", objectURL);
+                    });
+
+            </script>
+
+        </form>
+
+
+        <form class="clothes_setting" action="" method="post">{% csrf_token %}
+            <input type="hidden" name="user" value="{{ user.id }}" />
+            <br><br>
+            <div>
+            <select name="type" class="sttyle" style="border:1px rgb(199, 199, 199) solid;">
+                <option {% if not clothe.type %}selected="selected"{% endif %}>種類</option>
+                {% for type in types %}
+                    <option {% if clothe.type.id == type.id %}selected="selected"{% endif %} value={{ type.id }}>{{ type.name }}</option>
+                {% endfor %}
+            </select>
+            </div>
+            <br>
+
+            <div>
+            <select name="color" class="sttyle" style="border:1px rgb(199, 199, 199) solid;">
+                <option {% if not clothe.color.first %}selected="selected"{% endif %}>主色彩</option>
+                {% for color in colors %}
+                    <option {% if clothe.color.first.id == color.id %}selected="selected"{% endif %} value={{ color.id }}>{{ color.name }}</option>
+                {% endfor %}
+            </select>
+            </div>
+            <br>
+
+            <div>
+            <select name="style" class="sttyle" style="border:1px rgb(199, 199, 199) solid;">
+                <option {% if not clothe.style.first %}selected="selected"{% endif %}>風格</option>
+                {% for style in styles %}
+                    <option {% if clothe.style.first.id == style.id %}selected="selected"{% endif %} value={{ style.id }}>{{ style.name }}</option>
+                {% endfor %}
+            </select>
+            </div>
+            <br>
+
+            <div class="sttyle">
+            <select name="company" class="sttyle" style="border:1px rgb(199, 199, 199) solid; ">
+                <option {% if not clothe.company %}selected="selected"{% endif %}>品牌</option>
+                {% for company in companies %}
+                    <option {% if clothe.company.id == company.id %}selected="selected"{% endif %} value={{ company.id }}>{{ company.name }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            </div>
+            <br>
+
+            <div class="sttyle">
+            <select name="isFormal" class="sttyle" style="border:1px rgb(199, 199, 199) solid;">
+                <option value>正式度</option>
+                <option value="False" {% if not clothe.isFormal %}selected="selected"{% endif %}>休閒</option>
+                <option value="True" {% if clothe.isFormal %}selected="selected"{% endif %}>正式</option>
+            </select>
+            </div>
+            <br>
+            <!--
+            <select name="shoeStyle" class="sttyle" style="border:1px rgb(199, 199, 199) solid;">
+                    <option>鞋子風格</option>
+                    <option>運動</option>
+                    <option>休閒</option>
+                    <option>跟鞋</option>
+                    <option>學院</option>
+                    <option>百搭(預設)</option>
+                    <option>其他</option>
+            </select>
+            </br> -->
+
+            <div id="containerWeather" class="sttyle" style="width:1240px; left: 3%; height:120px; border-radius: 8; background-color: #f5f5f5;">
+                <label class="sttyle">適合溫度</label>
+                <br><br>
+                <br>
+                <label style="font-size: 45px;"><input type="radio" name="warmness" value="1" {% if clothe.warmness == 1 %}checked{% endif %}>🥶</label>
+                <text style="color:#f5f5f5">ab</style>
+                <label style="font-size: 45px;"><input type="radio" name="warmness" value="2" {% if clothe.warmness == 2 %}checked{% endif %}>😰</label>
+                <text style="color:#f5f5f5">ab</style>
+                <label style="font-size: 45px;"><input type="radio" name="warmness" value="3" {% if clothe.warmness == 3 %}checked{% endif %}>😀</label>
+                <text style="color:#f5f5f5">ab</style>
+                <label style="font-size: 45px;"><input type="radio" name="warmness" value="4" {% if clothe.warmness == 4 %}checked{% endif %}>😡</label>
+                <text style="color:#f5f5f5">ab</style>
+                <label style="font-size: 45px;"><input type="radio" name="warmness" value="5" {% if clothe.warmness == 5 %}checked{% endif %}>🥵</label>
+                </br>
+            </div>
+            <br>
+
+            <p></p>
+            <textarea name="note" style="width:1240px; height:110px; border-radius: 8; border-color: #c0c0c0; color: #957a89; color:#957a89; background-color: #f5f5f5; font-size: 13px;" rows="40" cols="50" id="content" placeholder=" 備註，可選填 ">{% if clothe.note %}{{ clothe.note }}{% endif %}</textarea>
+            <br>
+            <br><br><br><br><br>
+
+
+            <button id="submit" class="new_clothes_submit" > <span class="new_clothes_submit_font">新增至我的衣櫃 </span></button>
+        </form>
+
+{% endblock %}
+
+{% block script %}
+<!-- 後端立即上傳用的 js -->
+<script>
+    $("input[name='image']").change(function() {
+        $('.loadingdiv').show();
+        this.form.submit();
+    });
+</script>
+{% endblock %}

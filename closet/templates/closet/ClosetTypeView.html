@@ -1,0 +1,80 @@
+{% extends 'closet/Base.html' %}
+{% load static %}
+<!DOCTYPE html>
+
+{% block title %}
+    {{ type.name }}
+{% endblock %}
+
+{% block closet_name %}
+    我的衣櫃
+{% endblock %}
+
+{% block head_bar_title %}
+    {{ type.name }}
+{% endblock %}
+
+{% block head_bar_left %}
+    <a href="{% url 'clothes' %}">
+        <img src="{% static 'images/icon-svg/arrow_left.png' %}" class="icon5">
+    </a>
+{% endblock %}
+
+{% block head_bar_right %}
+
+<a href="{% url 'create_closet' %}" class="login_submit1">新增分類</a> <!-- 做彈出視窗 新增名稱跟選擇檔案 -->
+
+{% endblock %}
+
+{% block content %}
+            <div class="addnew">近期新增</div> <img src="{% static 'images/icon-svg/more1.png' %}" class="more">
+
+            <div class="imageList" >
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {% for clothe in clothes reversed %}
+                <button>
+                    <a href="{% url 'single_clothe' clothe.id %}">
+                        <img src="{{ clothe.image.url }}" style="width:20rem; height: 25rem;" />
+                    </a>
+                </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {% endfor %}
+
+                <br> <br>
+            </div>
+                    <img src="{% static 'images/bag.png' %}" class="buyicon"> <!--出不來-->
+
+            <div class="addnew2">已上架</div> <img src="{% static 'images/icon-svg/more1.png' %}" class="more1">
+            <div class="imageList2" >
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {% for clothe in clothes %}
+                <button>
+                    <a href="{% url 'single_clothe' clothe.id %}">
+                        <img src="{{ clothe.image.url }}" style="width:20rem; height: 25rem;" />
+                    </a>
+                </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {% endfor %}
+                <br> <br>
+            </div>
+            <img src="{% static 'images/bag.png' %}" class="buyicon"> <!--出不來-->
+
+            {% for closet in user_closets %}
+            <div class="addnew3">{{ closet.name }}</div> <img src="{% static 'images/icon-svg/more1.png' %}" class="more2">
+            <div class="imageList3" >
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {% for clothe in clothes %}
+                {% if clothe in closet.clothes.all %}
+                <button>
+                    <a href="{% url 'single_clothe' clothe.id %}">
+                        <img src="{{ clothe.image.url }}" style="width:20rem; height: 25rem;" />
+                    </a>
+                </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {% endif %}
+                {% endfor %}
+                <br> <br>
+            </div>
+            {% endfor %}
+            <img src="{% static 'images/bag.png' %}" class="buyicon"> <!--出不來-->
+{% endblock  %}

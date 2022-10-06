@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Profile Edit</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+
+    <body>
+        <div class="containerrr">
+            <div class="mycloset">
+                修改基本資料
+            </div>
+
+            <button class="tabs__btn">
+                <a href="{% url 'settings' pk=user.id %}">
+                    <img class="icon6" src="{% static 'images/icon-svg/arrow_left.png' %}">
+                </a>
+            </button>
+
+            <form action="" enctype="multipart/form-data" method="post">{% csrf_token %}
+
+            <img id="photo" class="img-holder" src="{{ user.profile_picture.url }}">
+
+                    <input id="photo" type="file" accept="image/*" class="fileInput" multiple=""/>
+                    <script>
+
+                    $('input').on('change', function(e){
+                    const file = this.files[0];
+                    const objectURL = URL.createObjectURL(file);
+
+                    $("#photo").attr('src', objectURL);
+                    });
+
+                    </script>
+
+                    <input type="text" name="username" id="username" value="{{ object.username }}" class="likeinput1">
+                    <input type="text" name="name" id="username" value="{{ object.name }}" class="likeinput2">
+                    <input type="text" name="email" id="username" value="{{ object.email }}" class="likeinput3">
+                    <input type="text" name="phone" id="username" value="{{ object.phone }}" class="likeinput4">
+
+                    <br>
+                    <input type="submit" id="sub" value="保存" class="login_submit" >
+
+            </form>
+        </div>
+    </body>
+</html>
