@@ -1,7 +1,7 @@
 
 from django.db import models
 
-from closet.models import User
+from closet.models import User, Clothe
 
 ''' Base Post model, all Post are inherit this models. '''
 class BasePost(models.Model):
@@ -21,6 +21,8 @@ class Post(BasePost):
     # Foreign key.
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
     likes = models.ManyToManyField(User, blank=True)
+    clothes = models.ManyToManyField(Clothe, blank=True, null=True)
+
 
 
 ''' Base Comment model, all Comment are inherit this models. '''

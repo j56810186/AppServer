@@ -16,7 +16,9 @@ from django.views.generic.edit import CreateView, FormView, UpdateView, DeleteVi
 from django.views.generic.detail import DetailView
 
 from closet.forms import StyleForm, UserForm
-from closet.models import Closet, Clothe, Type, User
+from closet.models import Closet, Clothe, Color, Company, Style, Type, User
+
+from community.models import Post
 
 
 #
@@ -93,7 +95,7 @@ def register(request):
 class ForgotPasswordView(View):
 
     def get(self, request):
-        return render(request, 'app/ForgotPassword.html')
+        return render(request, 'closet/ForgotPassword.html')
 
     def post(self, request):
         email = request.POST['email']
@@ -109,7 +111,7 @@ class ForgotPasswordView(View):
             message = '成功寄出驗證信！請在您的信箱確認！'
         else:
             message = '驗證信寄出失敗，請確認是否使用此信箱註冊！'
-            return render(request, 'app/ForgotPassword.html')
+            return render(request, 'closet/ForgotPassword.html')
         return redirect(reverse('login'))
 
 
@@ -117,34 +119,34 @@ class ForgotPasswordView(View):
 class StyleFormView(FormView):
 
     form_class = StyleForm
-    template_name = 'app/StyleForm.html'
+    template_name = 'closet/StyleForm.html'
 
     def form_valid(self, form):
         form.save_result()
         return super().form_valid(form)
 
     def get_success_url(self):
-        return redirect(reverse('clothe',  kwargs={'closetPk': user.closet_set.first().id}))
+        return redirect(reverse('clothe',  kwargs={'closetPk': self.user.closet_set.first().id}))
 
 
 # 使用者資料編輯頁 (edit_user)
 class EditUserView(UpdateView):
     model = User
-    fields = ['username', 'email', 'nickname', 'phone']
-    template_name = 'app/ProfileUpdateView.html'
+    fields = ['username', 'email', 'name', 'phone']
+    template_name = 'closet/UserUpdateView.html'
 
     def get_success_url(self):
-        return reverse('profile')
+        return reverse('profile', kwargs={'pk': self.request.user.id})
 
 
 # 用戶設定 (setting)
 class SettingView(View):
 
-    def get(self, request):
-        return render(request, 'app/Setting.html')
+    def get(self, request, *args, **kwargs):
+        return render(request, 'closet/PersonalSettings.html')
 
     def get_success_url(self):
-        return reverse('setting')
+        return reverse('settings')
 
 
 #
@@ -191,106 +193,56 @@ class ClosetView(LoginRequiredMixin, ListView):
         return context
 
 
-#
-# 衣物管理相關頁面
-#
-# 衣物首頁 (clothes)
-class ClotheView(ListView):
-    model = Clothe
-    template_name = 'app/ClosetView.html'
-    paginate_by = 4
-
-    def get_queryset(self):
-        closet_id = self.kwargs.get('closetPk', None)
-        queryset = Closet.objects.get(id=closet_id).clothes.all()
-        return queryset
-
-    def get_context_data(self, *args, **kwargs):
-        user = self.request.user
-        context = super().get_context_data(*args, **kwargs)
-        user_closets = Closet.objects.filter(user_id=user.id)
-        types = Type.objects.all()
-        clothes = Clothe.objects.filter(user_id=self.request.user.id)
-
-        context['user_closets'] = user_closets
-        context['types'] = types
-        context['clothes'] = clothes
-
-        # Every types of clothes
-        t_shirts = Clothe.objects.filter(user_id=user.id).filter(type_id=2)
-        shirts = Clothe.objects.filter(user_id=user.id).filter(type_id=1)
-        shorts = Clothe.objects.filter(user_id=user.id).filter(type_id=4)
-        pants = Clothe.objects.filter(user_id=user.id).filter(type_id=3)
-        skirts = Clothe.objects.filter(user_id=user.id).filter(type_id=5)
-        dresses = Clothe.objects.filter(user_id=user.id).filter(type_id=6)
-        shoes = Clothe.objects.filter(user_id=user.id).filter(type_id=7)
-
-        context['t_shirts'] = t_shirts
-        context['shirts'] = shirts
-        context['shorts'] = shorts
-        context['pants'] = pants
-        context['skirts'] = skirts
-        context['dresses'] = dresses
-        context['shoes'] = shoes
-
-        return context
-
 
 # 衣物分頁 (single_type_clothes)
-class ShowSingleClotheView(ListView):
+class ShowSingleTypeClotheView(ListView):
     model = Clothe
-    template_name = 'app/ClosetTypeView.html'
+    template_name = 'closet/ClosetTypeView.html'
     paginate_by = 4
+    context_object_name = 'clothes'
 
     def get_queryset(self):
-        closet_id = self.kwargs.get('closetPk', None)
-        queryset = Closet.objects.get(id=closet_id).clothes.all()
+        type_id = self.kwargs.get('typePk', None)
+        queryset = Clothe.objects.filter(user=self.request.user.id, type=type_id)
         return queryset
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
 
-        user_closets = Closet.objects.filter(user_id=self.request.user.id)
-        type = Type.objects.get(id=self.kwargs.get('typePk', None))
-        clothes = user_closets.get(id=self.kwargs.get('closetPk', None)).clothes.filter(type_id=type.id)
+        _type = Type.objects.get(id=self.kwargs.get('typePk', None))
 
-        context['user_closets'] = user_closets
-        context['type'] = type
-        context['clothes'] = clothes
+        context['type'] = _type
 
         return context
 
 
 # 衣物頁面 (single_clothe)
-def show_single_clothe(request, closetPk, clothePk):
-    closet = Closet.objects.get(id=closetPk)
-    clothe = Clothe.objects.get(id=clothePk)
+def show_single_clothe(request, pk):
+    clothe = Clothe.objects.get(id=pk)
     related_posts = Post.objects.filter(clothes__in=[clothe])
 
     context={
-        'closet': closet,
         'clothe': clothe,
         'related_posts': related_posts,
     }
 
-    return render(request, 'app/ClotheView.html', context=context)
+    return render(request, 'closet/ClotheView.html', context=context)
 
 
 # 新增衣物 (create_clothe)
 class CreateClotheView(CreateView):
     model = Clothe
-    fields = ['image']
-    template_name = 'app/ClotheCreateView.html'
+    fields = ['user', 'closet', 'image']
+    template_name = 'closet/CreateOrEditClotheView.html'
 
     def post(self, request, *args, **kwargs):
         return CreateView.post(self, request, *args, **kwargs)
 
     def get_success_url(self):
         return reverse(
-            'editClothe',
+            'edit_clothe',
             kwargs={
                 'pk': self.object.id,
-                'closetPk': self.object.closet_set.first().id
             }
         )
 
@@ -307,20 +259,20 @@ class CreateClotheView(CreateView):
 
     def form_valid(self, form):
         self.object = form.save()
-        obj = self.object
-        obj.closet_set.add(self.request.user.closet_set.first())
-        if self.request.POST.get('new_image'):
-            predict_image(obj)
-        obj.save()
+        # FIXME: should open these lines to enable type and color predict models.
+        # if self.request.POST.get('new_image'):
+        #     predict_image(self.object)
 
         return HttpResponseRedirect(self.get_success_url())
+
+
 
 
 # 編輯衣物 (edit_clothe)
 class EditClotheView(UpdateView):
     model = Clothe
-    fields = ['name', 'image', 'isFormal', 'warmness', 'color', 'company', 'style', 'shoeStyle', 'type', 'note']
-    template_name = 'app/AddNewClothes.html'
+    fields = ['name', 'image', 'is_formal', 'warmness', 'color', 'company', 'style', 'shoe_style', 'type', 'note']
+    template_name = 'closet/CreateOrEditClotheView.html'
     context_object_name = 'clothe'
     # template_name = 'app/ClotheUpdateView.html'
 
@@ -339,9 +291,8 @@ class EditClotheView(UpdateView):
 
     def get_success_url(self):
         return reverse(
-            'viewClothe',
+            'single_clothe',
             kwargs={
-                'closetPk': self.request.user.closet_set.first().id, # FIXME: self.object.closet_set.first().id,
                 'clothePk': self.object.id,
             },
         )
@@ -359,17 +310,17 @@ class EditClotheView(UpdateView):
 # 刪除衣物 (delete_clothe)
 class DeleteClotheView(DeleteView):
     model = Clothe
-    template_name = 'app/ClotheDeleteView.html'
+    template_name = 'closet/ClotheDeleteView.html'
 
     def get_success_url(self):
-        return reverse('clothe', kwargs={'closetPk': self.request.user.closet_set.first().id})
+        return reverse('clothes')
 
 
 # 新增衣櫃 (create_closet)
 class CreateSubClosetView(CreateView):
     model = Closet
-    template_name = 'app/ClosetCreateView.html'
-    fields = ['user', 'name', 'clothes']
+    template_name = 'closet/ClosetCreateView.html'
+    fields = ['user', 'name']
 
     def get_success_url(self):
         user_closets = Closet.objects.filter(user_id=self.kwargs.get('userPk', None))
@@ -386,14 +337,28 @@ class RecommendView(View):
 
     def get(self, request):
         # refreshSimilarityModel(request)
-        return render(request, 'app/Recommend.html')
+        return render(request, 'closet/Recommend.html')
 
     def get_success_url(self):
         return reverse('recommend')
 
 
 
+# ai models.
+def predict_image(obj):
+    # FIXME: 記得要打開 AI models
+    img_path = Clothe.objects.get(id=obj.id).image.path
+    pred_type_result = loadClassifyModel(img_path)
+    pred_color_result = colorClassify(img_path)
+    pred_result = {
+        'type': CONVERT_PREDICT_TYPE[pred_type_result],
+        'color': CONVERT_PREDICT_COLOR[pred_color_result]
+    }
+    print(CONVERT_PREDICT_COLOR[pred_color_result])
+    obj.color.add(Color.objects.get(id=pred_result['color']))
+    obj.type = Type.objects.get(id=pred_result['type'])
 
+    obj.save()
 
 
 

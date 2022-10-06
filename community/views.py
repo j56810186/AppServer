@@ -20,15 +20,12 @@ from closet.models import Closet, Clothe, Type, User
 from community.models import Post
 
 
-# FIXME: Remove this shit.
+# FIXME: Remove this.
 def saved_outfits():
     pass
 
 
-#
-# 社群相關頁面
-#
-# 個人首頁
+
 # 個人頁面 (profile)
 def profile(request, pk):
     user = request.user
@@ -37,6 +34,11 @@ def profile(request, pk):
     return render(request, 'community/Profile.html', context={'posts': posts, 'user_closets': user_closets})
 
 
+
+
+#
+# 社群相關頁面
+#
 # 穿搭首頁 (personal_outfits)
 def outfits(request, closetPk):
     user = request.user

@@ -17,7 +17,10 @@ class User(AbstractUser):
     # Add our columns.
     name = models.CharField(max_length=15, null=True, blank=True, default='新使用者')
     phone = models.CharField(max_length=10, null=True, blank=True)
-    profile_picture = models.ImageField(upload_to='images/profile_pictures', default=None, null=True, blank=True)
+    profile_picture = models.ImageField(
+        upload_to='images/profile_pictures',
+        default='/images/profile_pictures/anonymous.png',
+    )
     biography = models.TextField(null=True, blank=True)
 
     # Set REQUIRED_FIELDS.
@@ -39,7 +42,7 @@ class Closet(models.Model):
     name = models.CharField(max_length=15, default='我的衣櫃', null=True, blank=True)
 
     # Foreign key setting.
-    user = models.ForeignKey('User', on_delete=models.CASCADE)
+    user = models.ForeignKey('User', on_delete=models.CASCADE, related_name='closets')
 
 @receiver(post_save, sender=User)
 def create_new_closet(instance, **kwargs):
