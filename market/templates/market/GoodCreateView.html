@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+            <title>Add Goods</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+
+    <body>
+        <div class="containerrr">
+            <div class="mycloset">
+                商品上架
+            </div>
+
+            <button class="tabs__btn">
+                <a href="{% url 'single_clothe' clothe.id %}">
+                <img class="icon" src="{% static 'images/icon-svg/arrow_left.png' %}">
+                </a>
+            </button>
+
+            <a href="{% url 'edit_clothe' clothe.id %}">
+                <img src="{% static 'images/icon-svg/edit.png' %}" class="icon2">
+            </a>
+
+            <a href="{% url 'settings' %}">
+            <img src="{% static 'images/icon-svg/user.png' %}" class="icon3">
+            </a>
+        </div>
+        <form action="" enctype="multipart/form-data" method="post">{% csrf_token %}
+            <div class="goods_bar">
+
+                <img src="{{ clothe.image.url }}" class="add_goods_pic">
+                <img src="{% static 'images/icon-svg/add.png' %}" class="add_goods_pic" id="photo">
+                <input name="image" type="file" accept="image/*" class="goods_fileInput" style="width: 250px" multiple=""/>
+            </div>
+
+
+                <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+                <script>
+
+                        $('input[name="image"]').on('change', function(e){
+                            const file = this.files[0];
+                            const objectURL = URL.createObjectURL(file);
+                            $("#photo").attr("src", objectURL);
+                        });
+
+                </script>
+
+
+                <div style="margin-bottom: 20px; padding-top: 10px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
+
+            </div>
+            <div>
+                <span class="add_goods_name">商品名稱</span> <br>
+                <input type="text" placeholder="輸入商品名稱" class="add_goods_name_input" name="title"><br>
+
+                <div style="margin-top: 10px; padding-top: 10px;"> </div>
+
+
+                <div style="margin-top: 10px; margin-bottom: 20px; padding-top: 20px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
+
+
+            </div>
+
+            <div class="condition"><span class="add_goods_condition">使用程度</span>
+                <input type="radio" name="used" value="3" {% if object.used == 3 %}checked{% endif %} class="condition_button">全新</button>
+                <input type="radio" name="used" value="2" {% if object.used == 2 %}checked{% endif %} class="condition_button">近新</button>
+                <input type="radio" name="used" value="1" {% if object.used == 1 %}checked{% endif %} class="condition_button">二手</button>
+
+                <div style="margin-top: 12px;  padding-top: 15px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
+
+            </div>
+
+            <div class="add_goods_price"><span class="goods_price_title">商品價格 </span>
+                <span class="goods_price_title"> NT$ </span>
+                <input type="text" placeholder="輸入商品價格" style="position: relative; margin-left: 12%; top:-35%; width:80%; height:25px; border: 0; color: #957a89; font-size: 15px;" name="amount"><br>
+                <div style=" margin-bottom: 20px;padding-top: 10px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
+
+            </div>
+
+            <div class="add_goods_description">
+                <span class="add_goods_description_title">商品敘述</span> <br>
+                <textarea placeholder="輸入更多商品資訊" style="position: relative; top: 20px; margin-left: 5%; width:95%; height:90px; border: 0; color: #957a89; font-size: 15px;" name="content"></textarea><br>
+
+                <div style="margin-top: 10px; padding-top: 30px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
+
+            </div>
+
+            <div class="add_goods_label">
+                <div style="margin-top: 10px; padding-top: 20px;">  </div>
+
+                {% if clothe.type %}<button type="value" name="type" class="goods_label">{{ clothe.type }}</button>{% endif %}
+                {% if clothe.color %}<button type="value" name="color" class="goods_label">{{ clothe.color }}</button>{% endif %}
+                {% if clothe.style %}<button type="value" name="style" class="goods_label">{{ clothe.style }}</button>{% endif %}
+                {% if clothe.company %}<button type="value" name="company" class="goods_label">{{ clothe.company }}</button>{% endif %}
+                <button type="value" name="isFormal" class="goods_label">{% if clothe.isFormal %}正式{% else %}休閒{% endif %}</button>
+
+                <div style="margin-bottom: 20px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
+
+
+            </div>
+
+            <div class="recommendation"><span class="recommendation_title">我的穿搭</span>
+                <div style="margin-top: 10px; margin-bottom: 10px; padding-top: 10px;">  </div>
+                {% for post in my_posts %}
+                    <a href="{% url 'viewPost' post.id %}">
+                        <img src="{{ post.product.image.url }}" class="recommendation_pic">
+                    </a>
+                {% endfor %}
+
+                <div style="margin-top: 10px; margin-bottom: 30px; padding-top: 2px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
+
+            </div>
+
+            <input type="hidden" name="product" value="{{ clothe.id }}" />
+            <input type="hidden" name=is_sold" value="false" />
+
+            <button type="submit" name="add_goods_submit" class="add_goods_submit">上架商品</button>
+        </form>
+        <div style="margin-top: 10px; margin-bottom: 50px; padding-top: 2px;"> </div>
+
+    <body>
+<html>

@@ -15,11 +15,11 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ('title', 'content', 'amount', 'product', 'is_sold')
+        fields = ('title', 'content', 'amount', 'product', 'is_sold', 'used')
 
     def save(self, commit=False):
         obj = super().save(commit=False)
-        obj.time = arrow.now().datetime
+        obj.datetime = arrow.now().datetime
         obj.user = self.user
         obj.save()
         return obj

@@ -16,8 +16,8 @@ urlpatterns = [
 
     path('style-form', views.StyleFormView.as_view(), name='style_form'),
 
-    path('<int:pk>/settings/', views.SettingView.as_view(), name='settings'),
-    path('<int:pk>/settings/edit', views.EditUserView.as_view(), name='edit_user'),
+    path('settings/', views.SettingView.as_view(), name='settings'),
+    path('settings/<int:pk>/edit', views.EditUserView.as_view(), name='edit_user'),
 
 
     # 衣物管理頁面

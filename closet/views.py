@@ -6,14 +6,12 @@ from pathlib import Path
 from django.contrib import auth, messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.exceptions import PermissionDenied
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic.list import ListView, View
 from django.views.generic.edit import CreateView, FormView, UpdateView, DeleteView
-from django.views.generic.detail import DetailView
 
 from closet.forms import StyleForm, UserForm
 from closet.models import Closet, Clothe, Color, Company, Style, Type, User
@@ -136,7 +134,7 @@ class EditUserView(UpdateView):
     template_name = 'closet/UserUpdateView.html'
 
     def get_success_url(self):
-        return reverse('profile', kwargs={'pk': self.request.user.id})
+        return reverse('settings')
 
 
 # 用戶設定 (setting)
@@ -293,7 +291,7 @@ class EditClotheView(UpdateView):
         return reverse(
             'single_clothe',
             kwargs={
-                'clothePk': self.object.id,
+                'pk': self.object.id,
             },
         )
 

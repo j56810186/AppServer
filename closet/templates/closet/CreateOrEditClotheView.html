@@ -103,9 +103,9 @@
 
             <div>
             <select name="color" class="sttyle" style="border:1px rgb(199, 199, 199) solid;">
-                <option {% if not clothe.color.first %}selected="selected"{% endif %}>主色彩</option>
+                <option {% if not clothe.color %}selected="selected"{% endif %}>主色彩</option>
                 {% for color in colors %}
-                    <option {% if clothe.color.first.id == color.id %}selected="selected"{% endif %} value={{ color.id }}>{{ color.name }}</option>
+                    <option {% if clothe.color.id == color.id %}selected="selected"{% endif %} value={{ color.id }}>{{ color.name }}</option>
                 {% endfor %}
             </select>
             </div>
@@ -113,9 +113,9 @@
 
             <div>
             <select name="style" class="sttyle" style="border:1px rgb(199, 199, 199) solid;">
-                <option {% if not clothe.style.first %}selected="selected"{% endif %}>風格</option>
+                <option {% if not clothe.style %}selected="selected"{% endif %}>風格</option>
                 {% for style in styles %}
-                    <option {% if clothe.style.first.id == style.id %}selected="selected"{% endif %} value={{ style.id }}>{{ style.name }}</option>
+                    <option {% if clothe.style.id == style.id %}selected="selected"{% endif %} value={{ style.id }}>{{ style.name }}</option>
                 {% endfor %}
             </select>
             </div>

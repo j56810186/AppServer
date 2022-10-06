@@ -23,24 +23,24 @@ from market.models import Cart, Post
 # 二手拍賣相關頁面
 #
 # 二手拍賣個人頁面 (mysecondhand)
-def get_good_management_page(request):
-    posts = SecondHandPost.objects.filter(user=request.user)
+def get_my_products(request):
+    posts = Post.objects.filter(user=request.user)
     context = {'posts': posts}
 
-    return render(request, 'app/GoodManagemantView.html', context=context)
+    return render(request, 'market/GoodManagementView.html', context=context)
 
 
 # 二手拍賣首頁 (secondhand_list)
 def list_goods(request):
-    posts = SecondHandPost.objects.filter(isSold=False).exclude(user=request.user).order_by('-id')
+    posts = Post.objects.filter(isSold=False).exclude(user=request.user).order_by('-id')
     context = {'posts': posts}
     return render(request, 'app/GoodsView.html', context=context)
 
 
 # 二手拍賣貼文頁面 (secondhand)
 def get_secondhand_post(request, pk):
-    post = SecondHandPost.objects.get(id=pk)
-    prob_like_posts = SecondHandPost.objects.filter(
+    post = Post.objects.get(id=pk)
+    prob_like_posts = Post.objects.filter(
         product__style=post.product.style.first(),
         product__warmness=post.product.warmness,
     ).exclude(user=request.user)
@@ -55,23 +55,23 @@ def get_secondhand_post(request, pk):
 def get_secondhand_comments(request, pk):
     comments = SecondHandComment.objects.filter(post=pk)
     context = {'comments': comments}
-    return render(request, 'app/GoodCommentView.html', context=context)
+    return render(request, 'market/GoodCommentView.html', context=context)
 
 
 # 二手拍賣個人貼文頁面 (mysecondhand_single)
-def get_my_single_secondhand(request, pk):
-    post = SecondHandPost.objects.get(id=pk)
+def get_my_single_product(request, pk):
+    post = Post.objects.get(id=pk)
     context = {
         'post': post,
     }
-    return render(request, 'app/GoodPersonalView.html', context=context)
+    return render(request, 'market/GoodPersonalView.html', context=context)
 
 
 # 二手拍賣新增頁面 (secondhand_create)
-class SecondHandPostCreateView(CreateView):
+class PostCreateView(CreateView):
 
     form_class = PostForm
-    template_name = 'app/GoodCreateView.html'
+    template_name = 'market/GoodCreateView.html'
 
     # FIXME: 目前還沒有做新增圖片，只有新增貼文而已，貼文的圖片還沒新增
     def get_form_kwargs(self):
@@ -81,11 +81,8 @@ class SecondHandPostCreateView(CreateView):
         )
         return kwargs
 
-    def post(self, request, *args, **kwargs):
-        return super().post(self, request, *args, **kwargs)
-
     def get_success_url(self):
-        return reverse('mysecondhand')
+        return reverse('my_product', kwargs={'pk': self.object.id})
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -96,14 +93,15 @@ class SecondHandPostCreateView(CreateView):
 
 
 # 二手拍賣修改頁面 (secondhand_update)
-class SecondHandPostUpdateView(UpdateView):
+class PostUpdateView(UpdateView):
 
     model = Post
-    template_name = 'app/GoodUpdateView.html'
+    template_name = 'market/GoodUpdateView.html'
     fields = ['title', 'content']
+    context_object_name = 'post'
 
     def get_success_url(self):
-        return reverse('clothe', kwargs={'closetPk': self.request.user.closet_set.first().id})
+        return reverse('my_product', kwargs={'pk': self.object.id})
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -112,11 +110,11 @@ class SecondHandPostUpdateView(UpdateView):
 
 
 # 二手拍賣刪除頁面 (secondhand_delete)
-class SecondHandPostDeleteView(DeleteView):
+class PostDeleteView(DeleteView):
 
     # TODO: integrate front-end.
     model = Post
-    template_name = 'app/_editSecondHandPost.html'
+    template_name = 'app/_editPost.html'
 
     def get_success_url(self):
         return reverse('clothe', kwargs={'closetPk': self.request.user.closet_set.first().id})
@@ -153,7 +151,7 @@ class CartDetailView(DetailView):
 class CartCreateView(CreateView):
 
     model = Cart
-    template_name = 'app/_editSecondHandPost.html'
+    template_name = 'app/_editPost.html'
     fields = '__all__'
 
     def get_success_url(self):
