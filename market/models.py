@@ -22,7 +22,7 @@ class Post(BasePost):
 
     # foreign key.
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='market_posts')
-    product = models.ForeignKey(Clothe, on_delete=models.CASCADE, related_name='_market_posts')
+    product = models.ForeignKey(Clothe, on_delete=models.CASCADE, related_name='market_posts')
 
 
 class PostImage(models.Model):
@@ -48,12 +48,17 @@ class Wallet(models.Model):
     balance = models.IntegerField()
 
     # Foreign key.
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='wallet')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='wallets')
 
-    # @receiver(post_save, sender=User, created=True)
-    # def create_new_wallet(self):
-    #     new_wallet = Wallet(name=f"{username}'s wallet")
-    #     new_wallet.save()
+
+@receiver(post_save, sender=User)
+def create_new_closet(instance, **kwargs):
+    if kwargs.get('created', None):
+        Wallet.objects.create(
+            name=f"{instance.username}'s wallet",
+            balance=0,
+            user=instance,
+        )
 
 
 class Bank(models.Model):
@@ -75,13 +80,24 @@ class BankAccount(models.Model):
 
 class TransactionLog(models.Model):
 
+    ''' Models' settings. '''
+    PAYMENT_CHOICES = (
+        (1, '貨到付款'),
+        (2, '錢包付款'),
+    )
+
     datetime = models.DateTimeField()
     log = models.CharField(max_length=100)
     amount = models.IntegerField()
+    payment = models.IntegerField(choices=PAYMENT_CHOICES)
+    address = models.CharField(max_length=100)
+    done = models.BooleanField()
 
     # Foreign key.
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='transaction_log')
+    wallet = models.ForeignKey(Wallet, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
+    buyer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bought_transaction')
+    seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sold_transaction')
 
 
 class Cart(models.Model):

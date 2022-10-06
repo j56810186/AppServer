@@ -1,0 +1,13 @@
+<p>日期：{{ log.datetime }}</p>
+<p>內容：{{ log.log }}</p>
+<p>金額：{{ log.amount }}</p>
+<p>付款方式：{{ payment }}</p>
+<p>收件地址：{{ log.address }}</p>
+<p>已完成訂單：{{ log.done }}</p>
+
+{% if not log.done %}
+    <form method="post">{% csrf_token %}
+        <input type="hidden" name="done" value=true />
+        <input type="submit" value="完成訂單" />
+    </form>
+{% endif %}

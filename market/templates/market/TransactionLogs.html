@@ -1,0 +1,4 @@
+{% for log in logs %}
+<a href="{% url 'transaction_log' log.id %}">{{ log.datetime }}, {{ log.log }}, {{ log.amount }}, {{ log.post.title }}</a>
+<br/>
+{% endfor %}

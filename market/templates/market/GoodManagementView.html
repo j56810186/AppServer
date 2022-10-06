@@ -12,7 +12,7 @@
             <div class="mycloset">
                 商品管理
             </div>
-            <button class="tabs__btn" onclick="window.location.href='/clothes'">
+            <button class="tabs__btn">
                 <a href="{% url 'clothes' %}">
                 <img class="icon" src="{% static 'images/icon-svg/arrow_left.png' %}">
                 </a>
@@ -36,7 +36,7 @@
                         <div class="goodword">{{ post.title }}</div>
                         <img src="{{ post.product.image.url }}" class="pic1">
                     </a>
-                    {% if post.isSold %}
+                    {% if post.is_sold %}
                         <img src="{% static 'images/sold.png' %}" class="addcart"></a>
                     {% endif %}
                 </div>

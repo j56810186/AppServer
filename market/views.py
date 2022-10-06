@@ -14,10 +14,10 @@ from django.views.generic.list import ListView, View
 from django.views.generic.edit import CreateView, FormView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 
-from closet.models import Closet, Clothe, Type, User
+from closet.models import Clothe, Type
 
 from market.forms import PostForm
-from market.models import Cart, Post
+from market.models import BankAccount, Cart, Comment, Post, TransactionLog, Wallet
 
 #
 # 二手拍賣相關頁面
@@ -31,35 +31,59 @@ def get_my_products(request):
 
 
 # 二手拍賣首頁 (secondhand_list)
-def list_goods(request):
-    posts = Post.objects.filter(isSold=False).exclude(user=request.user).order_by('-id')
+def get_products(request):
+    posts = Post.objects.filter(is_sold=False).exclude(user=request.user).order_by('-id')
     context = {'posts': posts}
-    return render(request, 'app/GoodsView.html', context=context)
+    return render(request, 'market/GoodsView.html', context=context)
 
 
 # 二手拍賣貼文頁面 (secondhand)
-def get_secondhand_post(request, pk):
+def get_product(request, pk):
     post = Post.objects.get(id=pk)
     prob_like_posts = Post.objects.filter(
-        product__style=post.product.style.first(),
+        product__style=post.product.style,
         product__warmness=post.product.warmness,
     ).exclude(user=request.user)
+    comments = Comment.objects.filter(post=pk).order_by('-id')
+    if comments and len(comments) > 2:
+        comments = Comment.objects.filter(post=pk).order_by('-id')[:2]
+
     context = {
         'post': post,
         'prob_like_posts': prob_like_posts,
+        'comments': comments,
     }
-    return render(request, 'app/GoodView.html', context=context)
+    return render(request, 'market/GoodView.html', context=context)
 
 
 # 二手拍賣留言頁面 (second_hand_comments)
-def get_secondhand_comments(request, pk):
-    comments = SecondHandComment.objects.filter(post=pk)
-    context = {'comments': comments}
-    return render(request, 'market/GoodCommentView.html', context=context)
+def get_product_comments(request, pk):
+    if request.method == 'GET':
+        post = Post.objects.get(id=pk)
+        comments = Comment.objects.filter(post=pk)
+        context = {
+            'comments': comments,
+            'post': post,
+        }
+        return render(request, 'market/GoodCommentView.html', context=context)
+    else:
+        comment = request.POST.get('comment', None)
+        if comment:
+            Comment.objects.create(
+                user=request.user,
+                text=comment,
+                datetime=arrow.now().datetime,
+                post=Post.objects.get(id=pk),
+            )
 
+        redirect_to = request.GET.get('prev_page', None)
+        if redirect_to:
+            return redirect(redirect_to)
+        else:
+            return redirect('product_comments', pk=pk)
 
 # 二手拍賣個人貼文頁面 (mysecondhand_single)
-def get_my_single_product(request, pk):
+def get_my_product(request, pk):
     post = Post.objects.get(id=pk)
     context = {
         'post': post,
@@ -97,7 +121,7 @@ class PostUpdateView(UpdateView):
 
     model = Post
     template_name = 'market/GoodUpdateView.html'
-    fields = ['title', 'content']
+    fields = ['title', 'content', 'amount', 'used']
     context_object_name = 'post'
 
     def get_success_url(self):
@@ -117,7 +141,7 @@ class PostDeleteView(DeleteView):
     template_name = 'app/_editPost.html'
 
     def get_success_url(self):
-        return reverse('clothe', kwargs={'closetPk': self.request.user.closet_set.first().id})
+        return reverse('my_products')
 
 
 # -------------------------- 分隔線 --------------------------
@@ -131,20 +155,12 @@ class CartListView(ListView):
 
     # TODO: integrate front-end.
     model = Cart
-    template_name = 'app/CartView.html'
+    template_name = 'market/CartsView.html'
     context_object_name = 'carts'
 
     def get_queryset(self):
         user = self.request.user
         return Cart.objects.filter(user=user)
-
-
-# 購物車詳細頁面 (cart_detail)
-class CartDetailView(DetailView):
-
-    model = Cart
-    template_name = 'app/CartDetailView.html'
-    fields = '__all__'
 
 
 # 購物車新增頁面 (cart_create)
@@ -164,16 +180,23 @@ class CartCreateView(CreateView):
 # 購物車刪除頁面 (cart_delete)
 class CartDeleteView(DeleteView):
 
-    # TODO: integrate front-end
     model = Cart
-    template_name = 'app/XXX.html'
+
+    def get_success_url(self):
+        return reverse('carts')
 
 
 # (cart_to_transaction)
 class CartToTransactionView(View):
 
     def get(self, request, *args, **kwargs):
-        return redirect(reverse('cart_list'))
+        selected_carts = request.GET.get('selected_carts', '')
+        payment_choices = TransactionLog.PAYMENT_CHOICES
+        context = {
+            'selected_carts': selected_carts,
+            'payment_choices': payment_choices,
+        }
+        return render(request, 'market/CartToTransactionView.html', context=context)
 
     def post(self, request, *args, **kwargs):
         # FIXME: 接下來要處理一些餘額不足的例外情況
@@ -181,6 +204,7 @@ class CartToTransactionView(View):
         #        we have to handle the situation that one user have many wallets.
         # FIXME: now I assume that one user have only one closet,
         #        we have to handle the situation that one user have more than one closet.
+        # breakpoint()
         selected_carts = request.POST.get('selected_carts', '')
         selected_carts = selected_carts.split(',')
         selected_carts = Cart.objects.filter(id__in=selected_carts)
@@ -189,61 +213,89 @@ class CartToTransactionView(View):
             seller = cart.post.user
             amount = cart.post.amount
             product = cart.post.product
+            payment = request.POST.get('payment', None)
+            post = cart.post
             now = arrow.now().datetime
 
             # update wallet balance.
-            buyer_wallet = Wallet.objects.filter(user=buyer).first()
-            seller_wallet = Wallet.objects.filter(user=seller).first()
-            buyer_wallet.balance -= amount
-            seller_wallet.balance -= amount
-            buyer_wallet.save()
-            seller_wallet.save()
+            buyer_wallet = buyer.wallets.first()
+            if payment == 2:
+                buyer_wallet.balance -= amount
+                buyer_wallet.save()
 
             # update the owneship of the product.
             product.user = buyer
-            buyer_closet = Closet.objects.filter(user=buyer).first()
-            seller_closet = Closet.objects.filter(user=seller).first()
-            buyer_closet.clothes.add(product)
-            seller_closet.clothes.remove(product)
-            buyer_closet.save()
-            seller_closet.save()
+            product.closet = buyer.closets.first()
+            product.save()
 
             # create transaction log.
             # buyer.
             TransactionLog.objects.create(
                 datetime=now,
-                log=f'{buyer.nickname} 向 {seller.nickname} 購買了 {cart.post.title}',
+                log=f'{buyer.name} 向 {seller.name} 購買了 {cart.post.title}',
                 amount=amount,
+                payment=payment,
+                address=request.POST.get('address', None),
+                done=False,
                 wallet=buyer_wallet,
-                post=cart.post
+                post=cart.post,
+                buyer=buyer,
+                seller=seller,
             )
             # seller.
             TransactionLog.objects.create(
                 datetime=now,
-                log=f'{seller.nickname} 向 {buyer.nickname} 賣出了 {cart.post.title}',
+                log=f'{seller.name} 向 {buyer.name} 賣出了 {cart.post.title}',
                 amount=amount,
-                wallet=seller_wallet,
-                post=cart.post
+                payment=payment,
+                address=request.POST.get('address', None),
+                done=True,
+                wallet=seller.wallets.first(),
+                post=cart.post,
+                buyer=buyer,
+                seller=seller,
             )
+
+            # set the secondhand post sold.
+            post.is_sold = True
+            post.save()
 
             # delete the cart.
             cart.delete()
 
-        return redirect('cart_list')
+        return redirect('carts')
 
 
 # 交易紀錄頁面 (transaction_list)
 def get_transaction_log(request):
     logs = TransactionLog.objects.filter(wallet__user=request.user)
     context = {'logs': logs}
-    return render(request, 'app/Transactionlog.html', context=context)
+    return render(request, 'market/TransactionLogs.html', context=context)
+
+
+def get_single_transaction_log(request, pk):
+    log = TransactionLog.objects.get(id=pk)
+    payment = TransactionLog.PAYMENT_CHOICES[log.payment - 1][1]
+    context = {
+        'log': log,
+        'payment': payment,
+    }
+    if request.method == 'POST':
+        done = request.POST.get('done', None)
+        if done:
+            log.done = True
+            seller_wallet = log.seller.wallets.first()
+            seller_wallet.balance += log.amount
+            seller_wallet.save()
+
+    return render(request, 'market/TransactionLog.html', context=context)
 
 
 # 錢包頁面 (mywallet)
 def get_my_wallet(request):
     wallet = Wallet.objects.get(user=request.user)
     context = {'wallet': wallet}
-    return render(request, 'app/MyWallet.html', context=context)
+    return render(request, 'market/WalletView.html', context=context)
 
 
 # 錢包設定頁面 (set_wallet)
@@ -254,7 +306,7 @@ def set_my_wallet(request):
         'wallet': wallet,
         'bankaccounts': bankaccounts,
     }
-    return render(request, 'app/WalletSetting.html', context=context)
+    return render(request, 'market/WalletEditView.html', context=context)
 
 
 # -------------------------- 分隔線 --------------------------

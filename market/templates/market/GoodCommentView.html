@@ -1,0 +1,66 @@
+{% load static %}
+<html>
+
+    <head>
+        <title> Comments</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    </head>
+
+    <body>
+        <div class="containerrr">
+            <div class="mycloset">
+            </div>
+            <a href="{% url 'product' post.id %}">
+            <div class="tabs__btn"></div>
+            </a>
+
+            <a href="{% url 'settings' %}">
+                <img src="{% static 'images/icon-svg/user.png' %}" class="icon3">
+                </a>
+
+        </div>
+
+        <section id="containerC">
+
+            <section class="top-barr">
+                    <a href="{% url 'product' post.id %}">
+                        <img class="tabs__btn__iconn" src="{% static 'images/icon-svg/arrow_left.png' %}" alt="arrow_back_ios">
+                    </a>
+            </section>
+
+            <div class="info">
+                        <div class="user">
+                            <div class="profile-pic"> <img src="{{ post.user.profile_picture.url }}" alt=""> </div>
+                            <p class="username">{{ post.user.name }}</p>
+                        </div>
+            </div>
+                        <p class="username">{{ post.title }}</p><br/>
+                        <p>{{ post.content }}</p><br/>
+                        <p class="post-time">{{ post.datetime }}</p>
+                        <br>
+                        <hr size="2px" align="center" width="100%">
+
+                        {% for comment in post.comments.all %}
+                            <div class="info">
+                            <div class="user">
+                                <div class="profile-pic"><img src="{{ comment.user.profile_picture.url }}" alt=""></div>
+                                 </div>
+                                 <p class="username1">{{ comment.user.username }}</p>
+                                 <p class="post-words">{{ comment.text }}</p>
+                             </div>
+                         {% endfor %}
+
+                        <form action="" method="post"> {% csrf_token %}
+                            <div class="comment-wrapperr">
+                                <input type="hidden" name="post_id" value="{{ post.id }}">
+                                <img src="{{ user.profile_picture.url }}" class="profile-pic" style="left: 15px; width: 3rem;" alt="">
+                                <input type="text" name="comment" class="comment-box" placeholder="Add a comment">
+                                <input type="submit" value="post" class="comment-btn">
+                            </div>
+                        </form>
+        </section>
+    </body>
+</html>

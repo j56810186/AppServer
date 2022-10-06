@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+            <title>Search Goods</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+
+    <body>
+        <div class="containerrr">
+            <div class="mycloset">
+                探索商品
+            </div>
+
+            <button class="tabs__btn">
+                <a href="{% url 'clothes' %}">
+                <img class="icon" src="{% static 'images/icon-svg/arrow_left.png' %}">
+                </a>
+            </button>
+            <a href="{% url 'carts' %}">
+            <img src="{% static 'images/shopping-cart.png' %}" class="icon2">
+            </a>
+            <a href="{% url 'transaction_logs' %}">
+            <img src="{% static 'images/icon-svg/list.png' %}" class="icon3">
+            </a>
+
+            <div class="container_search">
+                <span class="container_search_icon"><img src="{% static 'images/icon-svg/search.png' %}" style="width: 2rem;"></span>
+                <input type="search" id="search" placeholder="Search..." />
+            </div>
+            {% for post in posts %}
+                <div>
+                    <div class="buybox">
+                        <a href="{% url 'product' post.id %}">
+                            <div class="goodword">{{ post.title }}<br> $ {{ post.amount }}</div>
+                            <img src="{{ post.product.image.url }}" class="pic1">
+                        </a>
+                        <img id="addcart{{ post.id }}" src="{% static 'images/add-to-cart.png' %}" class="addcart0">
+                    </div>
+
+                    <form id="post_add_cart{{ post.id }}" method="post" action="{% url 'cart_create' %}?prevPage={% url 'products' %}">{% csrf_token %}
+                        <input type="hidden" name="user" value="{{ user.id }}" />
+                        <input type="hidden" name="post" value="{{ post.id }}" />
+                        <input type="image" src="{% static 'images/add-to-cart.png' %}" class="addcart" alt="Submit Form" />
+                    </form>
+                    <script>
+                        var img = document.querySelector('#addcart{{ post.id }}');
+                        var showtxt2 = document.querySelector('.show');
+
+                        function popup2(e) {
+                            if (window.confirm('已加入購物車') == true) {
+                                document.getElementById('post_add_cart{{ post.id }}').submit();
+                            }
+                        };
+                        img.addEventListener('click', popup2);
+                    </script>
+                </div>
+            {% endfor %}
+        </div>
+    <body>
+<html>

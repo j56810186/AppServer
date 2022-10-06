@@ -13,7 +13,7 @@
                 編輯商品
             </div>
 
-            <button class="tabs__btn" onclick="window.location.href='/clothes'">
+            <button class="tabs__btn">
                 <a href="{% url 'my_product' post.id %}">
                 <img class="icon" src="{% static 'images/icon-svg/arrow_left.png' %}">
                 </a>
@@ -64,9 +64,9 @@
             </div>
 
             <div class="condition"><span class="add_goods_condition">使用程度</span>
-                <button type="value" name="condition" class="condition_button">全新</button>
-                <button type="value" name="condition" class="condition_button">近新</button>
-                <button type="value" name="condition" class="condition_button">二手</button>
+                <input type="radio" name="used" value="3" {% if object.used == 3 %}checked{% endif %} class="condition_button">全新</button>
+                <input type="radio" name="used" value="2" {% if object.used == 2 %}checked{% endif %} class="condition_button">近新</button>
+                <input type="radio" name="used" value="1" {% if object.used == 1 %}checked{% endif %} class="condition_button">二手</button>
 
                 <div style="margin-top: 12px;  padding-top: 15px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
 

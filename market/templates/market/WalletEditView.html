@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+              <title>Wallet Setting</title>
+              <link rel="stylesheet" href="{% static 'css/style.css' %}">
+              <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+      </head>
+
+    <body>
+        <div class="containerrr">
+            <div class="mycloset">
+                錢包設定
+            </div>
+
+            <a href="{% url 'my_wallet' %}">
+                <img class="icon" src="{% static 'images/icon-svg/arrow_left.png' %}">
+            </a>
+
+            <button class="tabs__btn">
+                <a href="{% url 'clothes' %}">
+                <img src="{% static 'images/icon-svg/home.png' %}" class="icon3">
+                </a>
+            </button>
+        </div>
+
+        <div class="wallet_title1">銀行帳號</div>
+        <div>
+            {% for account in bankaccounts %}
+                <span class="account_title">{{ account.bank.name }}({{ account.bank.code }})</span>
+                <span class="account_number">{{ account.account }}</span>
+                <span class="account_name">{{ account.accountName }}</span>
+            {% endfor %}
+        </div>
+
+        <div style="margin-top: 280px; padding-top: 30px;"> <hr size="1px" color= "#d9d9d9" width="100%">
+        </div>
+
+        <div>
+            <a href="MyCloset.html">
+                <div class="wallet_title2">新增銀行帳號 + </div>
+            </a>
+
+            <form>
+                <span class="add_account_title1">帳號用戶名: </span>
+                <input type="text" style="position: relative; left: 200px; top: 100px; width:18%; height:25px; border-color: #c0c0c0; color: #957a89; background-color: #f5f5f5; font-size: 13px;" name="account_name"><br>
+
+                <span class="add_account_title2">身分證字號: </span>
+                <input type="text" style="position: relative; left: 200px; top: 140px; width:18%; height:25px; border-color: #c0c0c0; color: #957a89; background-color: #f5f5f5; font-size: 13px;" name="id"><br>
+
+                <span class="add_account_title3">銀行代碼: </span>
+                <select name="bank_id" class="sttyle" style="left: 200px; top: 180px; width: 19%; position:relative; border:1px rgb(199, 199, 199) solid;">
+                    <option>臺灣銀行 (004)</option>
+                    <option>臺灣土地銀行 (005)</option>
+                    <option>合作金庫 (006)</option>
+                    <option>第一商業銀行 (007)</option>
+                    <option>華南商業銀行 (008)</option>
+                    <option>彰化商業銀行 (009)</option>
+                    <option>華僑商業銀行 (010)</option>
+                    <option>上海商業儲蓄銀行 (011)</option>
+                    <option>臺北銀行 (012)</option>
+                    <option>中國國際商業銀行 (017)</option>
+                    <option>美商花旗銀行 (021)</option>
+                    <option>臺灣中小企業銀行 (050)</option>
+                    <option>匯豐銀行 (081)</option>
+                    <option>渣打銀行 (083)</option>
+                    <option>臺北第一信用合作社 (101)</option>
+                    <option>臺北第二信用合作社 (102)</option>
+                    <option>陽信銀行 (108)</option>
+                    <option>中華郵政 (700)</option>
+                    <option>聯邦商業銀行 (803)</option>
+                    <option>遠東國際商業銀行 (805)</option>
+                    <option>華信商業銀行 (807)</option>
+                    <option>玉山商業銀行 (808)</option>
+                    <option>萬泰商業銀行 (809)</option>
+                    <option>臺新國際商業銀行 (812)</option>
+                    <option>富邦商業銀行 (813)</option>
+                    <option>中國信託商業銀行 (822)</option>
+                    <option>連線商業銀行 (824)</option>
+                </select><br>
+
+                <span class="add_account_title4">銀行帳號: </span>
+                <input type="text" style="position: relative; left: 200px; top: 220px; width:19%; height:25px; border-color: #c0c0c0; color: #957a89; color:#957a89; background-color: #f5f5f5; font-size: 13px;" name="account_number"><br>
+
+                <button id="submit" class="new_account_submit" > <span class="new_account_submit_font">新增銀行帳號 </span></button>
+
+            </form>
+
+        </div>
+
+        <div style="margin-top: 310px; padding-top: 30px;">
+        </div>
+    </body>
+
+</html>
