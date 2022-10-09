@@ -1,0 +1,43 @@
+{% extends 'community/Base.html' %}
+{% load static %}
+
+{% block title %}
+    Save Some Outfits
+{% endblock %}
+
+{% block closet_name %}
+    我的衣櫃
+{% endblock %}
+
+{% block head_bar_title %}
+    收藏穿搭
+{% endblock %}
+
+{% block head_bar_left %}
+    <a href="{% url 'personal_outfits' closetPk=user.id %}">
+        <div class="titlee3"> 穿搭<<  
+    </div>
+    </a>
+{% endblock %}
+
+{% block head_bar_right %}            
+    <img src="{% static 'images/bookmark.png' %}" class="icon4">
+{% endblock %}
+        
+{% block content %}
+
+        {% for post in user.followedPosts.all %}
+            <a href="{% url 'outfit' pk=post.id %}">
+                <img src="{{ post.image.url }}" class="block1">
+                    <div class="word1">{{ post.title }}</div>
+                </img>
+            </a>
+        {% endfor %}
+
+        <a href="{% url 'outfits' %}">
+            <div class="bottom-bar2">
+                <font size="5">搜尋穿搭</font> 
+            </div>
+        </a>
+
+{% endblock %}

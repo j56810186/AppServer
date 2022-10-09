@@ -1,0 +1,43 @@
+{% extends 'community/Base.html' %}
+{% load static %}
+
+{% block title %}
+    My Outfits
+{% endblock %}
+
+{% block closet_name %}
+    我的穿搭
+{% endblock %}
+
+{% block header_right %}
+    <a href="{% url 'create_outfit' userPk=user.id %}">
+        <img class="icon" src="{% static 'images/icon-svg/add_white.png' %}">
+    </a>
+{% endblock %}
+
+{% block head_bar_title %}
+    穿搭
+{% endblock %}
+
+{% block head_bar_left %}
+    <a href="{% url 'clothes' closetPk=user_closets.first.id %}">
+        <div class="titlee3"> 單品<<  
+        </div>
+    </a>
+{% endblock %}
+
+{% block head_bar_right %}
+    <a href="{% url 'saved_outfits' closetPk=user_closets.first.id %}">
+        <img src="{% static 'images/save-.png' %}" class="icon4">
+    </a>
+{% endblock %}
+
+{% block content %}
+        {% for post in posts %}
+            <a href="{% url 'outfit' pk=post.id %}">
+                <img src="{{ post.image.url }}" class="block1">
+                    <div class="word1">{{ post.title }}</div>
+                </img>
+            </a>
+        {% endfor %}
+{% endblock %}

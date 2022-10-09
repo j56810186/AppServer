@@ -49,19 +49,19 @@ def outfits(request, closetPk):
         outfit = Post.objects.get(id=request.POST['postPk'])
         outfit.delete()
 
-    return render(request, 'app/OutfitPersonalView.html', context={'posts': posts, 'user_closets': user_closets})
+    return render(request, 'community/OutfitPersonalView.html', context={'posts': posts, 'user_closets': user_closets})
 
 
 # 收藏穿搭頁面 (saved_outfits)
 def saved_outfit(request, closetPk):
     user_closets = Closet.objects.filter(user_id=request.user.id)
-    return render(request, 'app/SavedOutfits.html', context={'user_closets': user_closets})
+    return render(request, 'community/SavedOutfits.html', context={'user_closets': user_closets})
 
 
 # 探索穿搭頁面 (outfits)
 class OutfitView(ListView):
     model = Post
-    template_name = 'app/OutfitsView.html'
+    template_name = 'community/OutfitsView.html'
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -126,14 +126,14 @@ def outfit(request, postPk):
 
         return redirect(reverse('viewPost', kwargs={'postPk': _post.id}))
 
-    return render(request, 'app/OutfitView.html', context={'post': _post})
+    return render(request, 'community/OutfitView.html', context={'post': _post})
 
 
 # 新增穿搭 (create_outfit)
 class CreateOutfitView(CreateView):
     model = Post
     fields = ['title', 'content', 'image']
-    template_name = 'app/OutfitCreateView.html'
+    template_name = 'community/OutfitCreateView.html'
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
@@ -169,7 +169,7 @@ class CreateOutfitView(CreateView):
 class EditOutfitView(UpdateView):
     model = Post
     fields = ['title', 'image', 'content', 'clothes']
-    template_name = 'app/OutfitUpdateView.html'
+    template_name = 'community/OutfitUpdateView.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -204,7 +204,7 @@ def comments(request, postPk):
 
         return redirect(reverse('comments', kwargs={'postPk': _post.id}))
 
-    return render(request, 'app/OutfitCommentView.html', context={'post': _post})
+    return render(request, 'community/OutfitCommentView.html', context={'post': _post})
 
 
 # 復刻穿搭頁面 (remake_outfit)
@@ -212,7 +212,7 @@ def remake_outfit(request, postPk):
     user = request.user
     post = Post.objects.get(id=postPk)
     user_closets = Closet.objects.filter(user_id=user.id)
-    return render(request, 'app/OutfitRemakeView.html', context={'post': post, 'user_closets': user_closets})
+    return render(request, 'community/OutfitRemakeView.html', context={'post': post, 'user_closets': user_closets})
 
 
 # 復刻穿搭選擇頁面 (select_remake)
@@ -225,4 +225,4 @@ def select_remake_outfit(request, postPk):
     p = str(path.absolute())
     print(p)
     findsimilar.selectarea(p)
-    return render(request, 'app/OutfitSelectRemakeView.html', context={'post': post, 'user_closets': user_closets})
+    return render(request, 'community/OutfitSelectRemakeView.html', context={'post': post, 'user_closets': user_closets})

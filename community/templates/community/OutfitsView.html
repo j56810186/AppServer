@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+              <title>Search Outfits</title>
+              <link rel="stylesheet" href="{% static 'css/style.css' %}">
+              <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+      </head>
+    
+    <body>
+        <div class="containerrr">
+            <div class="mycloset">
+                探索穿搭
+            </div>
+            
+            <a href="{% url 'saved_outfits' closetPk=user_closets.first.id %}">
+                <img class="icon" src="{% static 'images/icon-svg/arrow_left.png' %}"> 
+            </a>
+
+            <button class="tabs__btn">
+                <a href="{% url 'personal_outfits' closetPk=user.id %}">
+                    <img src="{% static 'images/icon-svg/home.png' %}" class="icon3">
+                </a>
+            </button>
+        </div>
+    
+        <div class="container_search">
+                <span class="container_search_icon"><img src="{% static 'images/icon-svg/search.png' %}" style="width: 2rem;"></span>
+                <input type="search" id="search" placeholder="Search..." />
+        </div>
+        
+        <section class="search_outfits_main">
+            <div class="left-col">
+            
+                {% for post in object_list reversed %}
+                <div class="post">
+                    <div class="info">
+                        <div class="user">
+                            <div class="profile-pic"> <img src="{% static 'images/selfie.jpg' %}" alt=""> </div>
+                            <p class="username">{{ post.user.username }}</p>
+                        </div>
+                        
+                        {% if user == post.user %}
+                        <a href="{% url 'edit_outfit' pk=post.id %}">
+                            <img src="{% static 'images/icon-svg/menu-dots.svg' %}" class="options" alt="">
+                        </a>
+                        {% endif %}
+                    </div>
+                    <a href="{% url 'outfit' pk=post.id %}">
+                        <img src="{{ post.image.url }}" class="post-image" alt="">
+                    </a>
+                    <div class="post-content">
+                        <div class="reaction-wrapper">
+                            <form action="" method="post"> {% csrf_token %}
+                                <input type="hidden" value="{{ post.id }}" name="post_id">
+                                <input type="hidden" value="1" name="like">
+                                <input type="image" src="{% static 'images/icon-svg/heart.svg' %}" class="outfit_icon" style="width: 3rem;" alt="Like">
+                            </form>
+
+                            <a href="{% url 'outfit_comments' postPk=post.id %}">
+                                <img src="{% static 'images/icon-svg/comment.svg' %}" class="outfit_icon" style="width: 8%; height: 8%;" alt="">
+                            </a>
+                            
+                            {% if user != post.user %}
+                            <a href="{% url 'remake' postPk=post.id %}">
+                                <img src="{% static 'images/icon-svg/clothes_hanger.svg' %}" class="outfit_icon" style="width: 13%; height: 13%;" alt="">
+                            </a>
+                            {% endif %}
+                            
+                            <form action="" method="post"> {% csrf_token %}
+                                <input type="hidden" value="{{ post.id }}" name="post_id">
+                                <input type="hidden" value="1" name="followed">
+                                <input type="image" src="{% static 'images/icon-svg/bookmark.svg' %}" class="outfit_icon" style="width: 3rem;" alt="Save">
+                            </form>
+
+                        
+                        </div>
+                        
+                        {% if post.likes.count == 1 %}
+                            <p class="likes">{{ post.likes.first.username }} likes this post</p>
+                        {% else %}
+                            <p class="likes">{{ post.likes.count }} likes</p>
+                        {% endif %}
+                        
+                        <p class="username">{{ post.user.username }}</p> {{ post.content }}<br> <br>{{ post.title }}
+                    </div>
+                    
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <span style="font-size: 10px; left: -10%;">{{ post.time }}</span>
+                    
+                    {% for comment in post.comments.all %}
+                    <div class="comment-wrapper">
+                        <div class="info">
+                            <div class="user">
+                                 <div class="profile-pic"><img src="{% static 'images/money.png' %}" style="left: 15px; width: 3rem;"alt=""></div>
+                             </div>
+                             <p class="username1" style="font-size: 15px;">{{ comment.user.username }}</p>
+                             <p class="post-words" style="font-size: 15px;">{{ comment.text }}</p>
+                         </div>
+                        
+                    </div>
+                    {% endfor %}
+                    
+                    <form action="" method="post"> {% csrf_token %}
+                        <div class="comment-wrapper">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="hidden" name="post_id" value="{{ post.id }}">
+                            <img src="{% static 'images/icon-svg/smile-beam.svg' %}" class="profile-pic" style="left: 15px; width: 3rem;" alt="">
+                            <input type="text" name="comment" class="comment-box" placeholder="Add a comment">
+                            <input type="submit" value="post" class="comment-btn">
+                        </div>
+                    </form>
+                    <br>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </body>
+</html>

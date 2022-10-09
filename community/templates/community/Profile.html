@@ -1,0 +1,389 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+            <title>Personal Page</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+
+    <body>
+        <div class="containerrr">
+            <button class="icon3">
+                <a href="{% url 'clothes' closetPk=user_closets.first.id %}">
+                <img src="{% static 'images/icon-svg/home.png' %}">
+                </a>
+            </button>
+
+            <div class="purplewords">
+                {{ user.username }}
+            </div>
+            <div class="purplewords1"><a href="{% url 'logout' %}">登出</a></div>
+            <img src="{% static 'images/jieyu.jpeg' %}" class="stats__img-holder1" >
+            <hr class="aaa" size="3px" align="center" width="100%" color="gray">
+            <a href="{% url 'cart_list' %}">
+              <img src="{% static 'images/icon-svg/shopping-cart1.png' %}" class="up" >
+              <div class="buycart">購物車</div>
+            </a>
+            <a href="{% url 'transactionlog_list' %}">
+              <img src="{% static 'images/icon-svg/files.png' %}" class="up1" >
+              <div class="listm">訂單記錄</div>
+            </a>
+            <a href="{% url 'mysecondhand' %}">
+              <img src="{% static 'images/icon-svg/management.png' %}" class="up2" >
+              <div class="listg">商品管理</div>
+            </a>
+            <a href="{% url 'mywallet' %}">
+              <img src="{% static 'images/icon-svg/women-purse.png' %}" class="up3" >
+              <div class="mypurse">我的錢包</div>
+            </a>
+            <hr class="aab" size="3px" align="center" width="100%" color="gray">
+
+            <div class="purplewords3">
+                <a href="{% url 'editUser' pk=user.id %}">
+                    修改基本資料
+                </a>
+            <br>
+            <br>
+                <a href="{% url 'set_mywallet' %}">
+                  錢包設定
+                </a>
+
+            </div>
+
+
+
+
+    </body>
+</html>
+
+
+
+
+
+<!--
+<div class="v61_12"><div class="v61_13"></div><div class="v61_14"><div class="v61_15"></div><div class="v62_71"></div></div><span class="v61_35">用戶ID</span><span class="v61_38">修改基本資料</span><span class="v61_41">錢包設定</span><span class="v61_37">登出</span><div class="v61_36"></div><div class="name"></div><div class="name"></div><div class="v62_69"><span class="v62_54">購物車</span><div class="v61_47"></div></div><div class="v62_68"><span class="v62_55">訂單記錄</span><div class="v62_53"><div class="v61_49"></div><div class="v61_50"></div></div></div><div class="v62_67"><span class="v62_61">我的錢包</span><div class="v62_62"></div></div><div class="v62_66"><span class="v61_45">商品管理</span><div class="v62_63"></div><div class="v62_65"></div><div class="v62_64"></div></div></div></body></html> <br/><br/> <style>* {
+    box-sizing: border-box;
+  }
+  body {
+    font-size: 14px;
+  }
+  .v61_12 {
+    width: 375px;
+    height: 820px;
+    background: rgba(255,255,255,1);
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+  }
+  .v61_13 {
+    width: 375px;
+    height: 820px;
+    background: rgba(255,254,247,1);
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+  }
+  .v61_14 {
+    width: 375px;
+    height: 126px;
+    background: url("../images/v61_14.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+  }
+  .v61_15 {
+    width: 375px;
+    height: 126px;
+    background: rgba(196,178,187,1);
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+  }
+  .v62_71 {
+    width: 33px;
+    height: 33px;
+    background: url("../images/v62_71.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 79px;
+    left: 313px;
+    overflow: hidden;
+  }
+  .v61_35 {
+    width: 60px;
+    color: rgba(148,122,136,1);
+    position: absolute;
+    top: 171px;
+    left: 36px;
+    font-family: Inter;
+    font-weight: Regular;
+    font-size: 20px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v61_38 {
+    width: 120px;
+    color: rgba(148,122,136,1);
+    position: absolute;
+    top: 400px;
+    left: 32px;
+    font-family: Inter;
+    font-weight: Regular;
+    font-size: 20px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v61_41 {
+    width: 80px;
+    color: rgba(148,122,136,1);
+    position: absolute;
+    top: 449px;
+    left: 32px;
+    font-family: Inter;
+    font-weight: Regular;
+    font-size: 20px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v61_37 {
+    width: 30px;
+    color: rgba(148,122,136,1);
+    position: absolute;
+    top: 202px;
+    left: 36px;
+    font-family: Inter;
+    font-weight: Regular;
+    font-size: 15px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v61_36 {
+    width: 60px;
+    height: 60px;
+    background: rgba(217,217,217,1);
+    opacity: 1;
+    position: absolute;
+    top: 160px;
+    left: 293px;
+    border-radius: 50%;
+  }
+  .name {
+    color: #fff;
+  }
+  .name {
+    color: #fff;
+  }
+  .v62_69 {
+    width: 45px;
+    height: 73px;
+    background: url("../images/v62_69.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 271px;
+    left: 32px;
+    overflow: hidden;
+  }
+  .v62_54 {
+    width: 45px;
+    color: rgba(148,122,136,1);
+    position: absolute;
+    top: 55px;
+    left: 0px;
+    font-family: Inter;
+    font-weight: Regular;
+    font-size: 15px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v61_47 {
+    width: 36px;
+    height: 36px;
+    background: url("../images/v61_47.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 4px;
+    overflow: hidden;
+  }
+  .v62_68 {
+    width: 60px;
+    height: 73px;
+    background: url("../images/v62_68.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 271px;
+    left: 109px;
+    overflow: hidden;
+  }
+  .v62_55 {
+    width: 60px;
+    color: rgba(148,122,136,1);
+    position: absolute;
+    top: 55px;
+    left: 0px;
+    font-family: Inter;
+    font-weight: Regular;
+    font-size: 15px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v62_53 {
+    width: 38px;
+    height: 39px;
+    background: url("../images/v62_53.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 11px;
+    overflow: hidden;
+  }
+  .v61_49 {
+    width: 25px;
+    height: 25px;
+    background: url("../images/v61_49.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 4px;
+    left: 6px;
+    overflow: hidden;
+  }
+  .v61_50 {
+    width: 38px;
+    height: 39px;
+    background: url("../images/v61_50.png");
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    border: 2.5px solid rgba(148,122,136,1);
+  }
+  .v62_67 {
+    width: 60px;
+    height: 73px;
+    background: url("../images/v62_67.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 271px;
+    left: 293px;
+    overflow: hidden;
+  }
+  .v62_61 {
+    width: 60px;
+    color: rgba(148,122,136,1);
+    position: absolute;
+    top: 55px;
+    left: 0px;
+    font-family: Inter;
+    font-weight: Regular;
+    font-size: 15px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v62_62 {
+    width: 36px;
+    height: 36px;
+    background: url("../images/v62_62.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 12px;
+    overflow: hidden;
+  }
+  .v62_66 {
+    width: 60px;
+    height: 73px;
+    background: url("../images/v62_66.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 271px;
+    left: 201px;
+    overflow: hidden;
+  }
+  .v61_45 {
+    width: 60px;
+    color: rgba(148,122,136,1);
+    position: absolute;
+    top: 55px;
+    left: 0px;
+    font-family: Inter;
+    font-weight: Regular;
+    font-size: 15px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v62_63 {
+    width: 36px;
+    height: 36px;
+    background: url("../images/v62_63.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 12px;
+    overflow: hidden;
+  }
+  .v62_65 {
+    width: 16px;
+    height: 16px;
+    background: rgba(255,254,247,1);
+    opacity: 1;
+    position: absolute;
+    top: 22px;
+    left: 34px;
+    overflow: hidden;
+  }
+  .v62_64 {
+    width: 15px;
+    height: 15px;
+    background: url("../images/v62_64.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 24px;
+    left: 36px;
+    overflow: hidden;
+  }
+  </style>-->

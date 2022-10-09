@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Add New Outfit</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+      </head>
+    
+    <body>
+        <div class="containerrr">
+            <div class="mycloset">
+                新增穿搭
+            </div>
+            
+            <a href="{% url 'personal_outfits' closetPk=user.id %}">
+                <img class="icon" src="{% static 'images/icon-svg/arrow_left.png' %}"> 
+            </a>
+            
+
+            <a href="{% url 'user_profile' closetPk=user.id %}">
+                <img src="{% static 'images/icon-svg/user.png' %}" class="icon3">
+            </a>
+
+        </div>
+    
+        <section class="main">
+            <div class="addOutfit_left-col">
+                <div class="post">
+                    <form action="" enctype="multipart/form-data" method="post">{% csrf_token %}
+                    <div class="info">
+                        <div class="user">
+                            <img src="{% static 'images/icon-svg/edit.svg' %}" class="edit" alt="">
+                            <input type="text" name="title" placeholder="穿搭命名" class="username" style="color: rgba(148,122,136,1);" />
+                        </div>
+                     </div>
+                     
+                     <div class="post-image">
+                        
+                            <div class="post_camera_icon">
+                                    <img id="photo" class="post-image" src="{% static 'images/icon-svg/camera_add.jpg' %}"/>
+                                    <input id="photo" name="image" type="file" accept="image/*" class="post_fileInput"  multiple=""/>
+                
+                            </div>
+                
+                            <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+                            <script>
+                                    
+                                    $('input').on('change', function(e){      
+                                        const file = this.files[0];
+                                        const objectURL = URL.createObjectURL(file);
+                                        $("#photo").attr("src", objectURL);
+                                    });
+                                        
+                            </script>
+                
+                        
+                    </div>
+                    
+                    
+                    <div>
+                    
+                        <div style="padding-bottom: 25px;"></div>
+                        <hr size="1px" color= "#d9d9d9" width="100%"> 
+                        <input type="text" name="content" placeholder="向大家介紹你的穿搭吧 ~ " class="outfit_content">
+                             
+                            <br>
+                            <hr size="1px" color= "#d9d9d9" width="100%"> 
+
+                    </div>
+                    
+                    <div>
+                        
+                        <br><br>
+                        <input type="button" class="new_outfit_tag_clothes_font" value="標註單品" style="border:0; width: 90%; cursor:pointer" />  
+                        <hr size="1px" color= "#e6e6e6" width="100%"> 
+
+
+                    </div>
+
+                    <div class="comment-wrapper1">
+                        {% for clothe in clothes %}
+                            <div>
+                            <input type="checkbox" name="clothe{{ forloop.counter }}" id="clothe{{ forloop.counter }}" class="tag_clothes_block{{ forloop.counter }}" style="width: 10%; height: 10%;" />
+                            <label for="clothe{{ forloop.counter }}">
+                              <img src="{{ clothe.image.url }}" class="tag_clothes_block{{ forloop.counter }}" alt="img">
+                            </label>
+                            </div>
+                            
+                        {% endfor %}
+                        
+                        <br>
+                        
+                        <button id="submit" class="new_outfit_submit" > <span class="new_outfit_submit_font">新增我的穿搭 </span></button>
+
+                    </div>
+                    </form>
+
+                    <div style="padding-bottom: 250px;"></div>
+
+                </div>
+                
+            </div>
+        
+        </section>
+
+
+    </body>
+
+
+</html>

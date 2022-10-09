@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        {% block style %}{% endblock %}
+    </head>
+    <body>
+        <div class="containerrr">
+            <div class="mycloset">
+                {% block closet_name %}{% endblock %}
+            </div>
+
+            {% block header_right %}
+            {% endblock %}
+
+            {% block header_left %}
+                <a href="{% url 'secondhand_list' %}">
+                    <img src="{% static 'images/icon-svg/store.png' %}" class="icon2">
+                </a>
+                <a href="{% url 'user_profile' closetPk=user.id %}">
+                    <img src="{% static 'images/icon-svg/user.png' %}" class="icon3">
+                </a>
+            {% endblock %}
+
+            <div class="titlee">
+                {% block head_bar_title %}{% endblock %}
+            </div>
+
+            {% block head_bar_left %}{% endblock %}
+
+            {% block head_bar_right %}{% endblock %}
+
+        </div>
+
+        {% block content %}{% endblock %}
+
+        {% block script %}{% endblock %}
+
+    </body>
+</html>
