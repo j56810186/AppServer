@@ -14,16 +14,16 @@
 {% endblock %}
 
 {% block head_bar_left %}
-    <a href="{% url 'personal_outfits' closetPk=user.id %}">
-        <div class="titlee3"> 穿搭<<  
+    <a href="{% url 'personal_outfits' %}">
+        <div class="titlee3"> 穿搭<<
     </div>
     </a>
 {% endblock %}
 
-{% block head_bar_right %}            
+{% block head_bar_right %}
     <img src="{% static 'images/bookmark.png' %}" class="icon4">
 {% endblock %}
-        
+
 {% block content %}
 
         {% for post in user.followedPosts.all %}
@@ -36,7 +36,7 @@
 
         <a href="{% url 'outfits' %}">
             <div class="bottom-bar2">
-                <font size="5">搜尋穿搭</font> 
+                <font size="5">搜尋穿搭</font>
             </div>
         </a>
 

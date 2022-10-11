@@ -15,15 +15,9 @@ from django.views.generic.list import ListView, View
 from django.views.generic.edit import CreateView, FormView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 
-from closet.models import Closet, Clothe, Type, User
+from closet.models import Closet, Clothe
 
-from community.models import Post
-
-
-# FIXME: Remove this.
-def saved_outfits():
-    pass
-
+from community.models import Comment, Post
 
 
 # 個人頁面 (profile)
@@ -32,7 +26,8 @@ def profile(request, pk):
     posts = Post.objects.filter(user=user)
     user_closets = Closet.objects.filter(user_id=user.id)
     return render(request, 'community/Profile.html', context={'posts': posts, 'user_closets': user_closets})
-
+# FIXME: profile 怎麼會是 settings 頁面？
+# 這個好像應該要改成一個 user 的 profile 才對
 
 
 
@@ -40,7 +35,7 @@ def profile(request, pk):
 # 社群相關頁面
 #
 # 穿搭首頁 (personal_outfits)
-def outfits(request, closetPk):
+def get_personal_outfits(request):
     user = request.user
     user_closets = Closet.objects.filter(user_id=user.id)
     posts = Post.objects.filter(user=user)
@@ -53,12 +48,11 @@ def outfits(request, closetPk):
 
 
 # 收藏穿搭頁面 (saved_outfits)
-def saved_outfit(request, closetPk):
-    user_closets = Closet.objects.filter(user_id=request.user.id)
-    return render(request, 'community/SavedOutfits.html', context={'user_closets': user_closets})
+def saved_outfits(request):
+    return render(request, 'community/SavedOutfitView.html')
 
 
-# 探索穿搭頁面 (outfits)
+# 探索穿搭頁面 (get_personal_outfits)
 class OutfitView(ListView):
     model = Post
     template_name = 'community/OutfitsView.html'
@@ -100,8 +94,8 @@ class OutfitView(ListView):
 
 
 # 穿搭頁面 (outfit)
-def outfit(request, postPk):
-    _post = Post.objects.get(id=postPk)
+def outfit(request, pk):
+    post = Post.objects.get(id=pk)
 
     if request.method == 'POST':
         user = request.user
@@ -113,20 +107,20 @@ def outfit(request, postPk):
         if comment:
             new_comment = Comment(text=comment, time=time.format('HH:MM'), user=user)
             new_comment.save()
-            _post.comments.add(new_comment)
-            _post.save()
+            post.comments.add(new_comment)
+            post.save()
 
         if like:
-            _post.likes.add(user)
-            _post.save()
+            post.likes.add(user)
+            post.save()
 
         if followed:
-            user.followedPosts.add(_post)
+            user.followedPosts.add(post)
             user.save()
 
-        return redirect(reverse('viewPost', kwargs={'postPk': _post.id}))
+        return redirect(reverse('viewPost', kwargs={'pk': post.id}))
 
-    return render(request, 'community/OutfitView.html', context={'post': _post})
+    return render(request, 'community/OutfitView.html', context={'post': post})
 
 
 # 新增穿搭 (create_outfit)
@@ -145,9 +139,9 @@ class CreateOutfitView(CreateView):
         content = request.POST['content']
         tag = request.POST['title']
         image = request.FILES['image']
-        time = arrow.now()
+        now = arrow.now()
 
-        new_post = Post(title=tag, content=content, image=image, time=time.format('HH:MM'), user=request.user)
+        new_post = Post(title=tag, content=content, image=image, datetime=now.datetime, user=request.user)
         new_post.save()
 
         c = Clothe.objects.filter(user=self.request.user)
@@ -157,7 +151,7 @@ class CreateOutfitView(CreateView):
         new_post.save()
 
         user_closets = Closet.objects.filter(user_id=self.request.user.id)
-        return redirect(reverse('outfit', kwargs={'closetPk': user_closets.first().id}))
+        return redirect(reverse('personal_outfits'))
 
     def get_success_url(self):
         user_closets = Closet.objects.filter(user_id=self.request.user.id)

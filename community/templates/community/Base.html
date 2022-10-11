@@ -18,10 +18,10 @@
             {% endblock %}
 
             {% block header_left %}
-                <a href="{% url 'secondhand_list' %}">
+                <a href="{% url 'products' %}">
                     <img src="{% static 'images/icon-svg/store.png' %}" class="icon2">
                 </a>
-                <a href="{% url 'user_profile' closetPk=user.id %}">
+                <a href="{% url 'settings' %}">
                     <img src="{% static 'images/icon-svg/user.png' %}" class="icon3">
                 </a>
             {% endblock %}
