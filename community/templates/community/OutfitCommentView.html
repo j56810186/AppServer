@@ -17,7 +17,7 @@
             <div class="tabs__btn"></div>
             </a>
             
-            <a href="{% url 'user_profile' user.closet_set.first.id %}">
+            <a href="{% url 'edit_user' user.id %}">
                 <img src="{% static 'images/icon-svg/user.png' %}" class="icon3">
             </a>
 
@@ -26,14 +26,14 @@
         <section id="containerC">
             
             <section class="top-barr">
-                    <a href="{% url 'viewPost' postPk=post.id %}">
+                    <a href="{% url 'outfit' pk=post.id %}">
                         <img class="tabs__btn__iconn" src="{% static 'images/icon-svg/arrow_left.png' %}" alt="arrow_back_ios">
                     </a> 
             </section>
 
             <div class="info">
                         <div class="user">
-                            <div class="profile-pic"> <img src="{% static 'images/jieyu.jpEg' %}" alt=""> </div>
+                            <div class="profile-pic"> <img src="{{ user.profile_picture.url }}" alt=""> </div>
                             <p class="username">{{ post.user.username }}</p>
                         </div>
             </div>

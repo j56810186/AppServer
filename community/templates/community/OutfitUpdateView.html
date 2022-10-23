@@ -14,7 +14,7 @@
             </div>
             
             <button class="tabs__btn">
-                <a href="{% url 'personal_outfits' closetPk=1 %}">
+                <a href="{% url 'personal_outfits' %}">
                 <img class="icon" src="{% static 'images/icon-svg/arrow_left.png' %}"> 
                 </a>
             </button> 
@@ -95,7 +95,7 @@
                         <input type="submit" value="儲存更新" class="edit_outfit_submit" />
                         </form>
                         
-                        <form action="{% url 'outfit' closetPk=1 %}" method="post">{% csrf_token %}
+                        <form action="{% url 'personal_outfits' %}" method="post">{% csrf_token %}
 
                             <input type="hidden" value="{{ post.id }}" name="postPk">
                             <input type="submit" value="刪除穿搭" class="edit_outfit_delete" />

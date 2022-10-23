@@ -38,7 +38,7 @@
                 <div class="post">
                     <div class="info">
                         <div class="user">
-                            <div class="profile-pic"> <img src="{% static 'images/selfie.jpg' %}" alt=""> </div>
+                            <div class="profile-pic"> <img src="{{ post.user.profile_picture.url }}" alt=""> </div>
                             <p class="username">{{ post.user.username }}</p>
                         </div>
 

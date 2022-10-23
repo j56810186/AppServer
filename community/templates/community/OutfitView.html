@@ -18,8 +18,8 @@
                 <img class="icon" src="{% static 'images/icon-svg/arrow_left.png' %}">
                 </a>
             </button>
-            <a href="{% url 'user_profile' user.closet_set.first.id %}">
-            <img src="{% static 'images/icon-svg/user.png' %}" class="icon3">
+            <a href="{% url 'edit_user' user.id %}">
+            <img src="{% static 'images/icon-svg/user.png' %}" class="icon3" alt="user">
             </a>
         </div>
 
@@ -28,7 +28,7 @@
                 <div class="post">
                     <div class="info">
                         <div class="user">
-                            <div class="profile-pic"> <img src="{% static 'images/selfie.jpg' %}" alt=""> </div>
+                            <div class="profile-pic"> <img src="{{ user.profile_picture.url }}" alt=""> </div>
                             <p class="username">{{ post.user.username }}</p>
                         </div>
 

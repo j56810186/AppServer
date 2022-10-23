@@ -77,10 +77,8 @@ class OutfitView(ListView):
         time = arrow.now()
 
         if comment:
-            new_comment = Comment(text=comment, time=time.format('HH:MM'), user=user)
+            new_comment = Comment(text=comment, datetime=time.format('YYYY-MM-DD HH:MM'), user=user, post=post)
             new_comment.save()
-            _post.comments.add(new_comment)
-            _post.save()
 
         if like:
             _post.likes.add(user)
@@ -90,7 +88,7 @@ class OutfitView(ListView):
             user.followedPosts.add(_post)
             user.save()
 
-        return redirect(reverse('posts'))
+        return redirect(reverse('outfits'))
 
 
 # 穿搭頁面 (outfit)
@@ -105,10 +103,8 @@ def outfit(request, pk):
         time = arrow.now()
 
         if comment:
-            new_comment = Comment(text=comment, time=time.format('HH:MM'), user=user)
+            new_comment = Comment(text=comment, datetime=time.format('YYYY-MM-DD HH:MM'), user=user, post=post)
             new_comment.save()
-            post.comments.add(new_comment)
-            post.save()
 
         if like:
             post.likes.add(user)
@@ -118,7 +114,7 @@ def outfit(request, pk):
             user.followedPosts.add(post)
             user.save()
 
-        return redirect(reverse('viewPost', kwargs={'pk': post.id}))
+        return redirect(reverse('outfit', kwargs={'pk': post.id}))
 
     return render(request, 'community/OutfitView.html', context={'post': post})
 
@@ -156,7 +152,7 @@ class CreateOutfitView(CreateView):
     def get_success_url(self):
         user_closets = Closet.objects.filter(user_id=self.request.user.id)
 
-        return redirect(reverse('outfit', kwargs={'closetPk': user_closets.first().id}))
+        return redirect(reverse('personal_outfits'))
 
 
 # 編輯、刪除穿搭 (edit_outfit)
@@ -175,8 +171,7 @@ class EditOutfitView(UpdateView):
         user_closets = Closet.objects.filter(user_id=self.request.user.id)
 
         return reverse(
-            'outfit',
-            kwargs={'closetPk': user_closets.first().id}
+            'personal_outfits',
         )
 
 
@@ -196,7 +191,7 @@ def comments(request, postPk):
             _post.comments.add(new_comment)
             _post.save()
 
-        return redirect(reverse('comments', kwargs={'postPk': _post.id}))
+        return redirect(reverse('outfit_comments', kwargs={'postPk': _post.id}))
 
     return render(request, 'community/OutfitCommentView.html', context={'post': _post})
 
