@@ -18,6 +18,8 @@ from closet.models import Closet, Clothe, Color, Company, Style, Type, User
 
 from community.models import Post
 
+from ai_models.tc_loadmodel import loadClassifyModel
+from ai_models.colorClassify_v2 import colorClassify
 
 #
 # 個人相關頁面
@@ -257,9 +259,8 @@ class CreateClotheView(CreateView):
 
     def form_valid(self, form):
         self.object = form.save()
-        # FIXME: should open these lines to enable type and color predict models.
-        # if self.request.POST.get('new_image'):
-        #     predict_image(self.object)
+        if self.request.POST.get('new_image'):
+            predict_image(self.object)
 
         return HttpResponseRedirect(self.get_success_url())
 
@@ -341,10 +342,39 @@ class RecommendView(View):
         return reverse('recommend')
 
 
+# AI models.
+CONVERT_PREDICT_COLOR = {
+    'Black': 1,
+    'White': 2,
+    'Blue': 3,
+    'Brown': 4,
+    'Grey': 5,
+    'Red': 6,
+    'Green': 7,
+    'Navy Blue': 8,
+    'Pink': 9,
+    'Purple': 10,
+    'Silver': 11,
+    'Yellow': 12,
+    'Beige': 13,
+    'Gold': 14,
+    'Maroon': 15,
+    'Orange': 16,
+    'Other': 17
+}
+
+CONVERT_PREDICT_TYPE = {
+    'shirt': 1,
+    'tshirt': 2,
+    'pants': 3,
+    'shorts': 4,
+    'skirt': 5,
+    'dress': 6,
+    'footwear': 7
+}
 
 # ai models.
 def predict_image(obj):
-    # FIXME: 記得要打開 AI models
     img_path = Clothe.objects.get(id=obj.id).image.path
     pred_type_result = loadClassifyModel(img_path)
     pred_color_result = colorClassify(img_path)
@@ -352,8 +382,7 @@ def predict_image(obj):
         'type': CONVERT_PREDICT_TYPE[pred_type_result],
         'color': CONVERT_PREDICT_COLOR[pred_color_result]
     }
-    print(CONVERT_PREDICT_COLOR[pred_color_result])
-    obj.color.add(Color.objects.get(id=pred_result['color']))
+    obj.color = Color.objects.get(id=pred_result['color'])
     obj.type = Type.objects.get(id=pred_result['type'])
 
     obj.save()
