@@ -195,7 +195,7 @@ def comments(request, postPk):
 
     return render(request, 'community/OutfitCommentView.html', context={'post': _post})
 
-
+# FIXME: 我要整個打掉重做，原本真的不知道在幹嘛==
 # 復刻穿搭頁面 (remake_outfit)
 def remake_outfit(request, postPk):
     user = request.user
@@ -212,6 +212,6 @@ def select_remake_outfit(request, postPk):
     model = Clothe.objects.filter(user=user).first()
     path = Path(model.image.path)
     p = str(path.absolute())
-    print(p)
-    findsimilar.selectarea(p)
+    print(request.POST)
+    # findsimilar.selectarea(p)
     return render(request, 'community/OutfitSelectRemakeView.html', context={'post': post, 'user_closets': user_closets})
