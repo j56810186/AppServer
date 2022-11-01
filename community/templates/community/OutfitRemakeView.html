@@ -38,7 +38,7 @@
                      </div>
                      <div class="post-image">
 
-                        <form action="{% url 'select_remake' post.id %}" method="post">
+                        <form id="form" action="{% url 'select_remake' post.id %}" method="post">
                             {% csrf_token %}
                             <div class="post_camera_icon">
                                 <img id="image" class="post-image" style="position: relative" src="{{ post.image.url }}"/>
@@ -89,8 +89,6 @@
 
 
                     </div>
-                    </form>
-
 
                 </div>
                 
@@ -133,14 +131,13 @@
             }
             function getResult() {
                 drawRectangle(selectResult[0], selectResult[1], selectResult[2], selectResult[3]);
-                console.log(selectResult);
                 regions.push(selectResult);
                 element.setAttribute("hidden","False");
             }
             function postRegions() {
                 let form = $("#form");
                 for (let i = 0; i < regions.length; i++) {
-                    form.append('<input type="hidden" name="region' + i + '" value="' + regions[i] + '">');
+                    form.append('<input type="hidden" name="region' + i + '" value="' + JSON.stringify(regions[i]) + '">');
                 }
                 return true;
             }

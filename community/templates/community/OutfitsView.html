@@ -64,7 +64,7 @@
                             </a>
 
                             {% if user != post.user %}
-                            <a href="{% url 'remake' postPk=post.id %}">
+                            <a href="{% url 'remake_outfit' postPk=post.id %}">
                                 <img src="{% static 'images/icon-svg/clothes_hanger.svg' %}" class="outfit_icon" style="width: 13%; height: 13%;" alt="">
                             </a>
                             {% endif %}

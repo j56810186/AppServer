@@ -1,14 +1,16 @@
 
 import arrow
+import os
 
 from pathlib import Path
 
+from django.conf import settings
 from django.contrib import auth, messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.core.mail import send_mail
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic.list import ListView, View
@@ -16,7 +18,6 @@ from django.views.generic.edit import CreateView, FormView, UpdateView, DeleteVi
 from django.views.generic.detail import DetailView
 
 from closet.models import Closet, Clothe
-
 from community.models import Comment, Post
 
 
@@ -195,7 +196,6 @@ def comments(request, postPk):
 
     return render(request, 'community/OutfitCommentView.html', context={'post': _post})
 
-# FIXME: 我要整個打掉重做，原本真的不知道在幹嘛==
 # 復刻穿搭頁面 (remake_outfit)
 def remake_outfit(request, postPk):
     user = request.user
@@ -206,12 +206,30 @@ def remake_outfit(request, postPk):
 
 # 復刻穿搭選擇頁面 (select_remake)
 def select_remake_outfit(request, postPk):
-    user = request.user
-    post = Post.objects.get(id=postPk)
-    user_closets = Closet.objects.filter(user_id=user.id)
-    model = Clothe.objects.filter(user=user).first()
-    path = Path(model.image.path)
-    p = str(path.absolute())
-    print(request.POST)
+    # user = request.user
+    # post = Post.objects.get(id=postPk)
+    # user_closets = Closet.objects.filter(user_id=user.id)
+    # model = Clothe.objects.filter(user=user).first()
+    # path = Path(model.image.path)
+    # p = str(path.absolute())
     # findsimilar.selectarea(p)
-    return render(request, 'community/OutfitSelectRemakeView.html', context={'post': post, 'user_closets': user_closets})
+
+    # The following lines are the steps to make the similarity modle work.
+    # 1. if user post `refresh`, then I should query all the user's clothes
+    #    and the image path.
+    # 2. copy these images to a dir which contains all this user's clothes' image.
+    # 3. name the dir `{user_id}`
+    # 4. call command and add `refresh` param in it.
+    # 5. if user did NOT post `refresh`, then i should just call command.
+
+    # Somethings that maybe concerned: 
+    # 1. how to cut the clothe image from the outfit image.
+    # 2. from the above line, save the result of cutting image.
+    # that all i have thought.
+
+
+    command = f'python {Path(settings.BASE_DIR, "ai_models/findsimilar.py")} 1 gggg --refresh=1'
+    result = os.popen(command).read()
+    return HttpResponse(result)
+    
+    # return render(request, 'community/OutfitSelectRemakeView.html', context={'post': post, 'user_closets': user_closets})
