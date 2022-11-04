@@ -21,8 +21,13 @@
                 <img class="icon" src="{% static 'images/icon-svg/arrow_left.png' %}"> 
                 </a>
             </button> 
-
-            <img src="{% static 'images/icon-svg/refresh.png' %}" class="icon3">
+            <form action="{% url 'select_remake' post.id %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="refresh" value="true" />
+                <button type="submit">
+                    <img src="{% static 'images/icon-svg/refresh.png' %}" class="icon3">
+                </button>
+            </form>
 
         </div>
     
@@ -41,7 +46,7 @@
                         <form id="form" action="{% url 'select_remake' post.id %}" method="post">
                             {% csrf_token %}
                             <div class="post_camera_icon">
-                                <img id="image" class="post-image" style="position: relative" src="{{ post.image.url }}"/>
+                                <img id="image" class="post-image" style="position: relative; width: auto;" src="{{ post.image.url }}"/>
                                 <canvas id="canvas" style="position: absolute; top: 8px;left: 8px"></canvas>
                             </div>
                             <button type="button" id="confirm" hidden="True" onclick="getResult()">confirm</button>
@@ -137,8 +142,9 @@
             function postRegions() {
                 let form = $("#form");
                 for (let i = 0; i < regions.length; i++) {
-                    form.append('<input type="hidden" name="region' + i + '" value="' + JSON.stringify(regions[i]) + '">');
+                    form.append('<input type="hidden" name="region' + i + '" value="' + JSON.stringify(regions[i]) + '" />');
                 }
+                form.append('<input type="hidden" name="img_height" value="' + $('#image').height() + '" />');
                 return true;
             }
 

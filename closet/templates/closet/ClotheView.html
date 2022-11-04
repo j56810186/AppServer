@@ -27,7 +27,9 @@
                 <img class="goods_icon1" src="{% static 'images/icon-svg/arrow_left.png' %}">
             </a>
 
-            <img class="goods_icon2" src="{% static 'images/icon-svg/more.png' %}">
+            <a href="{% url 'delete_clothe' clothe.id %}">
+                <img class="goods_icon2" src="{% static 'images/icon-svg/more.png' %}">
+            </a>
 
             <img src="{{ clothe.image.url }}" class="goods_pic">
 
@@ -39,7 +41,7 @@
             <button type="value" name="color" class="goods_label">{{ clothe.color }}</button>
             <button type="value" name="style" class="goods_label">{{ clothe.style }}</button>
             <button type="value" name="company" class="goods_label">{{ clothe.company.name }}</button>
-            <button type="value" name="isFormal" class="goods_label">{% if clothe.isFormal %}正式{% else %}休閒{% endif %}</button>
+            <button type="value" name="is_formal" class="goods_label">{% if clothe.is_formal %}正式{% else %}休閒{% endif %}</button>
 
             <div style="margin-top: 10px; padding-top: 10px;"> </div>
 

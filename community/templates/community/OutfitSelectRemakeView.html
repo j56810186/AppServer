@@ -75,29 +75,13 @@
 
                     <div>
 
-
-                        <a href="BrowseMyOutfit.html">
-                            <div> <img src="{% static 'images/30.jfif' %}" class="remake_clothes_block1"> </div>
-                        </a>
-                        
+                        {% for clothe in clothes %}
+                            <a href="{% url 'single_clothe' clothe.id %}">
+                                <div> <img src="{{ clothe.image.url }}" class="remake_clothes_block{{ forloop.counter }}"> </div>
+                            </a>
+                        {% endfor %}
                         <hr size="1px" color= "#e6e6e6" width="100%"> 
 
-                        <a href="BrowseMyOutfit.html">
-                            <div> <img src="{% static 'images/32.jfif' %}" class="remake_clothes_block2"> </div>
-                        </a>
-
-                        <a href="BrowseMyOutfit.html">
-                            <div> <img src="{% static 'images/shoes1.webp' %}" class="remake_clothes_block3"> </div>
-                        </a>
-
-                        <a href="BrowseMyOutfit.html">
-                            <div> <img src="{% static 'images/icon-svg/add.png' %}" class="remake_clothes_block4"> </div>
-                        </a>
-
-                        <a href="BrowseMyOutfit.html">
-                            <div> <img src="{% static 'images/icon-svg/add.png' %}" class="remake_clothes_block5"> </div>
-                        </a>
-                        
                         <br>
 
 

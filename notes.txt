@@ -1,11 +1,6 @@
-similarity 模型處理還沒好
-select region 的畫面，要調整 canvas 的大小與 image 相同
 
-刪除功能 template 沒串到，要補
 
 user profile picture 修改的功能沒做
-
-衣服的正式、休閒顯示錯誤
 
 
 試試看寫個 code 做測試資料自動匯入，不然真的要 key 到死，太靠北

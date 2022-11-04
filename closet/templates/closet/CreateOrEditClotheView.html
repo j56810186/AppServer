@@ -133,10 +133,10 @@
             <br>
 
             <div class="sttyle">
-            <select name="isFormal" class="sttyle" style="border:1px rgb(199, 199, 199) solid;">
+            <select name="is_formal" class="sttyle" style="border:1px rgb(199, 199, 199) solid;">
                 <option value>正式度</option>
-                <option value="False" {% if not clothe.isFormal %}selected="selected"{% endif %}>休閒</option>
-                <option value="True" {% if clothe.isFormal %}selected="selected"{% endif %}>正式</option>
+                <option value="False" {% if not clothe.is_formal %}selected="selected"{% endif %}>休閒</option>
+                <option value="True" {% if clothe.is_formal %}selected="selected"{% endif %}>正式</option>
             </select>
             </div>
             <br>
