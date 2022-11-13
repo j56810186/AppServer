@@ -78,16 +78,18 @@
 
                     </div>
 
-                    <div class="comment-wrapper1">
-                        {% for clothe in clothes %}
-                            <div>
-                            <input type="checkbox" name="clothe{{ forloop.counter }}" id="clothe{{ forloop.counter }}" class="tag_clothes_block{{ forloop.counter }}" style="width: 10%; height: 10%;" />
-                            <label for="clothe{{ forloop.counter }}">
-                              <img src="{{ clothe.image.url }}" class="tag_clothes_block{{ forloop.counter }}" alt="img">
-                            </label>
-                            </div>
+                    <div style="display: flex;">
+                        <a href="#tag_popup1" class="tag_link_area"><div> <img src="{% static 'images/icon-svg/add.png' %}"  class="tag_clothes_block"> </div></a>
+                    
+                        <a href="#tag_popup1" class="tag_link_area"><div> <img src="{% static 'images/icon-svg/add.png' %}"  class="tag_clothes_block"> </div></a>
+                    
+                        <a href="#tag_popup1" class="tag_link_area"><div> <img src="{% static 'images/icon-svg/add.png' %}" class="tag_clothes_block"> </div></a>
 
-                        {% endfor %}
+                        <a href="#tag_popup1" class="tag_link_area"><div> <img src="{% static 'images/icon-svg/add.png' %}" class="tag_clothes_block"> </div></a>
+
+                        <a href="#tag_popup1" class="tag_link_area"><div> <img src="{% static 'images/icon-svg/add.png' %}"  class="tag_clothes_block"> </div></a>
+                    
+                        
 
                         <br>
 
@@ -97,6 +99,156 @@
                     </form>
 
                     <div style="padding-bottom: 250px;"></div>
+                    
+                    <div id="tag_popup1" class="tag_overlay">
+                        <div class="tag_popup">
+                            <h2 >選擇種類</h2>
+                            <a href="#tag_tshirt"><img src="{% static 'images/tshirt1.png' %}" class="tag_type" /></a>
+                            <a href="#tag_shirt"><img src="{% static 'images/shirt1.png' %}" class="tag_type" /></a>
+                            <a href="#tag_shorts"><img src="{% static 'images/shorts1.png' %}" class="tag_type" /></a>
+                            <a href="#tag_pants"><img src="{% static 'images/pants1.png' %}" class="tag_type" /></a>
+                            <a href="#tag_shoes"><img src="{% static 'images/shoes1.png' %}" class="tag_type" /></a>
+                            <a href="#tag_skirt"><img src="{% static 'images/skirt1.png' %}" class="tag_type" /></a>
+                            <a href="#tag_dress"><img src="{% static 'images/dress1.png' %}" class="tag_type" /></a>
+
+                            <a class="close" href="#">&times;</a>
+                        </div>
+                    </div>
+                    
+                    <div id="tag_tshirt" class="tag_tshirt_overlay">
+                        <div class="tag_tshirt_popup">
+                            <h2>標註 Tshirt</h2>
+                            <a href="#tag_tshirt"><img src="{% static 'images/tshirt1.png' %}" class="tag_type_tshirt" /></a>
+                            <a class="close" href="#">&times;</a>
+                            <h2>選擇衣物</h2>
+                            {% for clothe in clothes %}
+                                {% if clothe.type.object.id == 1 %}
+                                    <a href="#">
+                                        <button type="button">
+                                            <img src="{{ clothe.image.url }}"class="tag_select" />
+                                        </button>
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                            
+                        </div>
+                    </div>
+                    
+                    <div id="tag_shirt" class="tag_tshirt_overlay">
+                        <div class="tag_tshirt_popup">
+                            <h2>標註 Shirt</h2>
+                            <a href="#tag_shirt"><img src="{% static 'images/shirt1.png' %}" class="tag_type_tshirt" /></a>
+                            <a class="close" href="#">&times;</a>
+                            <h2>選擇衣物</h2>
+                            {% for clothe in clothes %}
+                                {% if clothe.type.object.id == 2 %}
+                                    <a href="#">
+                                        <button type="button">
+                                            <img src="{{ clothe.image.url }}"class="tag_select" />
+                                        </button>
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                            
+                        </div>
+                    </div>
+                    
+                    <div id="tag_shorts" class="tag_tshirt_overlay">
+                        <div class="tag_tshirt_popup">
+                            <h2>標註 Shorts</h2>
+                            <a href="#tag_shorts"><img src="{% static 'images/shorts1.png' %}" class="tag_type_tshirt" /></a>
+                            <a class="close" href="#">&times;</a>
+                            <h2>選擇衣物</h2>
+                            {% for clothe in clothes %}
+                                {% if clothe.type.object.id == 1 %}
+                                    <a href="#">
+                                        <button type="button">
+                                            <img src="{{ clothe.image.url }}"class="tag_select" />
+                                        </button>
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                            
+                        </div>
+                    </div>
+                    
+                    <div id="tag_pants" class="tag_tshirt_overlay">
+                        <div class="tag_tshirt_popup">
+                            <h2>標註 Pants</h2>
+                            <a href="#tag_tshirt"><img src="{% static 'images/pants1.png' %}" class="tag_type_tshirt" /></a>
+                            <a class="close" href="#">&times;</a>
+                            <h2>選擇衣物</h2>
+                            {% for clothe in clothes %}
+                                {% if clothe.type.object.id == 3 %}
+                                    <a href="#">
+                                        <button type="button">
+                                            <img src="{{ clothe.image.url }}"class="tag_select" />
+                                        </button>
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                            
+                        </div>
+                    </div>
+                    
+                    <div id="tag_shoes" class="tag_tshirt_overlay">
+                        <div class="tag_tshirt_popup">
+                            <h2>標註 Shoes</h2>
+                            <a href="#tag_shoes"><img src="{% static 'images/shoes1.png' %}" class="tag_type_tshirt" /></a>
+                            <a class="close" href="#">&times;</a>
+                            <h2>選擇衣物</h2>
+                            {% for clothe in clothes %}
+                                {% if clothe.type.object.id == 1 %}
+                                    <a href="#">
+                                        <button type="button">
+                                            <img src="{{ clothe.image.url }}"class="tag_select" />
+                                        </button>
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                            
+                        </div>
+                    </div>
+                    
+                    <div id="tag_skirt" class="tag_tshirt_overlay">
+                        <div class="tag_tshirt_popup">
+                            <h2>標註 Skirt</h2>
+                            <a href="#tag_skirt"><img src="{% static 'images/skirt1.png' %}" class="tag_type_tshirt" /></a>
+                            <a class="close" href="#">&times;</a>
+                            <h2>選擇衣物</h2>
+                            {% for clothe in clothes %}
+                                {% if clothe.type.object.id == 1 %}
+                                    <a href="#">
+                                        <button type="button">
+                                            <img src="{{ clothe.image.url }}"class="tag_select" />
+                                        </button>
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                            
+                        </div>
+                    </div>
+                    
+                    <div id="tag_dress" class="tag_tshirt_overlay">
+                        <div class="tag_tshirt_popup">
+                            <h2>標註 Dress</h2>
+                            <a href="#tag_dress"><img src="{% static 'images/dress1.png' %}" class="tag_type_tshirt" /></a>
+                            <a class="close" href="#">&times;</a>
+                            <h2>選擇衣物</h2>
+                            {% for clothe in clothes %}
+                                {% if clothe.type.object.id == 1 %}
+                                    <a href="#">
+                                        <button type="button">
+                                            <img src="{{ clothe.image.url }}"class="tag_select" />
+                                        </button>
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                            
+                        </div>
+                    </div>
+                    
+                    
 
                 </div>
 

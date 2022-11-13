@@ -14,8 +14,6 @@ time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%
-
 }
 
 .content-title {
@@ -24,27 +22,21 @@ time, mark, audio, video {
   margin:0 auto;
   }
 
-
-*{
-    font-family:微軟正黑體;
-  }
-
   /*註冊頁面的填寫區*/
-  #username, #id_username, #password, #fullname, #comfirm_password,#username2, #password2, #content, #id_password1, #id_password2{
+  #username, #password, #fullname, #comfirm_password,#username2, #password2{
     width: 300px;
     height: 30px;
     margin: 10px auto;
     color: #a29587;
     position:relative;
   }
-  /*編輯個人檔案字區*/
-  #content{
-    width: 300px;
-    height: 60px;
-    color: rgba(0, 0, 0, 0.5);
-    margin: 10px auto;
-    position:relative;
+  @media screen and (max-width:1000px){ 
+    #username, #password, #username2, #password2, #comfirm_password{
+      width: 500px;
+      height: 60px;
+    }
   }
+  
 
   /*註冊/登入頁面的提交按鈕*/
   #sub{
@@ -61,6 +53,12 @@ time, mark, audio, video {
   h5{
     margin: 20px;
     color: #a3a2a3;
+  }
+  @media screen and (max-width:1000px){ 
+    h5{
+      margin: 40px;
+      font-size: 40px;
+    }
   }
   h5:hover{
     color: black;
@@ -117,9 +115,16 @@ time, mark, audio, video {
     font-family: Inter;
     font-weight:  Bold;
     font-size: 20px;
-    opacity: 1;
-    
+    opacity: 1;  
   }
+  @media screen and (max-width:1000px){ 
+    .submit{
+      width: 350px;
+      height: 100px;
+      font-size: 40px;
+    }
+  }
+  
 
   .submit:hover{
     background: #551a3e;
@@ -236,6 +241,15 @@ time, mark, audio, video {
     font-size: 20px;
     opacity: 1;
   }
+  @media screen and (max-width:1000px){ 
+    .login_submit{
+      top: 700px;
+      left: 30%;
+      width: 400px;
+      height: 70px;
+      font-size: 35px;
+    }
+   }
 
   .login_submit:hover{
     background: #551a3e;
@@ -260,6 +274,12 @@ time, mark, audio, video {
     font-size: 20px;
     opacity: 1;
   }
+  @media (max-width: 1000px) {
+    .login_submit1{
+      top: 245px;
+    }
+}
+  
 
   .login_line{
     position: absolute;
@@ -281,22 +301,21 @@ time, mark, audio, video {
     display:block;
     margin:auto;
   }
+  @media (max-width: 1000px) {
+    .logo{
+      width: 950px;
+      height: 280px;
+    }
+}
+  
 
 @font-face {
     font-family: Freight-sans;
     src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2053557/Freight%20Sans%20Medium.otf');
 }
-body, button {
-    font-family: Freight-sans, sans-serif;
-}
 body, h1, h2, p {
     margin: 0;
     padding: 0;
-}
-button {
-    border: 0;
-    outline: 0;
-    background: transparent;
 }
 a {
     text-decoration: none;
@@ -612,7 +631,7 @@ a {
         font-size: 15px;
         color: rgba(148,122,136,0.699999988079071);
         text-align:left;
-  }
+  }  
 
   .likeinput1{
     display: block;
@@ -633,6 +652,11 @@ a {
     top: 300px;
     left: 0%;
   }
+  @media screen and (max-width:1000px){ 
+    .likeinput1{
+      top: 555px;
+    }
+   }
 
   .likeinput2{
     display: block;
@@ -653,6 +677,11 @@ a {
     top: 320px;
     left: 0%;
   }
+  @media screen and (max-width:1000px){ 
+    .likeinput2{
+      top: 580px;
+    }
+   }
 
   .likeinput3{
     display: block;
@@ -673,6 +702,11 @@ a {
     top: 340px;
     left: 0%;
   }
+  @media screen and (max-width:1000px){ 
+    .likeinput3{
+      top: 600px;
+    }
+   }
 
   .likeinput4{
     display: block;
@@ -693,6 +727,11 @@ a {
     top: 360px;
     left: 0%;
   }
+  @media screen and (max-width:1000px){ 
+    .likeinput4{
+      top: 620px;
+    }
+   }
 
   .likeinput5{
     display: block;
@@ -1110,27 +1149,675 @@ a {
     cursor: pointer;
 }
 
-/* 新增穿搭的貼文區塊左上方編輯icon */
-.info .edit{
-  height: 30px;
-}
+/*新增穿搭*/
+@media screen and (max-width:1000px){ 
 
-.outfit_content{
-    width: 97%;
-    height: 250px;
-    border: 0;
-    margin-left: 3%;
-    margin-top: 15px;
-    background-color:#ffffff;
-    font-size: 20px;
+  .add_new_outfit_main{
+    width: 100%;
+    padding: 50px 0;
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+  }
+
+  /* 新增穿搭的貼文區塊左上方編輯icon */
+  .info .edit{
+    height: 40px;
+    margin-left: 2%;
+    margin-top: 70%;
+  }
+
+  .outfit_title{
+    margin-left: 5%;
+    margin-top: 70%;
+    background-color:#f4f3ee; 
+    font-weight: 400;
+    border-radius: 8px; 
+    width: 80%; 
+    height: 80px; 
+    font-size: 40px;
+  }
+
+  .outfit_title::placeholder{
+    margin-left: 3%; 
+    background-color:#f4f3ee; 
+    font-weight: bold;
+    width: 300px; 
+    height: 50px; 
+    font-size: 40px;
+  }
+
+  /* AddOutfit的貼文圖片 */
+  .outfit-image_space{
+    width: 100%;
+    margin-top: 25%;
+    height: 700px;
+    object-fit: contain;
+  }
+
+  .outfit-image{
+    width: 80%;
+    height: 580px;
+    object-fit: contain;
+    margin-left: 10%;
+    margin-top: 2%;
+  }
+
+  /* 新增穿搭頁面上傳檔案點擊區塊*/
+  .outfit_fileInput{
+    position: absolute;
+    top: 19%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    width: auto;
+    height: 720px;
+    display: block;
+    clear: both;
+  }
+
+  .outfit_content{
+    width: 80%;
+    height: 300px;
+    border-radius: 15px;
+    margin-left: 10%;
+    margin-bottom: 30px;
+    font-size: 45px;
+    background-color: #fffff8;
     color: #77616d;
+  }
+
+  ::placeholder{
+    color: #dda5e6;
+    font-size: 40px;
+    font-weight: bold;
+  }
+
+  /*新增穿搭標註單品鍵*/
+  .new_outfit_tag_clothes_font {
+    color: #9169d5;
+    position: relative;
+    left: 5%;
+    top: 75%;
+    margin-bottom: 5%;
+    font-size: 50px;
+    font-weight: bold;
+  }
+
+  /*新增穿搭 標註單品之點擊效果框*/
+  .tag_link_area{
+    width: 180px; 
+    height: 180px; 
+    flex-wrap: nowrap; 
+    margin-left: 1.5%; 
+    margin-top: 2%;
+  }
+
+  /*新增穿搭 標註單品之圖片框*/
+  .tag_clothes_block{
+    width: 180px;
+    height: 180px;
+    background: #f4f3ee;
+    opacity: 1;
+    position: relative;
+    flex-wrap: nowrap;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+  /*標註單品*/
+  .tag_overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+  }
+  
+  .tag_overlay:target {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .tag_popup {
+    margin: 300px auto;
+    padding: 20px;
+    background: rgba(238,236,231,1);;
+    border-radius: 5px;
+    position: relative;
+    transition: all 5s ease-in-out;
+  }
+  
+  .tag_type{
+    width: 15rem;
+    height: 15rem;
+    margin-top: 2%;
+    margin-left: 5%;
+  }
+
+  .tag_popup h2 {
+    margin-top: 5%;
+    color: #9169d5;
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    margin-left: 10%;
+  }
+
+  .tag_popup .close {
+    position: absolute;
+    top: 5%;
+    right: 7%;
+    transition: all 200ms;
+    font-size: 70px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
+  .tag_popup .close:hover {
+    color: #c4b2bc;
+  }
+
+
+  .tag_popup .likeinput{
+    display: block;
+    margin: 10px 0;
+        width: 300px;
+        height: 60px;
+        background: #F0F0F0;
+        border: 1px solid rgba(148,122,136,1);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        position: absolute;
+        font-size: 15px;
+        color: rgba(148,122,136,0.699999988079071);
+        text-align:left;
+  }
+
+  .tag_popup .cate_submit{
+    display: block;
+    background: #c4b2bc;
+    width: 150px;
+    height: 50px;
+    margin: 5px;
+    position: relative;
+    border-radius: 15px;
+    border-style: none;
+    color: rgba(255,254,247,1);
+    font-family: Inter;
+    font-weight:  Bold;
+    font-size: 20px;
+    opacity: 1;
+    margin: 0 auto;
+  }
+
+   /*標註Tshirt單品*/
+  .tag_tshirt_overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+  }
+  .tag_tshirt_overlay:target {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .tag_tshirt_popup {
+    margin: 300px auto;
+    padding: 20px;
+    background: rgba(238,236,231,1);;
+    border-radius: 5px;
+    width: 100%;
+    transition: all 5s ease-in-out;
+  }
+  
+  .tag_type_tshirt{
+    width: 14rem;
+    height: 14rem;
+    margin-left: 5%;
+  }
+
+  .tag_tshirt_popup h2 {
+    color: #9169d5;
+    font-size: 40px;
+    margin-left: 5%;
+    margin-top: 2%;
+    margin-bottom: 3%;
+    font-family: Tahoma, Arial, sans-serif;
+    font-weight: bold;
+  }
+
+  /*標註單品選取效果*/
+  .tag_select{
+    width: 14rem; 
+    height: 14rem;
+  }
+  .tag_select:checked{
+    background-color: gray;
+    opacity: 0;
+  }
+
+  .tag_tshirt_popup .close {
+    position: absolute;
+    top: 16%;
+    right: 7%;
+    transition: all 200ms;
+    font-size: 70px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
+  .tag_tshirt_popup .close:hover {
+    color: #c4b2bc;
+  }
+
+  .tag_tshirt_popup .likeinput{
+    display: block;
+    margin: 10px 0;
+        width: 300px;
+        height: 60px;
+        background: #F0F0F0;
+        border: 1px solid rgba(148,122,136,1);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        position: absolute;
+        font-size: 15px;
+        color: rgba(148,122,136,0.699999988079071);
+        text-align:left;
+  }
+
+  .tag_tshirt_popup .cate_submit{
+    display: block;
+    background: #c4b2bc;
+    width: 150px;
+    height: 50px;
+    margin: 5px;
+    position: relative;
+    border-radius: 15px;
+    border-style: none;
+    color: rgba(255,254,247,1);
+    font-family: Inter;
+    font-weight:  Bold;
+    font-size: 20px;
+    opacity: 1;
+    margin: 0 auto;
+  }
+
+  /*新增穿搭鍵*/
+  .new_outfit_submit{
+    position: absolute;
+    width: 90%;
+    height: 100px;
+    left: 5%;
+    bottom: 5%;
+    background: #c5b0e9;
+    border-radius: 15px;
+    border: none;
+  }
+
+  .new_outfit_submit:hover{
+    background: #9670d7;
+  }
+
+  .new_outfit_submit_font {
+    color: rgba(255,254,247,1);
+    position: relative;
+    font-family: Inter;
+    font-weight:  Bold;
+    font-size: 45px;
+    opacity: 1;
+    
+  }
 }
 
-::placeholder{
-  color: #957a89;
-  font-size: large;
-  left: 5%;
+/*新增穿搭*/
+@media screen and (min-width:1000px){ 
+
+  .add_new_outfit_main{
+    width: 100%;
+    padding: 50px 0;
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+  }
+
+  .info .edit{
+    height: 30px;
+    margin-left: 4%;
+    margin-top: 1%;
+  }
+
+  .outfit_title{
+    margin-left: 3%;
+    margin-top: 2%;
+    background-color:#f4f3ee; 
+    font-weight: bolder;
+    border-radius: 8px; 
+    width: 80%; 
+    height: 40px; 
+    font-size: 25px;
+  }
+
+  .outfit_title::placeholder{
+    background-color:#f4f3ee; 
+    font-weight: bold;
+    width: 300px; 
+    height: 40px; 
+    font-size: 20px;
+  }
+
+  .outfit-image_space{
+    width: 100%;
+    margin-top: 2%;
+    height: 680px;
+    object-fit: contain;
+  }
+
+  /* AddOutfit的貼文圖片 */
+  .outfit-image{
+    width: 92%;
+    height: 40rem;
+    object-fit: contain;
+    margin-left: 4%;
+  }
+
+  /* 新增穿搭頁面上傳檔案點擊區塊*/
+  .outfit_fileInput{
+    position: absolute;
+    top: 30%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    width: auto;
+    height: 660px;
+    display: block;
+    clear: both;
+  }
+
+  .outfit_content{
+    width: 80%;
+    height: 200px;
+    border-radius: 8px;
+    margin-left: 10%;
+    margin-bottom: 30px;
+    font-size: 25px;
+    background-color: #fffff8;
+    color: #77616d;
+  }
+
+  ::placeholder{
+    color: #957a89;
+    font-size: 25px;
+    font-weight: bold;
+  }
+
+  /*新增穿搭標註單品鍵*/
+  .new_outfit_tag_clothes_font {
+    color: rgb(148,122,136,1);
+    position: relative;
+    left: 5%;
+    top: 80%;
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  /*新增穿搭 標註單品之點擊效果框*/
+  .tag_link_area{
+    width: 150px; 
+    height: 150px; 
+    flex-wrap: nowrap; 
+    margin-left: 5%; 
+    margin-top: 2%;
+  }
+
+  /*新增穿搭 標註單品之圖片框*/
+  .tag_clothes_block{
+    width: 150px;
+    height: 150px;
+    background: #f4f3ee;
+    opacity: 1;
+    position: relative;
+    flex-wrap: nowrap;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+  /*標註單品*/
+  .tag_overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+  }
+  
+  .tag_overlay:target {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .tag_popup {
+    margin: 70px auto;
+    padding: 20px;
+    background: rgba(238,236,231,1);;
+    border-radius: 5px;
+    width: 60%;
+    position: relative;
+    transition: all 5s ease-in-out;
+  }
+  
+  .tag_type{
+    width: 10rem;
+    height: 10rem;
+    margin-top: 2%;
+    margin-left: 5%;
+  }
+
+  .tag_popup h2 {
+    margin-top: 0;
+    color: #333;
+    font-family: Tahoma, Arial, sans-serif;
+  }
+  .tag_popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
+  .tag_popup .close:hover {
+    color: #c4b2bc;
+  }
+
+
+  .tag_popup .likeinput{
+    display: block;
+    margin: 10px 0;
+        width: 300px;
+        height: 60px;
+        background: #F0F0F0;
+        border: 1px solid rgba(148,122,136,1);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        position: absolute;
+        font-size: 15px;
+        color: rgba(148,122,136,0.699999988079071);
+        text-align:left;
+  }
+
+  .tag_popup .cate_submit{
+    display: block;
+    background: #c4b2bc;
+    width: 150px;
+    height: 50px;
+    margin: 5px;
+    position: relative;
+    border-radius: 15px;
+    border-style: none;
+    color: rgba(255,254,247,1);
+    font-family: Inter;
+    font-weight:  Bold;
+    font-size: 20px;
+    opacity: 1;
+    margin: 0 auto;
+  }
+
+    /*標註Tshirt單品*/
+    .tag_tshirt_overlay {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.7);
+      transition: opacity 500ms;
+      visibility: hidden;
+      opacity: 0;
+    }
+    .tag_tshirt_overlay:target {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    .tag_tshirt_popup {
+      margin: 70px auto;
+      padding: 20px;
+      background: rgba(238,236,231,1);;
+      border-radius: 5px;
+      width: 60%;
+      position: relative;
+      transition: all 5s ease-in-out;
+    }
+    
+    .tag_tshirt_popup h2 {
+      margin-bottom: 1%;
+      color: #333;
+      font-family: Tahoma, Arial, sans-serif;
+    }
+
+    .tag_type_tshirt{
+      width: 10rem;
+      height: 10rem;
+      margin-left: 2%;
+    }
+
+    /*標註單品選取效果*/
+    .tag_select{
+      width:7rem; 
+      height: 7rem;
+    }
+
+    .tag_select:checked{
+      background-color: #b4a7ca;
+      opacity: 0;
+    }
+
+    .tag_tshirt_popup .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      transition: all 200ms;
+      font-size: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      color: #333;
+    }
+    .tag_tshirt_popup .close:hover {
+      color: #c4b2bc;
+    }
+
+    .tag_tshirt_popup .likeinput{
+      display: block;
+      margin: 10px 0;
+      width: 300px;
+      height: 60px;
+      background: #F0F0F0;
+      border: 1px solid rgba(148,122,136,1);
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      position: absolute;
+      font-size: 15px;
+      color: rgba(148,122,136,0.699999988079071);
+      text-align:left;
+
+    }
+
+    .tag_tshirt_popup .cate_submit{
+      display: block;
+      background: #c4b2bc;
+      width: 150px;
+      height: 50px;
+      margin: 5px;
+      position: relative;
+      border-radius: 15px;
+      border-style: none;
+      color: rgba(255,254,247,1);
+      font-family: Inter;
+      font-weight:  Bold;
+      font-size: 20px;
+      opacity: 1;
+      margin: 0 auto;
+    }
+
+    /*新增穿搭鍵*/
+    .new_outfit_submit{
+      position: absolute;
+      width: 90%;
+      height: 60px;
+      left: 5%;
+      bottom: -115%;
+      background: #c4b2bc;
+      border-radius: 15px;
+      border-color: #c4b2bc;
+    }
+
+    .new_outfit_submit:hover{
+      background: #551a3e;
+    }
+
+    .new_outfit_submit_font {
+      color: rgba(255,254,247,1);
+      position: relative;
+      font-family: Inter;
+      font-weight:  Bold;
+      font-size: 25px;
+      opacity: 1;
+      
+    }
 }
+
+
 
 /* Home Page的貼文區塊最上方發文者頭貼 */
 .info .profile-pic{
@@ -1158,10 +1845,9 @@ a {
     margin: 5% 5%;
 }
 
-/* 新增穿搭頁面上傳檔案點擊區塊*/
 .post_fileInput{
   position: absolute;
-  top: 20%;
+  top: 30%;
   bottom: 0;
   left: 0;
   right: 0;
@@ -1341,6 +2027,14 @@ a {
     top: 160px;
     left: 45%;
 }
+@media screen and (max-width:1000px){ 
+  .img-holder{
+    top: 300px;
+    width: 200px;
+    height: 200px;
+    left: 40%;
+  }
+ }
 
 /*錢包設定的bottom bar*/
 .bottom-bar1 {
@@ -1371,6 +2065,12 @@ a {
     justify-content: space-around;
     align-items: center;
     color: #ffffff;
+    font-size: 20px;
+}
+@media screen and (max-width:1000px){ 
+  .bottom-bar2 {
+    font-size: 50px;
+  }
 }
 
 /*錢包設定的卡片*/
@@ -1438,7 +2138,6 @@ a {
     }
 
      .fileInput{
-        display: none;
         position: absolute;
         top: 0;
         bottom: 0;
@@ -1446,10 +2145,7 @@ a {
         right: 0;
         opacity: 0;
         display: block;
-        width: 3.5rem;
         clear: both;
-        display: block;
-        margin: auto;
     }
 
     /*新增衣物、穿搭推薦選項格*/
@@ -1464,36 +2160,270 @@ a {
       opacity: 1;
       font-family: 'Inter';
       font-style: normal;
-      font-style: bold;
       font-weight: 400;
-      font-size: 15px;
+      font-size: 25px;
       line-height: 18px;
       color: #957A89;
     }
+
+    /*新增衣物手機版*/
+    @media screen and (max-width:1000px){ 
+
+      .clothes_camera{
+        position: absolute;
+        top: 15%;
+        width: 100%;
+        height: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .clothes_input{
+        width: 100%;
+        max-height: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+      }
+
+      .add_new_clothes_selection{
+        position: relative; 
+        margin-top: 95%;
+      }
+      
+      .add_new_clothes_style{
+        position: relative;
+        width: 90%;
+        height: 100px;
+        margin-top: 5%;
+        margin-left: 5%;
+        background: #f5f5f5;
+        border-radius: 8px;
+        opacity: 1;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: bold;
+        font-size: 45px;
+        line-height: 18px;
+        color: #957A89;
+      }
+
+      .add_new_clothes_weather{
+        margin: 10px;
+        margin-left: 5%;
+        margin-top: 5%;
+        padding: 12px;
+        width: 90%;
+        height: 150px;
+        border-radius: 8px;
+        background-color: #f5f5f5;
+        text-align:center;
+        position:relative;
+        top: 10px;
+        border:1px rgb(199, 199, 199) solid;
+        color: #5c5347;
+      }
+
+      .weather_title{
+        font-family: 'Inter'; 
+        font-style: normal; 
+        font-weight: bold; 
+        font-size: 45px; 
+        line-height: 60px; 
+        color: #957A89;
+      }
+
+      .add_new_clothes_note{
+        position: relative;
+        width: 90%; 
+        left: 5%; 
+        height:150px; 
+        margin-top: 5%; 
+        border-radius: 8px; 
+        color: #551a3e; 
+        border-color: #c0c0c0; 
+        background-color: #f5f5f5; 
+        font-size: 45px;
+      }
+
+      .add_new_clothes_note::placeholder{
+        font-size: 45px;
+        color: #957a89; 
+        font-weight: 600;
+      }
+
+      .new_clothes_submit{
+        width: 80%;
+        height: 100px;
+        left: 10%;
+        margin-top: 10%;
+        bottom: 45px;
+        background: #c4b2bc;
+        border-radius: 15px;
+        color: rgba(255,254,247,1);
+        border: 0;
+        position: relative;
+        font-family: Inter;
+        font-weight:  Bold;
+        font-size: 45px;
+        opacity: 1;
+      }
+  
+      .new_clothes_submit:hover{
+        background: #551a3e;
+      }
+
+     }
+
+     @media screen and (min-width:1000px){ 
+
+      .clothes_camera{
+        position: absolute;
+        top: 15%;
+        width: 100%;
+        height: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .clothes_input{
+        width: 100%;
+        margin-top: 20%;
+        max-height: 550px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+      }
+
+      .add_new_clothes_selection{
+        position:relative; margin-top: 50%;
+      }
+
+      .add_new_clothes_style{
+        position: relative;
+        width: 60%;
+        height: 55px;
+        margin-top: 2%;
+        margin-left: 20%;
+        background: #f5f5f5;
+        border-radius: 8px;
+        opacity: 1;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: bold;
+        font-size: 25px;
+        line-height: 18px;
+        color: #957A89;
+      }
+      
+      .add_new_clothes_weather{
+        margin-left: 20%;
+        margin-top: 2%;
+        padding: 12px;
+        width: 60%;
+        height: 120px;
+        border-radius: 8px;
+        background-color: #f5f5f5;
+        text-align:center;
+        position:relative;
+        border:1px rgb(199, 199, 199) solid;
+        color: #5c5347;
+      }
+
+      .weather_title{
+        font-family: 'Inter'; 
+        font-style: normal; 
+        font-weight: bold; 
+        font-size: 20px; 
+        line-height: 18px; 
+        color: #957A89;
+      }
+
+      .add_new_clothes_note{
+        position: relative;
+        width: 60%; 
+        left: 20%; 
+        height:110px; 
+        margin-top: 2%; 
+        border-radius: 8px; 
+        border-color: #c0c0c0; 
+        color: #551a3e; 
+        background-color: #f5f5f5; 
+        font-size: 25px;
+      }
+
+      .add_new_clothes_note::placeholder{
+        font-size: 25px;
+        color: #957a89; 
+        font-weight: 600;
+      }
+
+      .new_clothes_submit{
+        width: 60%;
+        height: 60px;
+        left: 20%;
+        margin-top: 6%;
+        bottom: 45px;
+        background: #c4b2bc;
+        border-radius: 15px;
+        color: rgba(255,254,247,1);
+        border: 0;
+        position: relative;
+        font-family: Inter;
+        font-weight:  Bold;
+        font-size: 25px;
+        opacity: 1;
+      }
+  
+      .new_clothes_submit:hover{
+        background: #551a3e;
+      }
+
+     }
+
+    
+
+    .add_new_clothes_color{
+      width: 80%;
+      height: 55px;
+      top: 80%;
+      margin-left: 55%;
+      background: #f5f5f5;
+      border-radius: 8px;
+      border-color: #fffff8;
+      opacity: 1;
+      font-family: 'Inter';
+      font-style: normal;
+      font-style: bold;
+      font-weight: 400;
+      font-size: 25px;
+      line-height: 18px;
+      color: #957A89;
+    }
+
+    .selection_style{
+      background: #f5f5f5;
+      border-radius: 8px;
+      border-color: #fffff8;
+      opacity: 1;
+      font-family: 'Inter';
+      font-style: normal;
+      font-style: bold;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 18px;
+      color: #957A89;
+    }
+
     /*穿搭推薦選項格2*/
     #containerR{
         margin: 10px;
         padding: 12px;
         width: 65%;
-        height: 80px;
-        border-radius: 5px;
-        background-color: white;
-        text-align:center;
-        position:relative;
-        margin:0 auto;
-        top: 10px;
-        bottom: 30px;
-        border:1px rgb(199, 199, 199) solid;
-        color: #5c5347;
-        font-size: 13px;
-
-    }
-
-    /*新增衣物適合天氣*/
-    #containerWeather{
-        margin: 10px;
-        padding: 12px;
-        width: 400px;
         height: 80px;
         border-radius: 5px;
         background-color: white;
@@ -1674,6 +2604,24 @@ a {
       left: 38%;
 }
 
+    .myImg{
+      position: relative;
+      height:100px;
+      width:100%;
+      height:20%;
+      margin-right:10px;
+      top: 150px;
+      left: 550px;
+    }
+
+    
+    @media screen and (max-width:1000px){ 
+      .myImg{
+        top: 250px;
+        left: 34%;
+      }
+     }
+
     /* 衣櫃圖片水平滑列*/
       .imageList{
             overflow-x: auto;
@@ -1684,7 +2632,7 @@ a {
             width:100%;
             height:20%;
             margin-right:10px;
-            top: 300px;
+            padding-top: 10px;
             background-color: #f5f5f5;
       }
 
@@ -1736,7 +2684,7 @@ a {
 
     #container_secondhand_index{
         padding: 40px;
-        width: 70%;
+        width: 100%;
         height: 100%;
         background-color: #f5f5f5;
         box-shadow: 0 0px 400px rgba(0, 0, 0, 0);
@@ -1746,6 +2694,137 @@ a {
     }
 
 
+    @media screen and (max-width:1000px){ 
+      .containerrr {
+          width: 100%;
+          height: 13%;
+          background: #ae91e0;
+          position: absolute;
+          top: 0px;
+          left: 0px;
+  
+        }
+
+      .mycloset {
+          color: rgba(255,254,247,1);
+          position: relative;
+          top: 50%;
+          font-family: Inter;
+          font-weight:  Bold;
+          font-size: 70px;
+          opacity: 1;
+          text-align: center;
+        }
+        @media screen and (max-width:1000px){ 
+          .mycloset {
+            font-size: 50px;
+          }}
+
+          .mycloset1 {
+            color: rgba(255,254,247,1);
+            position: relative;
+            top: 50%;
+            font-family: Inter;
+            font-weight:  Bold;
+            font-size: 70px;
+            opacity: 1;
+            text-align: center;
+          }
+          @media screen and (max-width:1000px){ 
+            .mycloset1 {
+              font-size: 27px;
+            }}
+  
+      .icon{
+          width: 60px;
+          height: 60px;
+          position: relative;
+          top: 23%;
+          left: 28%;
+      }
+
+      .icon111{
+        width: 27px;
+        height: 27px;
+        position: relative;
+        top: 5%;
+        left: 28%;
+    }
+  
+      .icon_add{
+          width: 55px;
+          height: 55px;
+          position: absolute;
+          top: 58%;
+          right: 27%;
+      }
+  
+      .icon6{
+        width: 27px;
+        height:27px;
+        position: absolute;
+        top: 87px;
+        left: 220px;
+      }
+
+      /*containerrr中右下角第二個icon*/
+      .icon2{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 70%;
+            right: 9%;
+      }
+
+      /*containerrr中右下角第三個icon*/
+      .icon22{
+          width: 50px;
+          height: 50px;
+          position: absolute;
+          top: 70%;
+          right: 15%;
+      }
+  
+    /*containerrr中右下角第一個icon*/
+      .icon3{
+          width: 50px;
+          height: 50px;
+          position: absolute;
+          top: 70%;
+          right: 2%;
+      }
+
+      .icon33{
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 70%;
+        right: 2%;
+    }
+    @media screen and (max-width:1000px){ 
+      .icon33{
+        width: 20px;
+        height: 20px;
+    }}
+
+
+    /*衣櫃、穿搭總覽頁右上角收藏按鈕*/
+      .icon4{
+        width: 55px;
+        height: 55px;
+        position: absolute;
+        top: 110%;
+        right: 5%;
+      }
+    }
+    @media screen and (max-width:1000px){ 
+      .icon4{
+        width: 65px;
+        height: 65px;
+        top: 110%;
+    }}
+
+    @media screen and (min-width:1000px){ 
     .containerrr {
         width: 100%;
         height: 126px;
@@ -1816,12 +2895,14 @@ a {
     }
 
     .icon4{
-        width: 30px;
-        height:30px;
-        position: absolute;
-        top: 150px;
-        right: 5%;
+      width: 30px;
+      height:30px;
+      position: absolute;
+      top: 150px;
+      right: 5%;
     }
+  }
+    
 
     .icon5{
       width: 30px;
@@ -1832,14 +2913,39 @@ a {
   }
 
     .titlee {
-        width: 121px;
+        width: 300px;
         color: rgba(148,122,136,1);
         position: absolute;
         top: 150px;
-        left: 45%;
+        left: 48%;
         font-size: 28px;
         opacity: 1;
       }
+      @media screen and (max-width:1000px){ 
+        .titlee{
+          top: 250px;
+          font-size: 40px;
+          left: 45%;
+        }
+       }
+
+       .titleee {
+        width: 300px;
+        color: rgba(148,122,136,1);
+        position: absolute;
+        top: 150px;
+        left: 46%;
+        font-size: 28px;
+        opacity: 1;
+      }
+      @media screen and (max-width:1000px){ 
+        .titleee{
+          top: 250px;
+          font-size: 40px;
+          left: 43%;
+        }
+       }
+
 
       .titlee2 {
         width: 121px;
@@ -1850,6 +2956,14 @@ a {
         font-size: 28px;
         opacity: 1;
       }
+      @media screen and (max-width:1000px){ 
+        .titlee2{
+          width: 500px;
+          top: 250px;
+          font-size: 40px;
+          left: 800px;
+        }
+       }
 
       .titlee3 {
         width: 121px;
@@ -1860,6 +2974,13 @@ a {
         font-size: 28px;
         opacity: 1;
       }
+      @media screen and (max-width:1000px){ 
+        .titlee3{
+          top: 250px;
+          width: 500px;
+          font-size: 40px;
+        }
+       }
 
       .titlee33 {
         width: 50px;
@@ -1869,13 +2990,18 @@ a {
         font-size: 28px;
         opacity: 1;
       }
+      @media screen and (max-width:1000px){ 
+        .titlee33{
+          top: 250px;
+        }
+       }
 
       .word1 {
         width: 200px;
         color: rgb(255, 255, 255);
         position: absolute;
         top: 680px;
-        left: 130px;
+        left: 150px;
         font-family: Inter;
         font-weight: Regular;
         font-size: 30px;
@@ -1917,15 +3043,23 @@ a {
 
       .word13 {
         color: rgba(148,122,136,1);
-        position: absolute;
-        top: 1080px;
+        position: relative;
+        padding-top: 50px;
+        padding-bottom: 30px;
         left: 30px;
         font-family: Inter;
         font-weight: bold;
-        font-size: 18px;
+        font-size: 25px;
         opacity: 1;
         text-align: left;
       }
+      @media screen and (max-width:1000px){ 
+        .word13{
+          padding-top: 170px;
+          font-size: 40px;
+        }
+       }
+      
 
       .word14 {
         color: rgba(148,122,136,1);
@@ -1938,16 +3072,16 @@ a {
         opacity: 1;
         text-align: left;
       }
-
+      
       .block1 {
-        margin-right: 210px;
         margin-bottom: 50px;
+        margin-right: 150px;
         width: 500px;
         height: 500px;
         opacity: 1;
         position: relative;
         top: 250px;
-        left: 100px;
+        left: 130px;
         border-top-left-radius: 15px;
         border-top-right-radius: 15px;
         border-bottom-left-radius: 15px;
@@ -1960,6 +3094,25 @@ a {
           height: 350px;
           margin-right: 80px;
           margin-bottom: 95px;
+          top: 350px;
+          left: 110px;
+        }
+       }
+
+       .block111 {
+        width: 500px;
+        height: 500px;
+        position: absolute;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        object-fit:cover
+      }
+      @media screen and (max-width:1000px){ 
+        .block111{
+          width: 350px;
+          height: 350px;
         }
        }
 
@@ -1986,41 +3139,27 @@ a {
 
       .addnew {
         color: rgba(148,122,136,1);
-        position: absolute;
-        top: 230px;
-        left: 100px;
+        position: relative;
+        padding-left: 100px;
+        padding-top: 80px;
         font-size: 28px;
+        display: inline-block;
       }
       .more {
         width: 20px;
         height: 20px;
-        position: absolute;
-        top: 240px;
-        left: 220px;
+        position: relative;
+        left: 20px;
+        display: inline-block;
       }
 
-      .more1 {
-        width: 20px;
-        height: 20px;
-        position: absolute;
-        top: 790px;
-        left: 220px;
-      }
-
-      .more2 {
-        width: 20px;
-        height: 20px;
-        position: absolute;
-        top: 1360px;
-        left: 220px;
-      }
-
-      .addnew2 {
+      .addnewnew {
         color: rgba(148,122,136,1);
-        position: absolute;
-        top: 780px;
-        left: 100px;
+        position: relative;
+        padding-left: 100px;
+        padding-top: 250px;
         font-size: 28px;
+        display: inline-block;
       }
 
       .addnew3 {
@@ -2036,7 +3175,7 @@ a {
         color: rgba(255,254,247,1);
         position: absolute;
         top: 680px;
-        right: 360px;
+        right: 420px;
         font-family: Inter;
         font-weight: Regular;
         font-size: 30px;
@@ -2077,7 +3216,7 @@ a {
         color: rgba(255,254,247,1);
         position: absolute;
         top: 1230px;
-        left: 130px;
+        left: 150px;
         font-family: Inter;
         font-weight: Regular;
         font-size: 30px;
@@ -2118,7 +3257,7 @@ a {
         color: rgba(255,254,247,1);
         position: absolute;
         top: 1230px;
-        right: 360px;
+        right: 420px;
         font-family: Inter;
         font-weight: Regular;
         font-size: 30px;
@@ -2159,7 +3298,7 @@ a {
         color: rgba(255,254,247,1);
         position: absolute;
         top: 1780px;
-        left: 130px;
+        left: 150px;
         font-family: Inter;
         font-weight: Regular;
         font-size: 30px;
@@ -2200,7 +3339,7 @@ a {
         color: rgba(255,254,247,1);
         position: absolute;
         top: 1780px;
-        right: 360px;
+        right: 420px;
         font-family: Inter;
         font-weight: Regular;
         font-size: 30px;
@@ -2241,7 +3380,7 @@ a {
         color: rgba(255,254,247,1);
         position: absolute;
         top: 2330px;
-        left: 130px;
+        left: 150px;
         font-family: Inter;
         font-weight: Regular;
         font-size: 30px;
@@ -2280,18 +3419,16 @@ a {
     /*新增、編輯衣物圖片*/
     .camera{
       position: absolute;
-      width: 205px;
-      height: 205px;
-      left: 40%;
+      left: 25%;
       top: 168px;
-      
+      width: 75%;
     }
 
     .camera_icon{
       position: absolute;
-      height: 150px;
-      left: 35px;
       top: 25px;
+      width: 100%;
+      height: 25rem;
     }
 
     .camera_icon1{
@@ -2302,65 +3439,15 @@ a {
 
     /*新增、編輯衣物選項*/
     .clothes_setting{
-      position: absolute;
+      position: relative;
       width: 205px;
       height: 205px;
       left: 10%;
       top: 65%;
       
-    }
+    }    
 
-    /*新增衣物鍵*/
-    .new_clothes_submit{
-      position: relative;
-      width: 1240px;
-      height: 50px;
-      left:auto;
-      top: auto;
-      bottom: 45px;
-      background: #c4b2bc;
-      border-radius: 15px;
-    }
-
-    .new_clothes_submit:hover{
-      background: #551a3e;
-    }
-
-    .new_clothes_submit_font {
-      color: rgba(255,254,247,1);
-      position: relative;
-      font-family: Inter;
-      font-weight:  Bold;
-      font-size: 20px;
-      opacity: 1;
-      
-    }
-
-    /*新增穿搭鍵*/
-    .new_outfit_submit{
-      position: relative;
-      width: 90%;
-      height: 50px;
-      left: -5%;
-      top: 200px;
-      background: #c4b2bc;
-      border-radius: 15px;
-    }
-
-    .new_outfit_submit:hover{
-      background: #551a3e;
-    }
-
-    .new_outfit_submit_font {
-      color: rgba(255,254,247,1);
-      position: relative;
-      font-family: Inter;
-      top: 5px;
-      font-weight:  Bold;
-      font-size: 20px;
-      opacity: 1;
-      
-    }
+    
     /*編輯儲存鍵*/
     .edit_outfit_submit{
       position: relative;
@@ -2423,25 +3510,14 @@ a {
       font-weight: bold;
     }
 
-    /*新增穿搭標註單品鍵*/
-    .new_outfit_tag_clothes_font {
-      color: rgb(148,122,136,1);
-      position: absolute;
-      left: 5%;
-      top: 1295px;
-      font-size: 22px;
-      font-weight: bold;
-    }
-
     /*新增穿搭 標註單品之圖片框*/
     .tag_clothes_block1 {
-      width: 110px;
-      height: 110px;
+      width: 150px;
+      height: 150px;
       background: #f4f3ee;
       opacity: 1;
-      position: absolute;
-      left: 45px;
-      top: 1345px;
+      position: relative;
+      flex-wrap: nowrap;
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
       border-bottom-left-radius: 5px;
@@ -2449,14 +3525,12 @@ a {
     }
 
     .tag_clothes_block2 {
-      width: 110px;
-      height: 110px;
+      width: 150px;
+      height: 150px;
       background: #f4f3ee;
       opacity: 1;
-      position: absolute;
-      left: 180px;
-      top: 1345px;
-      margin-bottom: 10%;      
+      position: relative;
+      flex-wrap: nowrap;
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
       border-bottom-left-radius: 5px;
@@ -2464,14 +3538,12 @@ a {
     }
 
     .tag_clothes_block3 {
-      width: 110px;
-      height: 110px;
+      width: 150px;
+      height: 150px;
       background: #f4f3ee;
       opacity: 1;
-      position: absolute;
-      left: 315px;
-      top: 1345px;
-      margin-bottom: 10%;      
+      position: relative;
+      flex-wrap: nowrap;
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
       border-bottom-left-radius: 5px;
@@ -2479,14 +3551,14 @@ a {
     }
 
     .tag_clothes_block4 {
-      width: 110px;
-      height: 110px;
+      width: 150px;
+      height: 150px;
       background: #f4f3ee;
       opacity: 1;
-      position: absolute;
-      left: 450px;
-      top: 1345px;
-      margin-bottom: 10%;      
+      position: relative;
+      flex-wrap: nowrap;
+      margin-left: 125%;
+      margin-top: 15%;
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
       border-bottom-left-radius: 5px;
@@ -2494,14 +3566,14 @@ a {
     }
 
     .tag_clothes_block5 {
-      width: 110px;
-      height: 110px;
+      width: 150px;
+      height: 150px;
       background: #f4f3ee;
       opacity: 1;
-      position: absolute;
-      left: 585px;
-      top: 1345px;
-      margin-bottom: 10%;      
+      position: relative;
+      flex-wrap: nowrap;
+      margin-left: 150%;
+      margin-top: 15%;
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
       border-bottom-left-radius: 5px;
@@ -2585,6 +3657,12 @@ a {
         left: 100px;
         font-size: 24px;
     }
+    @media screen and (max-width:1000px){ 
+      .purplewords{
+        top: 250px;
+        font-size: 40px;
+      }
+     }
 
     .purplewords1{
       color: rgba(148,122,136,1);
@@ -2593,6 +3671,12 @@ a {
         left: 100px;
         font-size: 18px;
     }
+    @media screen and (max-width:1000px){ 
+      .purplewords1{
+        top: 320px;
+        font-size: 30px;
+      }
+     }
 
     .purplewords2{
       color: rgba(148,122,136,1);
@@ -2602,6 +3686,11 @@ a {
         padding-bottom: 3%;
         font-size: 24px;
     }
+    @media screen and (max-width:1000px){ 
+      .purplewords2{
+        font-size: 30px;
+      }
+     }
 
     .stats__img-holder1{
     width: 120px;
@@ -2613,11 +3702,23 @@ a {
     top: 210px;
     right: 100px;
     }
+    @media screen and (max-width:1000px){ 
+      .stats__img-holder1{
+        width: 150px;
+        height: 150px;
+        top: 250px;
+      }
+     }
 
     .aaa{
     position: absolute;
     top: 370px;
     }
+    @media screen and (max-width:1000px){ 
+      .aaa{
+        top: 420px;
+      }
+     }
 
     .aab{
       position: absolute;
@@ -2646,30 +3747,63 @@ a {
     top: 440px;
     left: 100px;
     }
+    @media screen and (max-width:1000px){ 
+      .up{
+        width: 100px;
+        height: 100px;
+        top: 450px;
+        left: 90px;
+      }
+     }
 
     .up1{
       width: 80px;
       height: 80px;
       position: absolute;
       top: 440px;
-      left: 320px;
+      left: 460px;
       }
+      @media screen and (max-width:1000px){ 
+        .up1{
+          width: 100px;
+          height: 100px;
+          top: 450px;
+          left: 320px;
+        }
+       }
 
       .up2{
-        width: 80px;
-        height: 80px;
+        width: 110px;
+        height: 110px;
         position: absolute;
-        top: 450px;
-        right: 320px;
+        top: 460px;
+        right: 300px;
         }
+        @media screen and (min-width:1000px){ 
+          .up2{
+            width: 100px;
+            height: 100px;
+            right: 460px;
+            top: 440px;
+          }
+         }
 
       .up3{
-          width: 80px;
-          height: 80px;
+          width: 100px;
+          height: 100px;
           position: absolute;
-          top: 440px;
-          right: 100px;
+          top: 460px;
+          right: 80px;
           }
+          @media screen and (min-width:1000px){ 
+            .up3{
+              width: 80px;
+              height: 80px;
+              right: 100px;
+              top: 440px;
+            }
+           }
+
       .buycart{
         position: absolute;
         top: 540px;
@@ -2677,30 +3811,58 @@ a {
         color: #957A89;
         font-size: 24px;
       }
+      @media screen and (max-width:1000px){ 
+        .buycart{
+          top: 580px;
+          font-size: 30px;
+          left: 100px;
+        }
+       }
 
       .listm{
         position: absolute;
         top: 540px;
-        left: 315px; 
+        left: 450px; 
         color: #957A89;
         font-size: 24px; 
       }
+      @media screen and (max-width:1000px){ 
+        .listm{
+          top: 580px;
+          font-size: 30px;
+          left: 310px;
+        }
+       }
 
       .listg{
         position: absolute;
-        top: 540px;
-       right: 315px; 
+        top: 580px;
+       right: 300px; 
         color: #957A89;
-        font-size: 24px; 
+        font-size: 30px; 
       }
+      @media screen and (min-width:1000px){ 
+        .listg{
+          right: 470px;
+          top: 540px;
+          font-size: 24px; 
+        }
+       }
 
       .mypurse{
         position: absolute;
-        top: 540px;
-        right: 90px; 
+        top: 580px;
+        right: 75px; 
         color: #957A89;
-        font-size: 24px;
+        font-size: 30px;
       }
+      @media screen and (min-width:1000px){ 
+        .mypurse{
+          right: 90px;
+          top: 540px;
+          font-size: 24px; 
+        }
+       }
 
       .buybox {
         margin-bottom: 60px;
@@ -2817,18 +3979,18 @@ a {
       }
 
       .wallet_title1{
-        color: #957A89;
+        color: #6A5460;
         font-size: 23px;
         position: absolute;
-        top: 180px;
+        top: 25%;
         left: 150px;
       }
 
       .wallet_title2{
-        color: #957A89;
+        color: #6A5460;
         font-size: 23px;
         position: absolute;
-        top: 350px;
+        top: 55%;
         left: 150px;
         cursor:pointer;
       }
@@ -2837,22 +3999,22 @@ a {
         font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
-        position: relative;
-        font-size: 15px;
-        left: 180px;
-        top: 250px;
+        position: absolute;
+        font-size: 20px;
+        left: 13%;
+        top: 33%;
         line-height: 18px;
-        color: #6A5460;
+        color: #957a89;
       }
 
       .account_number{
         font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
-        position: relative;
-        font-size: 12px;
-        left: 250px;
-        top: 250px;
+        position: absolute;
+        font-size: 20px;
+        left: 30%;
+        top: 33%;
         line-height: 18px;
         color: #957a89;
       }
@@ -2861,10 +4023,10 @@ a {
         font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
-        position: relative;
-        font-size: 12px;
-        left: 320px;
-        top: 250px;
+        position: absolute;
+        font-size: 20px;
+        left: 13%;
+        top: 40%;
         line-height: 18px;
         color: #957a89;
       }
@@ -2873,10 +4035,10 @@ a {
         font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
-        position: relative;
-        font-size: 15px;
-        left: 180px;
-        top: 100px;
+        position: absolute;
+        font-size: 20px;
+        left: 12%;
+        top: 64%;
         color: #6A5460;
       }
 
@@ -2884,10 +4046,10 @@ a {
         font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
-        position: relative;
-        font-size: 15px;
-        left: 180px;
-        top: 140px;
+        position: absolute;
+        font-size: 20px;
+        left: 12%;
+        top: 76%;
         color: #6A5460;
       }
 
@@ -2895,10 +4057,10 @@ a {
         font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
-        position: relative;
-        font-size: 15px;
-        left: 180px;
-        top: 180px;
+        position: absolute;
+        font-size: 20px;
+        left: 12%;
+        top: 88%;
         color: #6A5460;
       }
 
@@ -2906,22 +4068,22 @@ a {
         font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
-        position: relative;
-        font-size: 15px;
-        left: 180px;
-        top: 220px;
+        position: absolute;
+        font-size: 20px;
+        left: 12%;
+        top: 102%;
         color: #6A5460;
       }
 
       .new_account_submit{
-        position: relative;
-        width: 40%;
+        position: absolute;
+        width: 50%;
         height: 50px;
         left: 25%;
-        top: 270px;
-        bottom: 45px;
+        top: 125%;
         background: #c4b2bc;
-        border-radius: 12px;
+        border-radius: 5px;
+        border: none;
       }
   
       .new_account_submit:hover{
@@ -2969,10 +4131,25 @@ a {
         font-style: normal;
         font-weight: bolder;
         position: relative;
+        top: 220px;
+        left: -80px;
         font-size: 30px;
         text-align: center;
         color: #6A5460;
       }
+
+      .myWallet_balance{
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: bolder;
+        position: relative;
+        top: -32px;
+        left: 75px;
+        font-size: 30px;
+        text-align: center;
+        color: #6A5460;
+      }
+
 
       .withdraw_input{
         position: relative; 
@@ -3040,10 +4217,12 @@ a {
 
       .shopping_cart1 {
         width: 80%;
-        height: 560px;
+        height: 600px;
         text-align: center;
         position: relative;
-        top: 180px;
+        top: 170px;
+        margin-bottom: 25px;
+        bottom: 50px;
         left: 10%;
         border: 2px solid rgba(196,178,187,1);
         border-top-left-radius: 10px;
@@ -3194,39 +4373,38 @@ a {
         text-align: right;
         left: 35%;
         color: #fffff8;
-        font-size: 17px;
+        font-size: 20px;
         font-family: 'Inter';
         font-style: normal;
         font-weight: bold;
     }
 
       .order_account{
-        position: relative;
+        position: absolute;
         text-align: center;
         left: 5%;
         color: #fffff8;
-        font-size: 15px;
+        font-size: 20px;
         font-family: 'Inter';
         font-style: normal;
-        font-weight: 400;
+        font-weight: 600;
   }
 
       .order_order{
         position: relative;
-        top: 5%;
-        left: 130%;
+        left: 10%;
         color: #957a89;
-        font-size: 15px;
+        font-size: 20px;
         font-family: 'Inter';
         font-style: normal;
-        font-weight: 600;
+        font-weight: bolde;
       }
 
       .order_pic{
         width: 75px;
         height: 75px;
         top: 5%;
-        left: 25%;
+        left: 40%;
         object-fit: contain;
         position: relative;
     }
@@ -3235,9 +4413,8 @@ a {
         position: relative;
         top: 5%;
         text-align: center;
-        left: -5%;
         color: #957a89;
-        font-size: 15px;
+        font-size: 20px;
         font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
@@ -3247,9 +4424,9 @@ a {
         position: relative;
         top: 5%;
         text-align: left;
-        left: -5%;
+        left: 0%;
         color: #957a89;
-        font-size: 18px;
+        font-size: 23px;
         font-family: 'Inter';
         font-style: normal;
         font-weight: 600;
@@ -3262,7 +4439,7 @@ a {
         font-size: 16px;
         width: auto;
         top: 4%;
-        left: -39%;
+        left: -37%;
     }
 
       .order_profile-pic{
@@ -3322,8 +4499,15 @@ a {
     .goods_detail1{
       width: 100%;
       height: 10%;
-      margin-top: 180px;
+      margin-top: 40px;
   }
+  @media screen and (max-width: 1000px){
+    .goods_detail1{
+      position: relative;
+      top: 100px;
+  }
+}
+
 
       .goods_label{
         width: 15%;
@@ -3334,6 +4518,7 @@ a {
         font-family: 'Inter';
         font-weight: 400;
         margin: 2%;
+        border: none;
     }
 
       .goods_note{
@@ -3354,12 +4539,17 @@ a {
       .recommendation_title{
         font-family: 'Inter';
         font-weight: bold;
-        font-size: 18px;
+        font-size: 25px;
         color: #957A89;
         margin-left: 2%;
-        margin-bottom: 80%;
+        margin-bottom: 2%;
         position: relative;
     }
+    @media screen and (max-width: 1000px){
+      .recommendation_title{
+        font-size: 40px;
+    }
+  }
 
       .recommendation_pic{
         width: 150px;
@@ -3367,7 +4557,14 @@ a {
         object-fit: contain;
         position: relative;
         margin: 0 0 30px 60px;
+        padding-bottom: 30px;
     }
+    @media screen and (max-width: 1000px){
+      .recommendation_pic{
+        width: 250px;
+        height: 250px;
+    }
+  }
 
       .recommendation_pic2{
         width: 200px;
@@ -3430,31 +4627,42 @@ a {
       display: block;
   }
 
+  .titlee33_fileInput{
+    width: 50px;
+    position: absolute;
+    top: 150px;
+    left: 5%;
+    opacity: 0;
+    height: 50px;
+    clear: both;
+    display: block;
+
+  }
+
       .add_goods_name{
         font-family: 'Inter';
         font-weight: bold;
-        font-size: 18px;
+        font-size: 25px;
         color: #957A89;
         margin-left: 2%;
-        margin-top: 20%;
+        margin-top: 2%;
         position: relative;
       }
 
       .add_goods_name_input{
         position: relative; 
-        top: 20px; 
         margin-left: 5%; 
         width:95%; 
         height:25px; 
         border: 0; 
         color: #957a89; 
-        font-size: 18px;
+        font-size: 25px;
         font-weight: bold;
       }
 
       .add_goods_name_input::placeholder{
         font-family: 'Inter';
-        font-size: 18px;
+        font-size: 25px;
         color: #957A89;
         font-weight: 400;
       }
@@ -3462,10 +4670,9 @@ a {
       .add_goods_condition{
         font-family: 'Inter';
         font-weight: bold;
-        font-size: 18px;
+        font-size: 25px;
         color: #957A89;
         margin-left: 2%;
-        margin-top: 20%;
         position: relative;
       }
 
@@ -3475,25 +4682,73 @@ a {
         margin-top: auto;
     }
 
-    .condition_button{
-      width: 10%;
-      height: 40%;
+    .condition_radio{
+      position: relative;
+      width: 15%;
+      height: 60%;
+      float: right;
+      right: 25%;
+      margin-top: -2%;
+      margin-left: 5%;
       border-radius: 25px;
-      font-size: medium;
+      border-color: #957A89;
+      background-color: #ececec;
+      color: #957a89;
+      cursor: pointer;
+    }
+
+    .condition_radio input{
+      opacity: 0;
+      appearance: none;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    .condition_radio label{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 25px;
+    }
+
+    .condition_radio div {
+      margin-left: 35%;
+      font-size: 25px;
+      font-family: 'Inter';
+      font-weight: bolder;
+  }
+
+  
+    .condition_radio input:checked + label  {
+      background: #551a3e;
+      color: #fffff8;
+  }
+
+      .condition_radio:hover{
+        background-color: #551a3e;
+        color: #fffff8;
+      }
+    
+    /*
+    .condition_button{
+      width: 15%;
+      height: 60%;
+      border-radius: 25px;
+      font-size: 25px;
       text-align: center;
       color: #957A89;
       border-color: #957A89;
       background-color: #ececec;
       font-family: 'Inter';
       font-weight: bolder;
-      margin-left: 5%;
       cursor: pointer;
   }
 
   .condition_button:hover{
     background: #551a3e;
     color: #fffff8;
-  }
+  }*/
 
   .add_goods_price{
     width: 100%;
@@ -3504,17 +4759,16 @@ a {
   .goods_price_title{
     font-family: 'Inter';
     font-weight: bold;
-    font-size: 18px;
+    font-size: 25px;
     color: #957A89;
     margin-left: 2%;
-    margin-top: 2%;
     position: relative;
   }
 
   .add_goods_label{
     width: 100%;
     height: 10%;
-    margin-top: 0;
+    margin-top: 2%;
 }
 
   .add_goods_description{
@@ -3526,7 +4780,7 @@ a {
   .add_goods_description_title{
     font-family: 'Inter';
     font-weight: bold;
-    font-size: 18px;
+    font-size: 25px;
     color: #957A89;
     margin-left: 2%;
     margin-top: 2%;
@@ -3590,21 +4844,17 @@ a {
       background: #d9d9d9;
       border-radius: 15px;
       color: #957a89;
+      position: relative;
+      font-family: Inter;
+      font-weight:  Bold;
+      font-size: 28px;
+      opacity: 1;
     }
 
     .remake_submit1:hover{
       background: #957a89;
       color: rgba(255,254,247,1);
 
-    }
-
-    .remake_submit1_font {
-      position: relative;
-      font-family: Inter;
-      font-weight:  Bold;
-      font-size: 28px;
-      opacity: 1;
-      
     }
 
     .remake_submit2{
@@ -3616,21 +4866,18 @@ a {
       bottom: 45px;
       background: #c4b2bc;
       border-radius: 15px;
-    }
-
-    .remake_submit2:hover{
-      background: #551a3e;
-    }
-
-    .remake_submit2_font {
       color: rgba(255,254,247,1);
       position: relative;
       font-family: Inter;
       font-weight:  Bold;
       font-size: 28px;
       opacity: 1;
-      
     }
+
+    .remake_submit2:hover{
+      background: #551a3e;
+    }
+
     .overlay {
       position: fixed;
       top: 0;
@@ -3719,3 +4966,699 @@ a {
         width: 70%;
       }
     }
+
+     p{
+      text-align: center;
+     }
+     p .btn{
+      width: 100px;
+      height: 30px;
+      background: #c4b2bc;
+      color: #fff;
+      margin-top: 150px;
+      position: relative;
+
+     }
+
+     .order_record1 {
+      width: 80%;
+      height: 600px;
+      text-align: center;
+      position: relative;
+      top: 70px;
+      margin-bottom: 25px;
+      bottom: 50px;
+      left: 10%;
+      border: 2px solid rgba(196,178,187,1);
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+
+    #tab-order_record {
+      background-color: #c7c0cf;
+      width: 100%;
+      margin-top: 150px;
+      border-top: solid 2px #cfd5da;
+      border-left: solid 2px #cfd5da;
+      border-right: solid 2px #cfd5da;
+      border-bottom:  solid 1px #c4b2bc;
+    }
+
+    /* 頁籤ul */
+    #tab-order_record > ul {
+        /* overflow: hidden; */
+        margin: 0;
+        padding: 10px 20px 0 20px;
+    }
+
+    #tab-order_record > ul > li {
+        list-style-type: none;
+    }
+
+    /* 頁籤上的文字 */
+    #tab-order_record > ul > li > a { 
+        text-decoration: none;
+        font-size: 25px;
+        font-weight: bold;
+        color: #fffff8;
+        float: left;
+        padding: 20px;
+        margin-left: 15px;
+    }
+
+    /*頁籤div內容*/
+    #tab-order_record > div {
+      background-color: #ffffff;
+      clear: both;
+      padding: 0 15px;
+      height: 0;
+      overflow: hidden;
+      visibility: hidden;
+    }
+
+    /*第一筆的底色*/
+    span:target ~ #tab-order_record > ul li:first-child a {
+      background: #c7c0cf;
+      width: 48%;
+      
+    }
+
+    span:target ~ #tab-order_record > div:first-of-type {
+        visibility: hidden;
+        height: 0;
+        padding: 0 15px;
+    }
+
+    /*頁籤變換&第一筆*/
+    span ~ #tab-order_record > ul li:first-child a,
+    #tab-purchased:target ~ #tab-order_record > ul li a[href$="#tab-purchased"],
+    #tab-sold:target ~ #tab-order_record > ul li a[href$="#tab-sold"]{
+      background: #9387a3;
+      border-radius: 5px 5px 0 0;
+      width: 48%;
+    }
+
+    span ~ #tab-order_record > ul li:first-child a::before,
+    #tab-purchased:target ~ #tab-order_record > ul li a[href$="#tab-purchased"]::before,
+    #tab-sold:target ~ #tab-order_record > ul li a[href$="#tab-sold"]::before{
+        background-color: white;
+        height: 100%;
+    }
+
+    /*頁籤內容顯示&第一筆*/
+    span ~ #tab-order_record > div:first-of-type,
+    #tab-purchased:target ~ #tab-order_record > div.tab-purchased-content,
+    #tab-sold:target ~ #tab-order_record > div.tab-sold-content {
+        visibility: visible;
+        height: auto;
+        background: #fff;
+    }
+
+    span {
+        display: none;
+    }
+      
+      @media screen and (max-width: 700px){
+        .box{
+          width: 70%;
+        }
+        .tag_popup{
+          width: 70%;
+        }
+      }
+
+      p{
+        text-align: center;
+      }
+      p .btn{
+        width: 100px;
+        height: 30px;
+        background: #c4b2bc;
+        color: #fff;
+        margin-top: 150px;
+        position: relative;
+
+      }
+      @media screen and (max-width: 1000px){
+        p .btn{
+          position: relative;
+          top: 100px;
+        }
+        
+      }
+
+        @media screen and (max-width: 700px){
+          .box{
+            width: 70%;
+          }
+          
+        }
+
+        p{
+          text-align: center;
+        }
+        p .btn{
+          width: 100px;
+          height: 30px;
+          background: #c4b2bc;
+          color: #fff;
+          margin-top: 150px;
+          position: relative;
+
+        }
+
+        
+        @media screen and (max-width: 700px){
+          .box{
+            width: 70%;
+          }
+          .tag_shirt_popup{
+            width: 70%;
+          }
+        }
+
+        p{
+          text-align: center;
+        }
+        p .btn{
+          width: 100px;
+          height: 30px;
+          background: #c4b2bc;
+          color: #fff;
+          margin-top: 150px;
+          position: relative;
+
+        }
+
+      /*標註Shorts單品*/
+      .tag_shorts_overlay {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+        transition: opacity 500ms;
+        visibility: hidden;
+        opacity: 0;
+      }
+      .tag_shorts_overlay:target {
+        visibility: visible;
+        opacity: 1;
+      }
+      
+      .tag_shorts_popup {
+        margin: 70px auto;
+        padding: 20px;
+        background: rgba(238,236,231,1);;
+        border-radius: 5px;
+        width: 60%;
+        position: relative;
+        transition: all 5s ease-in-out;
+      }
+      
+      .tag_shorts_popup h2 {
+        margin-top: 0;
+        color: #333;
+        font-family: Tahoma, Arial, sans-serif;
+      }
+      .tag_shorts_popup .close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        transition: all 200ms;
+        font-size: 30px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #333;
+      }
+      .tag_shorts_popup .close:hover {
+        color: #c4b2bc;
+      }
+
+      .tag_shorts_popup .likeinput{
+        display: block;
+        margin: 10px 0;
+            width: 300px;
+            height: 60px;
+            background: #F0F0F0;
+            border: 1px solid rgba(148,122,136,1);
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            position: absolute;
+            font-size: 15px;
+            color: rgba(148,122,136,0.699999988079071);
+            text-align:left;
+      }
+
+      .tag_shorts_popup .cate_submit{
+        display: block;
+        background: #c4b2bc;
+        width: 150px;
+        height: 50px;
+        margin: 5px;
+        position: relative;
+        border-radius: 15px;
+        border-style: none;
+        color: rgba(255,254,247,1);
+        font-family: Inter;
+        font-weight:  Bold;
+        font-size: 20px;
+        opacity: 1;
+        margin: 0 auto;
+      }
+        
+        @media screen and (max-width: 700px){
+          .box{
+            width: 70%;
+          }
+          .tag_shorts_popup{
+            width: 70%;
+          }
+        }
+
+        p{
+          text-align: center;
+        }
+        p .btn{
+          width: 100px;
+          height: 30px;
+          background: #c4b2bc;
+          color: #fff;
+          margin-top: 150px;
+          position: relative;
+
+        }
+
+        /*標註Pants單品*/
+      .tag_pants_overlay {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+        transition: opacity 500ms;
+        visibility: hidden;
+        opacity: 0;
+      }
+      .tag_pants_overlay:target {
+        visibility: visible;
+        opacity: 1;
+      }
+      
+      .tag_pants_popup {
+        margin: 70px auto;
+        padding: 20px;
+        background: rgba(238,236,231,1);;
+        border-radius: 5px;
+        width: 60%;
+        position: relative;
+        transition: all 5s ease-in-out;
+      }
+      
+      .tag_pants_popup h2 {
+        margin-top: 0;
+        color: #333;
+        font-family: Tahoma, Arial, sans-serif;
+      }
+      .tag_pants_popup .close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        transition: all 200ms;
+        font-size: 30px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #333;
+      }
+      .tag_pants_popup .close:hover {
+        color: #c4b2bc;
+      }
+
+      .tag_pants_popup .likeinput{
+        display: block;
+        margin: 10px 0;
+            width: 300px;
+            height: 60px;
+            background: #F0F0F0;
+            border: 1px solid rgba(148,122,136,1);
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            position: absolute;
+            font-size: 15px;
+            color: rgba(148,122,136,0.699999988079071);
+            text-align:left;
+      }
+
+      .tag_pants_popup .cate_submit{
+        display: block;
+        background: #c4b2bc;
+        width: 150px;
+        height: 50px;
+        margin: 5px;
+        position: relative;
+        border-radius: 15px;
+        border-style: none;
+        color: rgba(255,254,247,1);
+        font-family: Inter;
+        font-weight:  Bold;
+        font-size: 20px;
+        opacity: 1;
+        margin: 0 auto;
+      }
+        
+        @media screen and (max-width: 700px){
+          .box{
+            width: 70%;
+          }
+          .tag_pants_popup{
+            width: 70%;
+          }
+        }
+
+        p{
+          text-align: center;
+        }
+        p .btn{
+          width: 100px;
+          height: 30px;
+          background: #c4b2bc;
+          color: #fff;
+          margin-top: 150px;
+          position: relative;
+
+        }
+
+      /*標註Shoes單品*/
+      .tag_shoes_overlay {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+        transition: opacity 500ms;
+        visibility: hidden;
+        opacity: 0;
+      }
+      .tag_shoes_overlay:target {
+        visibility: visible;
+        opacity: 1;
+      }
+      
+      .tag_shoes_popup {
+        margin: 70px auto;
+        padding: 20px;
+        background: rgba(238,236,231,1);;
+        border-radius: 5px;
+        width: 60%;
+        position: relative;
+        transition: all 5s ease-in-out;
+      }
+      
+      .tag_shoes_popup h2 {
+        margin-top: 0;
+        color: #333;
+        font-family: Tahoma, Arial, sans-serif;
+      }
+      .tag_shoes_popup .close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        transition: all 200ms;
+        font-size: 30px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #333;
+      }
+      .tag_shoes_popup .close:hover {
+        color: #c4b2bc;
+      }
+
+      .tag_shoes_popup .likeinput{
+        display: block;
+        margin: 10px 0;
+            width: 300px;
+            height: 60px;
+            background: #F0F0F0;
+            border: 1px solid rgba(148,122,136,1);
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            position: absolute;
+            font-size: 15px;
+            color: rgba(148,122,136,0.699999988079071);
+            text-align:left;
+      }
+
+      .tag_shoes_popup .cate_submit{
+        display: block;
+        background: #c4b2bc;
+        width: 150px;
+        height: 50px;
+        margin: 5px;
+        position: relative;
+        border-radius: 15px;
+        border-style: none;
+        color: rgba(255,254,247,1);
+        font-family: Inter;
+        font-weight:  Bold;
+        font-size: 20px;
+        opacity: 1;
+        margin: 0 auto;
+      }
+        
+        @media screen and (max-width: 700px){
+          .box{
+            width: 70%;
+          }
+          .tag_shoes_popup{
+            width: 70%;
+          }
+        }
+
+        p{
+          text-align: center;
+        }
+        p .btn{
+          width: 100px;
+          height: 30px;
+          background: #c4b2bc;
+          color: #fff;
+          margin-top: 150px;
+          position: relative;
+
+        }
+
+      /*標註Skirt單品*/
+      .tag_skirt_overlay {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+        transition: opacity 500ms;
+        visibility: hidden;
+        opacity: 0;
+      }
+      .tag_skirt_overlay:target {
+        visibility: visible;
+        opacity: 1;
+      }
+      
+      .tag_skirt_popup {
+        margin: 70px auto;
+        padding: 20px;
+        background: rgba(238,236,231,1);;
+        border-radius: 5px;
+        width: 60%;
+        position: relative;
+        transition: all 5s ease-in-out;
+      }
+      
+      .tag_skirt_popup h2 {
+        margin-top: 0;
+        color: #333;
+        font-family: Tahoma, Arial, sans-serif;
+      }
+      .tag_skirt_popup .close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        transition: all 200ms;
+        font-size: 30px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #333;
+      }
+      .tag_skirt_popup .close:hover {
+        color: #c4b2bc;
+      }
+
+      .tag_skirt_popup .likeinput{
+        display: block;
+        margin: 10px 0;
+            width: 300px;
+            height: 60px;
+            background: #F0F0F0;
+            border: 1px solid rgba(148,122,136,1);
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            position: absolute;
+            font-size: 15px;
+            color: rgba(148,122,136,0.699999988079071);
+            text-align:left;
+      }
+
+      .tag_skirt_popup .cate_submit{
+        display: block;
+        background: #c4b2bc;
+        width: 150px;
+        height: 50px;
+        margin: 5px;
+        position: relative;
+        border-radius: 15px;
+        border-style: none;
+        color: rgba(255,254,247,1);
+        font-family: Inter;
+        font-weight:  Bold;
+        font-size: 20px;
+        opacity: 1;
+        margin: 0 auto;
+      }
+        
+        @media screen and (max-width: 700px){
+          .box{
+            width: 70%;
+          }
+          .tag_skirt_popup{
+            width: 70%;
+          }
+        }
+
+        p{
+          text-align: center;
+        }
+        p .btn{
+          width: 100px;
+          height: 30px;
+          background: #c4b2bc;
+          color: #fff;
+          margin-top: 150px;
+          position: relative;
+
+        }
+
+      /*標註Dress單品*/
+      .tag_dress_overlay {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+        transition: opacity 500ms;
+        visibility: hidden;
+        opacity: 0;
+      }
+      .tag_dress_overlay:target {
+        visibility: visible;
+        opacity: 1;
+      }
+      
+      .tag_dress_popup {
+        margin: 70px auto;
+        padding: 20px;
+        background: rgba(238,236,231,1);;
+        border-radius: 5px;
+        width: 60%;
+        position: relative;
+        transition: all 5s ease-in-out;
+      }
+      
+      .tag_dress_popup h2 {
+        margin-top: 0;
+        color: #333;
+        font-family: Tahoma, Arial, sans-serif;
+      }
+      .tag_dress_popup .close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        transition: all 200ms;
+        font-size: 30px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #333;
+      }
+      .tag_dress_popup .close:hover {
+        color: #c4b2bc;
+      }
+
+      .tag_dress_popup .likeinput{
+        display: block;
+        margin: 10px 0;
+            width: 300px;
+            height: 60px;
+            background: #F0F0F0;
+            border: 1px solid rgba(148,122,136,1);
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            position: absolute;
+            font-size: 15px;
+            color: rgba(148,122,136,0.699999988079071);
+            text-align:left;
+      }
+
+      .tag_dress_popup .cate_submit{
+        display: block;
+        background: #c4b2bc;
+        width: 150px;
+        height: 50px;
+        margin: 5px;
+        position: relative;
+        border-radius: 15px;
+        border-style: none;
+        color: rgba(255,254,247,1);
+        font-family: Inter;
+        font-weight:  Bold;
+        font-size: 20px;
+        opacity: 1;
+        margin: 0 auto;
+      }
+        
+        @media screen and (max-width: 700px){
+          .box{
+            width: 70%;
+          }
+          .tag_dress_popup{
+            width: 70%;
+          }
+        }
+
+        p{
+          text-align: center;
+        }
+        p .btn{
+          width: 100px;
+          height: 30px;
+          background: #c4b2bc;
+          color: #fff;
+          margin-top: 150px;
+          position: relative;
+
+        }
+
