@@ -198,7 +198,13 @@ class CartToTransactionView(View):
     def get(self, request, *args, **kwargs):
         selected_carts = request.GET.get('selected_carts', '')
         payment_choices = TransactionLog.PAYMENT_CHOICES
+        _selected_carts = selected_carts.split(',')
+        _selected_carts = Cart.objects.filter(id__in=selected_carts)
+        amount = 0
+        for cart in _selected_carts:
+            amount += cart.amount
         context = {
+            'amount': amount,
             'selected_carts': selected_carts,
             'payment_choices': payment_choices,
         }

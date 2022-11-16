@@ -2,19 +2,65 @@
 <!DOCTYPE html>
 <html>
     <head>
+      <meta charset="utf-8">
+            <title>Transaction Page</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
     </head>
-    <body>
-        <form method="post">{% csrf_token %}
-            <input type="hidden" name="selected_carts" value="{{ selected_carts }}" />
-            <select name="payment">
-                {% for payment in payment_choices %}
-                    <option value="{{ payment.0 }}">{{ payment.1 }}</option>
-                {% endfor %}
-            </select>
-            <input type="text" name="address" />
 
-            <input type="submit" value="確認送出" />
+    <body>
+        <div class="containerrr">
+            <div class="mycloset">
+                填寫收件資訊
+            </div>
+
+            <a href="{% url 'settings' %}">
+            <img src="{% static 'images/icon-svg/user.png' %}" class="icon3">
+            </a>
+        </div>
+
+        <div class="transaction_bar">
+            <a href="{% url 'carts' %}">
+                <img class="goods_icon1" src="{% static 'images/icon-svg/arrow_left1.png' %}">
+            </a>
+        </div>
+
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="selected_carts" value="{{ selected_carts }}" />
+            <div class="recipent">
+                <div class="add_recipent_name">收件人本名(請務必照實填寫)</div> <br>
+                <input name="recipent_name" type="text" placeholder="請輸入本名" class="add_recipent_name_input"><br>
+
+                <div class="add_recipent_phonenumber">收件人手機號碼</div> <br>
+                <input name="recipent_phonenumber" type="text" placeholder="請依照格式: 09XX-XXX-XXX 填寫" class="add_recipent_phonenumber_input"><br>
+
+                <div class="select_payment">選擇付款方式</div> <br>
+                    <div class="select_payment_options">
+                        <input type="radio" name="payment" id="1" value="2">
+                        <label for="1">
+                            <div>TELAPATHY 錢包扣款</div>
+                        </label>
+                    </div>
+
+                    <div class="select_payment_options">
+                        <input type="radio" name="payment" id="2" value="1">
+                        <label for="2">
+                            <div>貨到付款</div>
+                        </label>
+                    </div>
+
+                <div class="store_name">7-11取貨門市</div> <br>
+                <input type="text" placeholder="請填寫門市店名" class="store_name_input" name="address"><br>
+
+                <div style="margin-top: 50px; margin-bottom: 20px; margin-right: 8%"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
+                <div style="padding-bottom: 80px;"> </div>
+
+                <div>
+                    <span class="transaction_balance">總金額$ </span>
+                    <span class="transaction_balance">{{ amount }}</span>
+                    <button id="submit" class="transaction_submit" ><div>確認送出</div></button>
+                </div>
+            </div>
         </form>
     </body>
-
 </html>
