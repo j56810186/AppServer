@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-              <title>Add New Clothes to My Closet</title>
+              <title>My outfit</title>
               <link rel="stylesheet" href="{% static 'css/style.css' %}">
       </head>
 
@@ -12,14 +12,12 @@
             <div class="mycloset">
                 我的穿搭
             </div>
-
-            <button class="tabs__btn">
-                <a href="{% url 'outfits' %}">
-                <img class="icon" src="{% static 'images/icon-svg/arrow_left.png' %}">
-                </a>
-            </button>
-            <a href="{% url 'edit_user' user.id %}">
-            <img src="{% static 'images/icon-svg/user.png' %}" class="icon3" alt="user">
+            <a href="{% url 'outfits' %}">
+            	<img class="icon" src="{% static 'images/icon-svg/arrow_left.png' %}">
+            </a>
+            
+            <a href="{% url 'settings' %}">
+            	<img src="{% static 'images/icon-svg/user.png' %}" class="icon3" alt="user">
             </a>
         </div>
 
@@ -28,7 +26,7 @@
                 <div class="post">
                     <div class="info">
                         <div class="user">
-                            <div class="profile-pic"> <img src="{{ user.profile_picture.url }}" alt=""> </div>
+                            <div class="profile-pic"> <img src="{{ post.user.profile_picture.url }}" alt=""> </div>
                             <p class="username">{{ post.user.username }}</p>
                         </div>
 
@@ -53,7 +51,7 @@
                             </a>
                             
                             {% if user != post.user %}
-                            <a href="{% url 'remake' postPk=post.id %}">
+                            <a href="{% url 'remake_outfit' postPk=post.id %}">
                                 <img src="{% static 'images/icon-svg/clothes_hanger.svg' %}" class="outfit_icon" style="width: 13%; height: 13%;" alt="">
                             </a>
                             {% endif %}
@@ -65,7 +63,8 @@
                             </form>
                         </div>
                         <p class="likes">{{ post.likes.count }} likes</p>
-                        <p class="username">{{ post.user.username }}</p> {{ post.content }}<br> <br>#HASHTAG #PartyOutfit
+                        <p class="username">{{ post.user.username }}</p> {{ post.content }}<br> <br>
+						{{ post.title }}
                     </div>
 
                     &nbsp;&nbsp;&nbsp;&nbsp;
@@ -87,7 +86,7 @@
                         <div class="comment-wrapper">
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="hidden" name="post_id" value="{{ post.id }}">
-                            <img src="{% static 'images/icon-svg/smile-beam.svg' %}" class="profile-pic" style="left: 15px; width: 3rem;" alt="">
+                            <img src="{{ user.profile_picture.url }}" class="profile-pic"  alt="">
                             <input type="text" name="comment" class="comment-box" placeholder="Add a comment">
                             <input type="submit" value="post" class="comment-btn">
                         </div>

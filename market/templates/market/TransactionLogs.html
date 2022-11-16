@@ -1,3 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+            <title>Order Record</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    
+    <body>
+        <div class="containerrr">
+            <div class="mycloset">
+                交易紀錄
+            </div>
+                <a href="{% url 'products' %}">
+                <img class="icon" src="{% static 'images/icon-svg/arrow_left.png' %}"> 
+                </a>
+
+            <a href="{% url 'carts' %}">
+                <img src="{% static 'images/icon-svg/shopping-cart1.png' %}" class="icon2">
+            </a>
+            <a href="{% url 'clothes' %}">
+            <img src="{% static 'images/icon-svg/home.png' %}" class="icon3">
+            </a>
+        </div>
+
+        <span id="tab-purchased">購買紀錄</span>
+        <span id="tab-sold">售出紀錄</span>
+
+        <div id="tab-order_record">
+            <ul>
+                <li><a href="#tab-purchased">購買紀錄</a></li>
+                <li><a href="#tab-sold">售出紀錄</a></li>
+            </ul>
+        
+            <div class="tab-purchased-content" ">
+                <div style="padding-top: 60px;"> </div>
+                {% for log in buy_logs %}
+                <div class="order_record1">
+                    <p class="order_username">{{ user.name }}</p>
+                        <img src="{{ user.profile_picture.url }}" class="order_profile-pic" alt=""> 
+                
+                    <table class="shopping_cart_content">
+                        <tr> 
+                            <td><img src="{{ log.post.product.image.url }}" class="order_pic"></td> 
+                            <td class="order_goods_name">{{ log.post.title }}</td>
+                            <td class="order_price">NT$ {{ log.post.amount }}</td>
+                        </tr> 
+                        
+                    </table>
+        
+                    <div style="background-color: #957a89; margin-left:-5%; width: 100%;" class="order_account">總金額 NT$
+                        <td class="order_account">{{ log.amount }}</td>
+                        <br><br>
+                        <td class="shipping_method">
+                            {% if not log.done %}
+                                訂單未完成
+                                <form action="{% url 'transaction_log' log.id %}" method="post">{% csrf_token %}
+                                    <input type="hidden" name="done" value=true />
+                                    <input type="submit" value="完成訂單" />
+                                </form>
+                            {% else %}
+                                訂單已完成
+                            {% endif %}
+
+                        </td>
+                    </div>
+                </div>    
+
+                <div style="padding-top: 60px;"> </div>
+                {% endfor %}
+                <div style="margin-bottom: 140px;"> </div>
+            </div>
+
+            <div class="tab-sold-content">
+                {% for log in sell_logs %}
+                <div class="order_record1" >
+                    <p class="order_username">{{ user.name }}</p>
+                        <img src="{{ user.profile_picture.url }}" class="order_profile-pic" alt=""> 
+                
+                    <table class="shopping_cart_content" style=" border-bottom: 2px solid rgba(196,178,187,1);">
+                        <tr> 
+                            <td><img src="{{ log.post.product.image.url }}" class="order_pic"></td> 
+                            <td class="order_goods_name">{{ log.post.tile }}</td>
+                            <td class="order_price">NT$ {{ log.post.amount }}</td>
+                        </tr> 
+                    </table>
+                        <p style="background-color: #957a89; margin-left:-5%; width: 100%;" class="order_account">總金額 NT$ </td>
+                        <td class="order_account">{{ log.amount }}</td>
+                        <br><br>
+                        <td class="shipping_method">{% if log.done %}款項已轉入錢包{% else %}交易未完成{% endif %}</td>
+                </div>
+                <div style="padding-top: 60px;"> </div>
+                {% endfor %}
+
+                <div style="margin-bottom: 140px;"> </div>
+
+            </div>
+
+        </div>
+
+
+    <body>
+<html>
+
 {% for log in logs %}
 <a href="{% url 'transaction_log' log.id %}">{{ log.datetime }}, {{ log.log }}, {{ log.amount }}, {{ log.post.title }}</a>
 <br/>

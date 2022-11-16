@@ -81,7 +81,7 @@ class OutfitView(ListView):
         time = arrow.now()
 
         if comment:
-            new_comment = Comment(text=comment, datetime=time.format('YYYY-MM-DD HH:MM'), user=user, post=post)
+            new_comment = Comment(text=comment, datetime=time.format('YYYY-MM-DD HH:MM'), user=user, post=_post)
             new_comment.save()
 
         if like:
@@ -145,8 +145,10 @@ class CreateOutfitView(CreateView):
         new_post.save()
 
         c = Clothe.objects.filter(user=self.request.user)
-        for i, clothe in enumerate(c):
-            if request.POST.get(f'clothe{i + 1}') == 'on':
+
+        for clothe in c:
+            if request.POST.get(str(clothe.id)):
+                print(clothe)
                 new_post.clothes.add(clothe)
         new_post.save()
 

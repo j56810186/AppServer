@@ -13,10 +13,6 @@
                 我的衣櫃
             </div>
 
-            <a href="{% url 'edit_clothe' clothe.id %}">
-                <img src="{% static 'images/icon-svg/edit.png' %}" class="icon2">
-            </a>
-
             <a href="{% url 'profile' user.id %}">
                 <img src="{% static 'images/icon-svg/user.png' %}" class="icon3">
             </a>
@@ -27,11 +23,34 @@
                 <img class="goods_icon1" src="{% static 'images/icon-svg/arrow_left.png' %}">
             </a>
 
-            <a href="{% url 'delete_clothe' clothe.id %}">
-                <img class="goods_icon2" src="{% static 'images/icon-svg/more.png' %}">
-            </a>
+            
+            <img id="show" class="goods_icon2" src="{% static 'images/icon-svg/more.png' %}" />
+            
+            
+            <dialog id="infoModal" class="selection_edit_delete_clothes">
+                <a href="{% url 'edit_clothe' clothe.id %}"><p><h3>編輯衣物</h3></p></a>
+                <hr  color="gainsboro" width="100%"> 
+                <form action="{% url 'delete_clothe' clothe.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" style="border: none; background-color: white;"><h3>刪除衣物</h3></button>
+                </form>
+                <hr color="gainsboro"  width="100%"> 
+                <a href="" id="close"><p><h3>取消</h3></p></a>
+                </button>
+            </dialog>
+            <script>
+                let img=document.querySelector("#show");
+                let infoModal=document.querySelector("#infoModal");
+                let close=document.querySelector("#close");
+                img.addEventListener("click", function(){
+                     infoModal.showModal();
+                })
+                close.addEventListener("click", function(){
+                     infoModal.close();
+                })
+            </script>
 
-            <img src="{{ clothe.image.url }}" class="goods_pic">
+            <img src="{{ clothe.image.url }}" class="goods_pic" style="width: 18rem;">
 
             <div style="margin-top: 10px; padding-top: 20px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
 
@@ -57,7 +76,7 @@
             <div style="margin-top: 10px; margin-bottom: 10px; padding-top: 10px;">  </div>
 
             {% for post in related_posts %}
-            <a href="{% url 'viewPost' postPk=post.id %}">
+            <a href="{% url 'outfit' post.id %}">
                 <img src="{{ post.image.url }}" class="recommendation_pic">
             </a>
             {% endfor %}
@@ -88,7 +107,7 @@
                 {% endif %}
             {% endwith %}
 
-            <a href="RecommendOutfits.html">
+            <a href="{% url 'recommend' clothe.id %}">
             <button type="value" name="style" class="goods_function_button" style="background-color: #e9e7be; color: #787764">
             <img src="{% static 'images/icon-svg/light.png' %}" style="width: 30px;"><br>穿搭推薦</button>
             </a>

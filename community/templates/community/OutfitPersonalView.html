@@ -33,11 +33,13 @@
 {% endblock %}
 
 {% block content %}
+    <div style=" display: flex; flex-wrap: wrap;">
         {% for post in posts %}
             <a href="{% url 'outfit' pk=post.id %}">
-                <img src="{{ post.image.url }}" class="block1">
-                    <div class="word1">{{ post.title }}</div>
-                </img>
-            </a>
+                <img src="{{ post.image.url }}" class="outfit_block"></a>
+            <span class="outfit_word">
+                {{ post.title }}
+            </span>
         {% endfor %}
+    </div>
 {% endblock %}

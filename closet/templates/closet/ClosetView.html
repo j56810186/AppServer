@@ -11,6 +11,9 @@
 {% endblock %}
 
 {% block header_right %}
+	<a href="{% url 'my_products' %}">
+        <img src="{% static 'images/icon-svg/management2.png' %}" class="icon22">
+    </a>
     <a href="{% url 'create_clothe' %}">
         <img class="icon" src="{% static 'images/icon-svg/add_white.png' %}">
     </a>
@@ -21,9 +24,20 @@
 {% endblock %}
 
 {% block head_bar_left %}
-    <a href="{% url 'my_products' %}">
-        <img src="{% static 'images/icon-svg/management.png' %}" class="titlee33">
-    </a>
+    <section>
+    <img id="photo" src="{% static 'images/icon-svg/picture.png' %}"  class="titlee33">
+    <input id="photo" type="file" accept="image/*" class="titlee33_fileInput" multiple=""/>
+    </section>
+    
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script>    
+        $('input').on('change', function(e){      
+                const file = this.files[0];
+                const objectURL = URL.createObjectURL(file);
+                $("#photo").attr("src", objectURL);
+            });
+                
+    </script>
 {% endblock %}
 
 {% block head_bar_right %}
@@ -33,6 +47,7 @@
 {% endblock %}
 
 {% block content %}
+<div style="display: flex;  flex-wrap: wrap;">
     <a href="{% url 'single_type_clothes' typePk=2 %}">
         {% if t_shirts %}
         <img src="{{ t_shirts.last.image.url }}" class="block1">
@@ -45,61 +60,61 @@
 
     <a href="{% url 'single_type_clothes' typePk=1 %}">
         {% if shirts %}
-        <img src="{{ shirts.last.image.url }}" class="block2">
+        <img src="{{ shirts.last.image.url }}" class="block1">
         {% else %}
-        <img src="{% static 'images/20.jpeg' %}" class="block2">
+        <img src="{% static 'images/20.jpeg' %}" class="block1">
         {% endif %}
-            <div class="word2">襯衫</div>
+            <div class="word1">襯衫</div>
         </img>
     </a>
 
     <a href="{% url 'single_type_clothes' typePk=4 %}">
         {% if shorts %}
-        <img src="{{ shorts.last.image.url }}" class="block3">
+        <img src="{{ shorts.last.image.url }}" class="block1">
         {% else %}
-        <img src="{% static 'images/32.jfif' %}" class="block3">
+        <img src="{% static 'images/32.jfif' %}" class="block1">
         {% endif %}
-            <div class="word3">短褲</div>
+            <div class="word1">短褲</div>
         </img>
     </a>
 
     <a href="{% url 'single_type_clothes' typePk=3 %}">
         {% if pants %}
-        <img src="{{ pants.last.image.url }}" class="block4">
+        <img src="{{ pants.last.image.url }}" class="block1">
         {% else %}
-        <img src="{% static 'images/28.jpg' %}" class="block4">
+        <img src="{% static 'images/28.jpg' %}" class="block1">
         {% endif %}
-            <div class="word4">長褲</div>
+            <div class="word1">長褲</div>
         </img>
     </a>
 
     <a href="{% url 'single_type_clothes' typePk=5 %}">
         {% if skirts %}
-        <img src="{{ skirts.last.image.url }}" class="block5">
+        <img src="{{ skirts.last.image.url }}" class="block1">
         {% else %}
-        <img src="{% static 'images/24.jpeg' %}" class="block5">
+        <img src="{% static 'images/24.jpeg' %}" class="block1">
         {% endif %}
-            <div class="word5">裙子</div>
+            <div class="word1">裙子</div>
         </img>
     </a>
 
     <a href="{% url 'single_type_clothes' typePk=6 %}">
         {% if dresses %}
-        <img src="{{ dresses.last.image.url }}" class="block6">
+        <img src="{{ dresses.last.image.url }}" class="block1">
         {% else %}
-        <img src="{% static 'images/27.jpg' %}" class="block6">
+        <img src="{% static 'images/27.jpg' %}" class="block1">
         {% endif %}
-            <div class="word6">洋裝</div>
+            <div class="word1">洋裝</div>
         </img>
     </a>
 
     <a href="{% url 'single_type_clothes' typePk=7 %}">
         {% if shoes %}
-        <img src="{{ shoes.last.image.url }}" class="block7">
+        <img src="{{ shoes.last.image.url }}" class="block1">
         {% else %}
-        <img src="{% static 'images/1234.jpeg' %}" class="block7">
+        <img src="{% static 'images/1234.jpeg' %}" class="block1">
         {% endif %}
-            <div class="word7">鞋子</div>
+            <div class="word1">鞋子</div>
         </img>
     </a>
 {% endblock %}

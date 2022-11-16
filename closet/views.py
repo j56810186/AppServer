@@ -7,6 +7,7 @@ from django.contrib import auth, messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import send_mail
+from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -17,6 +18,8 @@ from closet.forms import StyleForm, UserForm
 from closet.models import Closet, Clothe, Color, Company, Style, Type, User
 
 from community.models import Post
+
+from market.models import Post as MarketPost
 
 from ai_models.tc_loadmodel import loadClassifyModel
 from ai_models.colorClassify_v2 import colorClassify
@@ -132,7 +135,7 @@ class StyleFormView(FormView):
 # 使用者資料編輯頁 (edit_user)
 class EditUserView(UpdateView):
     model = User
-    fields = ['username', 'email', 'name', 'phone']
+    fields = ['profile_picture', 'username', 'email', 'name', 'phone']
     template_name = 'closet/UserUpdateView.html'
 
     def get_success_url(self):
@@ -159,7 +162,7 @@ class ClosetView(LoginRequiredMixin, ListView):
     paginate_by = 4
 
     def get_queryset(self):
-        queryset = Closet.objects.get(user=self.request.user).clothes.all()
+        queryset = Closet.objects.filter(user=self.request.user).first().clothes.all()
         return queryset
 
     def get_context_data(self, *args, **kwargs):
@@ -201,6 +204,32 @@ class ShowSingleTypeClotheView(ListView):
     paginate_by = 4
     context_object_name = 'clothes'
 
+    def post(self, *args, **kwargs):
+        type_id = self.request.POST.get('type_id')
+        if self.request.POST.get('create'):
+            closet_name = self.request.POST.get('username')
+            new_closet = Closet.objects.create(name=closet_name, user=self.request.user)
+
+            for clothe in self.get_queryset():
+                if self.request.POST.get(str(clothe.id)):
+                    clothe.closet = new_closet
+                    clothe.save()
+            
+        elif self.request.POST.get('edit'):
+            closet = Closet.objects.get(id=self.request.POST.get('closet_id'))
+            name = self.request.POST.get('username')
+            closet.update(name=name)
+            for clothe in self.get_queryset():
+                if self.request.POST.get(str(clothe.id)):
+                    clothe.closet = new_closet
+                    clothe.save()
+
+        return redirect(reverse(
+            'single_type_clothes',
+            kwargs={
+                'typePk': type_id,
+            },))
+
     def get_queryset(self):
         type_id = self.kwargs.get('typePk', None)
         queryset = Clothe.objects.filter(user=self.request.user.id, type=type_id)
@@ -210,8 +239,12 @@ class ShowSingleTypeClotheView(ListView):
         context = super().get_context_data(*args, **kwargs)
 
         _type = Type.objects.get(id=self.kwargs.get('typePk', None))
+        user_closets = Closet.objects.filter(user=self.request.user)
+        marketPosts = MarketPost.objects.filter(product__in=self.get_queryset())
 
         context['type'] = _type
+        context['user_closets'] = user_closets
+        context['market_posts'] = marketPosts
 
         return context
 
@@ -302,6 +335,7 @@ class EditClotheView(UpdateView):
         context_data['colors'] = Color.objects.all()
         context_data['types'] = Type.objects.all()
         context_data['companies'] = Company.objects.all()
+        context_data['edit'] = True
 
         return context_data
 
@@ -334,12 +368,47 @@ class CreateSubClosetView(CreateView):
 # 穿搭推薦 (recommend)
 class RecommendView(View):
 
-    def get(self, request):
+    def get(self, request, *args, **kwargs):
         # refreshSimilarityModel(request)
-        return render(request, 'closet/Recommend.html')
+        context = self.get_context_data(self, request, *args, **kwargs)
+        return render(request, 'closet/Recommend.html', context=context)
+
+    def post(self, request, *args, **kwargs):
+        used_clothes = request.POST.get('used_clothes', [])
+        if used_clothes:
+            used_clothes = used_clothes.split(',')
+        kwargs['used_clothes'] = used_clothes
+        context = self.get_context_data(self, request, *args, **kwargs)
+
+        return render(request, 'closet/Recommend.html', context=context)
 
     def get_success_url(self):
         return reverse('recommend')
+
+    def get_context_data(self, request, *args, **kwargs):
+        used_clothes = kwargs.get('used_clothes', [])
+        print(used_clothes)
+        context = {}
+        clothe = Clothe.objects.get(id=kwargs['pk'])
+        recommends = Clothe.objects.filter(
+            user=clothe.user,
+            style=clothe.style,
+        ).exclude(Q(type=clothe.type) | Q(id__in=used_clothes))
+        if recommends:
+            if len(recommends) > 4:
+                recommends = recommends[:4]
+        
+        used_clothes = ','.join(used_clothes)
+        for item in recommends:
+            if not used_clothes:
+                used_clothes = f'{item.id}'
+            used_clothes += f',{item.id}'
+        
+        context['clothe'] = clothe
+        context['recommends'] = recommends
+        context['used_clothes'] = used_clothes
+        
+        return context
 
 
 # AI models.

@@ -26,11 +26,11 @@ urlpatterns = [
     path('clothes/<int:pk>', views.show_single_clothe, name='single_clothe'),
     path('clothes/<int:pk>/edit', views.EditClotheView.as_view(), name='edit_clothe'),
     path('clothes/<int:pk>/delete', views.DeleteClotheView.as_view(), name='delete_clothe'),
+    path('clothes/<int:pk>/recommend', views.RecommendView.as_view(), name='recommend'),
 
     path('clothes/type/<int:typePk>', views.ShowSingleTypeClotheView.as_view(), name='single_type_clothes'),
 
     path('closet/create', views.CreateSubClosetView.as_view(), name='create_closet'),
-    path('recommend', views.RecommendView.as_view(), name='recommend'),
 
     path('', RedirectView.as_view(url='clothes/'), name='root'),
 ]

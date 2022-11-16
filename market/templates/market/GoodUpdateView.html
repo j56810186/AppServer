@@ -32,20 +32,20 @@
             <div class="goods_bar">
                 <img src="{{ clothe.image.url }}" class="add_goods_pic">
                 <img src="{% static 'images/icon-svg/add.png' %}" class="add_goods_pic" id="photo">
-                <input name="image" type="file" accept="image/*" class="goods_fileInput" style="width: 250px" multiple=""/>
+                <input id="photo" name="image" type="file" accept="image/*" class="goods_fileInput" style="width: 250px" multiple=""/>
             </div>
 
 
                 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
                 <script>
-
-                        $('input[name="image"]').on('change', function(e){
-                            const file = this.files[0];
-                            const objectURL = URL.createObjectURL(file);
-                            $("#photo").attr("src", objectURL);
-                        });
-
-                </script>
+                    
+                    $('input').on('change', function(e){      
+                        const file = this.files[0];
+                        const objectURL = URL.createObjectURL(file);
+                        $("#photo").attr("src", objectURL);
+                    });
+                        
+            	</script>
 
 
                 <div style="margin-bottom: 20px; padding-top: 10px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
@@ -63,11 +63,19 @@
 
             </div>
 
-            <div class="condition"><span class="add_goods_condition">使用程度</span>
-                <input type="radio" name="used" value="3" {% if object.used == 3 %}checked{% endif %} class="condition_button">全新</button>
-                <input type="radio" name="used" value="2" {% if object.used == 2 %}checked{% endif %} class="condition_button">近新</button>
-                <input type="radio" name="used" value="1" {% if object.used == 1 %}checked{% endif %} class="condition_button">二手</button>
-
+            <div class="condition"><div class="add_goods_condition">使用程度</div>
+                <div class="condition_radio">
+                    <input type="radio" name="used" value="3" {% if object.used == 3 %}checked{% endif %}>
+                    <label><div>全新</div></label>
+                </div>
+                <div class="condition_radio">
+                    <input type="radio" name="used" value="2" {% if object.used == 2 %}checked{% endif %}>
+                    <label><div>近新</div></label>
+                </div>
+                <div class="condition_radio">
+                    <input type="radio" name="used" value="1" {% if object.used == 1 %}checked{% endif %}>
+                    <label><div>二手</div></label>
+                </div>
                 <div style="margin-top: 12px;  padding-top: 15px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
 
             </div>

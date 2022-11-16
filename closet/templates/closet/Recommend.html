@@ -2,82 +2,67 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <title>Recommend</title>
+      <meta charset="utf-8">
+            <title>Recommend Outfits</title>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
     </head>
+    
+    <body>
+        <div class="containerrr">
+            <div class="mycloset">
+                穿搭推薦
+            </div>
+
+            <a href="{% url 'settings' %}">
+            <img src="{% static 'images/icon-svg/user.png' %}" class="icon3">
+            </a>
+        </div>
+
+        <div class="goods_bar">
+            <a href="{% url 'single_type_clothes' clothe.type.id %}">
+                <img class="goods_icon1" src="{% static 'images/icon-svg/arrow_left.png' %}"> 
+            </a>
+            
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="used_clothes" value="{{ used_clothes }}" />
+                <button type="submit" class="refresh">下一組穿搭</button>
+            </form>
+            
+            <img src="{{ clothe.image.url }}" class="goods_pic">
+            
+            <div style="margin-top: 10px; padding-top: 20px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>    
+
+        </div>
+        <div class="goods_detail">
+            <button type="value" name="type" class="goods_label">{{ clothe.type }}</button>
+            <button type="value" name="color" class="goods_label">{{ clothe.color }}</button>
+            <button type="value" name="style" class="goods_label">{{ clothe.style }}</button>
+            <button type="value" name="company" class="goods_label">{{ clothe.company }}</button>
+            <button type="value" name="isFormal" class="goods_label">{% if clothe.is_formal %}正式{% else %}休閒{% endif %}</button>
+
+            <div class="imageList">
+                <br>
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 {% if recommends %}
+                    {% for item in recommends %}
+                        <button>
+                            <a href="{% url 'single_clothe' item.id %}">
+                            <img src="{{ item.image.url }}" style="width:20rem; height: 25rem;">
+                            </a>
+                        </button>
+                    {% endfor %}
+                {% else %}
+                    <h2>目前沒有推薦的穿搭了</h1>
+                {% endif %}
+                <br> <br>
+            </div>
+
+            <div style="margin-top: 10px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div> 
+
+        </div>
+
+
 
     <body>
-        <div class="container">
-            <section class="top-bar">
-                <a href="{% url 'clothes' %}" class="tabs__btn">
-                    <img class="tabs__btn__icon" src="{% static 'images/back.svg' %}" alt="arrow_back_ios">
-                </a>
-            </section>
-
-            <div id="container1_5">
-                    <font size="5"><h3>穿搭推薦</h3></font>
-                    <div class="aui-info">
-                        <img src="{% static 'images/plus.png' %}" style="width: 7rem" />
-                        <input type="file" accept="image/*" class="fileInput" />
-                    </div>
-
-                        <select name="正式度" class="sttyle" style="border:1px rgb(199, 199, 199) solid;">
-                            <option>正式度</option>
-                            <option value="10">休閒</option>
-                            <option value="20">半正式</option>
-                            <option value="30">正式</option>
-                        </select>
-                    <br>
-                        <select name="風格" class="sttyle" style="border:1px rgb(199, 199, 199) solid;">
-                            <option>風格</option>
-                            <option value="1">日系</option>
-                            <option value="2">韓系</option>
-                            <option value="3">歐美</option>
-                            <option value="4">工裝</option>
-                            <option value="5">簡約</option>
-                            <option value="6">街頭潮流</option>
-                            <option value="7">運動</option>
-                            <option value="8">復古</option>
-                    </select>
-                    </br>
-
-                    <div id="containerR">
-                        <label>適合溫度</label>
-                        <br>
-                        <br>
-                        <label><input type="radio" name="weather" value="loww" >🥶</label>
-                        <text style="color:white">ab</style>
-                        <label><input type="radio" name="weather" value="low" >😰</label>
-                        <text style="color:white">ab</style>
-                        <label><input type="radio" name="weather" value="mid"checked>😀</label>
-                        <text style="color:white">ab</style>
-                        <label><input type="radio" name="weather" value="hight" >😡</label>
-                        <text style="color:white">ab</style>
-                        <label><input type="radio" name="weather" value="heightt" >🥵</label>
-                        </br>
-                    </div>
-                    <br>
-
-                    <div id="containerR">
-                    <form>
-                        搭配單品來源：(可複選)
-                        <br>
-                        <br>
-                        <input type="checkbox" value="100" name="mine">我的衣櫃</input>
-
-                        <input type="checkbox" value="200" name="no" >上網查詢</input>
-                    </form>
-                    </div>
-
-                    <br>
-                    <br>
-                        <input type="submit" id="sub" value="給我建議" class="submit" style="background-color: #551a3e;">
-                    <br>
-                    <br>
-                        <input type="submit" id="sub" value="沒有指定要求 直接生成建議" class="submit">
-
-            </div>
-        </div>
-    </body>
-</html>
+<html>

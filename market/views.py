@@ -17,7 +17,7 @@ from django.views.generic.detail import DetailView
 from closet.models import Clothe, Type
 
 from market.forms import PostForm
-from market.models import BankAccount, Cart, Comment, Post, TransactionLog, Wallet
+from market.models import Bank, BankAccount, Cart, Comment, Post, TransactionLog, Wallet
 
 #
 # 二手拍賣相關頁面
@@ -170,6 +170,12 @@ class CartCreateView(CreateView):
     template_name = 'app/_editPost.html'
     fields = '__all__'
 
+    def form_valid(self, form):
+        carts = Cart.objects.filter(user=self.request.user, post=self.request.POST.get('post'))
+        if carts: # 已經有存在於購物車了，就不再新增一次
+            return HttpResponseRedirect(self.get_success_url())
+        return super().form_valid(form)
+
     def get_success_url(self):
         prev_page = self.request.GET.get('prevPage')
         if prev_page:
@@ -268,8 +274,9 @@ class CartToTransactionView(View):
 
 # 交易紀錄頁面 (transaction_list)
 def get_transaction_log(request):
-    logs = TransactionLog.objects.filter(wallet__user=request.user)
-    context = {'logs': logs}
+    buy_logs = TransactionLog.objects.filter(wallet__user=request.user, buyer=request.user)
+    sell_logs = TransactionLog.objects.filter(wallet__user=request.user, seller=request.user)
+    context = {'buy_logs': buy_logs, 'sell_logs': sell_logs}
     return render(request, 'market/TransactionLogs.html', context=context)
 
 
@@ -284,9 +291,11 @@ def get_single_transaction_log(request, pk):
         done = request.POST.get('done', None)
         if done:
             log.done = True
+            log.save()
             seller_wallet = log.seller.wallets.first()
             seller_wallet.balance += log.amount
             seller_wallet.save()
+        return redirect('transaction_logs')
 
     return render(request, 'market/TransactionLog.html', context=context)
 
@@ -300,11 +309,30 @@ def get_my_wallet(request):
 
 # 錢包設定頁面 (set_wallet)
 def set_my_wallet(request):
+
     wallet = Wallet.objects.get(user=request.user)
+
+    if request.method == 'POST':
+        accountName = request.POST.get('accountName', None)
+        account = request.POST.get('account', None)
+        phone = request.POST.get('phone', None)
+        bank = request.POST.get('bank', None)
+        if bank:
+            bank = Bank.objects.get(id=bank)
+        BankAccount.objects.create(
+            account=account,
+            accountName=accountName,
+            phone=phone,
+            bank=bank,
+            wallet=wallet,
+        )
+
     bankaccounts = BankAccount.objects.filter(wallet__user=request.user)
+    banks = Bank.objects.all()
     context = {
         'wallet': wallet,
         'bankaccounts': bankaccounts,
+        'banks': banks,
     }
     return render(request, 'market/WalletEditView.html', context=context)
 

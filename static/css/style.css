@@ -279,7 +279,36 @@ time, mark, audio, video {
       top: 245px;
     }
 }
-  
+
+.refresh{
+  background: #d4d4d4;
+  width: 150px;
+  height: 55px;
+  margin: 10px;
+  position: absolute;
+  top: 128px;
+  right: 2%;
+  border-radius: 15px;
+  border-style: none;
+  display: inline;
+  color: #551a3e;
+  font-family: Inter;
+  font-weight:  Bold;
+  text-align: center;
+  line-height: 50px;
+  font-size: 20px;
+  opacity: 1;
+}
+.refresh:hover{
+  background-color: #551a3e;
+  color:  rgba(255,254,247,1);
+}
+@media (max-width: 1000px) {
+  .refresh{
+    top: 245px;
+  }
+}
+
 
   .login_line{
     position: absolute;
@@ -1040,11 +1069,12 @@ a {
 }
 
 .profile-pic{
-    width: 70px;
-    height: 70px;
+    width: 3rem;
     border-radius: 50%;
     overflow: hidden;
     padding: 3px;
+    margin-left: 5px;
+    left: 15px;
 }
 
 .profile-pic img{
@@ -1056,9 +1086,10 @@ a {
 }
 
 .username1{
-    width: 100%;
+    width: 400px;
+    text-align: left;
     overflow: hidden;
-    font-size: 20px;
+    font-size: 22px;
     margin-top:5px;
     margin-left: 10px;
     color: rgba(0, 0, 0, 0.5)
@@ -1125,9 +1156,8 @@ a {
     width: 100%;
     height: 60px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 50px;
 }
 /* Home Page的貼文區塊最上方發文者資訊 */
 .info .user{
@@ -1138,15 +1168,25 @@ a {
 .info .username{
     width: auto;
     font-weight: bold;
-    color: #000;
-    font-size: 22px;
+    color: #551a3c;
+    font-size: 30px;
     margin-left: 10px;
+}
+
+.info .outfit_name{
+  width: 300px;
+  text-align: left;
+  font-weight: bold;
+  color: #551a3c;
+  font-size: 27px;
+  margin-left: 10px;
 }
 
 /* Home Page的貼文區塊右上方貼文設定 */
 .info .options{
-    height: 10px;
+    height: 30px;
     cursor: pointer;
+
 }
 
 /*新增穿搭*/
@@ -1874,6 +1914,7 @@ a {
 
 /* Home Page的貼文區塊貼文內文區塊 */
 .post-content{
+    height: fit-content;
     width: 100%;
     padding: 20px;
 }
@@ -1881,20 +1922,38 @@ a {
 .post-words{
     font-size: 20px;
     color: #000;
-    text-align: left;
-    left:5px;
-
+    position: absolute;
+    right: 5%;
 }
 /* Home Page的貼文區塊貼文按讚數 */
 .likes{
     font-weight: bold;
-    font-size: 20px;
+    font-size: 30px;
+    color: #551a3c;
+    margin-left: 35px;
+}
+
+.content_username{
+  font-weight: 500;
+  font-size: 30px;
+  padding-top: 200px;
+  margin-left: 35px;
+}
+
+.content_copy{
+  position: absolute;
+  padding-top: 60px;
+  left: 55px;
+  font-size: 22px;
+  font-weight: 300;
 }
 
 /* Home Page的貼文區塊發文時間 */
 .post-time{
     color: rgba(0, 0, 0, 0.5);
     font-size: 20px;
+    position: absolute;
+    right: 5%;
 }
 
 .postS-time{
@@ -1907,9 +1966,10 @@ a {
 .comment-wrapper{
     width: 100%;
     height: 50px;
+    padding-top: 50px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: left;
 }
 
 .comment-wrapper1{
@@ -1943,7 +2003,9 @@ a {
     height: 100%;
     border: none;
     outline: none;
+    margin-left: 10px;
     font-size: 20px;
+    font-weight: 400;
 }
 /* Home Page的留言buttom */
 .comment-btn,
@@ -2066,6 +2128,7 @@ a {
     align-items: center;
     color: #ffffff;
     font-size: 20px;
+    z-index: 20;
 }
 @media screen and (max-width:1000px){ 
   .bottom-bar2 {
@@ -2579,19 +2642,46 @@ a {
         width: 100%;
     }
 
-    dialog{
+    .selection_add_edit{
         border: none;
         box-shadow: 0 2px 6px rgb(116, 115, 115);
         border-radius: 5px;
-        position:relative;
+        position: absolute;
         top: 800px;
         left: 15%;
-
+        z-index: 1;
       }
-      dialog::backdrop {
+    .selection_add_edit::backdrop {
         background-color: rgba(0, 0, 0, 0.1);
       }
 
+    .selection_add_edit2{
+        border: none;
+        box-shadow: 0 2px 6px rgb(116, 115, 115);
+        border-radius: 5px;
+        position: absolute;
+        top: 1400px;
+        left: 15%;
+
+      }
+    .selection_add_edit2::backdrop {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+
+
+      .selection_edit_delete_clothes{
+        border: none;
+        box-shadow: 0 2px 6px rgb(116, 115, 115);
+        border-radius: 5px;
+        position: absolute;
+        top: 180px;
+        left: 88%;
+        cursor: pointer;
+
+      }
+      .selection_edit_delete_clothes::backdrop {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
 
     /* 衣櫃圖片水平滑列*/
     .imageList0{
@@ -2999,9 +3089,24 @@ a {
       .word1 {
         width: 200px;
         color: rgb(255, 255, 255);
-        position: absolute;
-        top: 680px;
-        left: 150px;
+        position: relative;
+        top: 120px;
+        left: 170px;
+        font-family: Inter;
+        font-weight: Regular;
+        font-size: 30px;
+        opacity: 1;
+        text-align: left;
+        text-shadow:2px 3px 5px #4d4d4d;
+        z-index: 10;
+      }
+
+      .outfit_word {
+        width: 120px;
+        color: rgb(255, 255, 255);
+        position: relative;
+        top: 580px;
+        right: 270px;
         font-family: Inter;
         font-weight: Regular;
         font-size: 30px;
@@ -3075,20 +3180,36 @@ a {
       
       .block1 {
         margin-bottom: 50px;
-        margin-right: 150px;
-        width: 500px;
-        height: 500px;
+        margin: 120px;
+        left: 80px;
+        width: 75%;
+        height: 400px;
         opacity: 1;
-        position: relative;
-        top: 250px;
-        left: 130px;
+        position:relative;
+        top: 180px;
         border-top-left-radius: 15px;
         border-top-right-radius: 15px;
         border-bottom-left-radius: 15px;
         border-bottom-right-radius: 15px;
-        object-fit:cover
+        object-fit:cover;
       }
-      @media screen and (max-width:1000px){ 
+
+      .outfit_block {
+        margin-bottom: 50px;
+        width: 400px;
+        height: 400px;
+        opacity: 1;
+        position:relative;
+        top: 250px;
+        margin-left: -40px;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        object-fit:cover;
+        z-index: 1;
+      }
+      @media screen and (max-width:500px){ 
         .block1{
           width: 350px;
           height: 350px;
@@ -3098,6 +3219,22 @@ a {
           left: 110px;
         }
        }
+
+       .outfit_block {
+        margin-bottom: 50px;
+        margin-right: 180px;
+        width: 400px;
+        height: 400px;
+        opacity: 1;
+        position:relative;
+        top: 250px;
+        left: 50%;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        object-fit:cover;
+      }
 
        .block111 {
         width: 500px;
@@ -3151,6 +3288,7 @@ a {
         position: relative;
         left: 20px;
         display: inline-block;
+        cursor: pointer;
       }
 
       .addnewnew {
@@ -3175,7 +3313,7 @@ a {
         color: rgba(255,254,247,1);
         position: absolute;
         top: 680px;
-        right: 420px;
+        right: 390px;
         font-family: Inter;
         font-weight: Regular;
         font-size: 30px;
@@ -3257,7 +3395,7 @@ a {
         color: rgba(255,254,247,1);
         position: absolute;
         top: 1230px;
-        right: 420px;
+        right: 390px;
         font-family: Inter;
         font-weight: Regular;
         font-size: 30px;
@@ -3339,7 +3477,7 @@ a {
         color: rgba(255,254,247,1);
         position: absolute;
         top: 1780px;
-        right: 420px;
+        right: 390px;
         font-family: Inter;
         font-weight: Regular;
         font-size: 30px;
@@ -3452,11 +3590,11 @@ a {
     .edit_outfit_submit{
       position: relative;
       width: 40%;
-      height: 50px;
-      right: 7%;
-      top: 200px;
+      height: 80px;
+      margin-left: 12%;
       background: #c4b2bc;
       border-radius: 15px;
+      border: none;
     }
 
     .edit_outfit_submit:hover{
@@ -3469,7 +3607,7 @@ a {
       font-family: Inter;
       top: 5px;
       font-weight:  Bold;
-      font-size: 20px;
+      font-size: 30px;
       opacity: 1;
       
     }
@@ -3478,11 +3616,11 @@ a {
     .edit_outfit_delete{
       position: relative;
       width: 40%;
-      height: 50px;
-      left: -11%;
-      top: 200px;
+      height: 80px;
+      left: 6%;
       background: #d9d9d9;
       border-radius: 15px;
+      border: none;
     }
 
     .edit_outfit_delete:hover{
@@ -3495,7 +3633,7 @@ a {
       font-family: Inter;
       top: 5px;
       font-weight:  Bold;
-      font-size: 20px;
+      font-size: 30px;
       opacity: 1;
       
     }
@@ -4353,6 +4491,7 @@ a {
         left: 72%;
         background: #c4b2bc;
         border-radius: 5px;
+        border: none;
     }
 
       .shopping_cart_submit:hover{
@@ -4477,11 +4616,12 @@ a {
         position: absolute;
         top: 145px;
         right: 6%;
+        cursor: pointer;
     }
 
       .goods_pic{
         width: 450px;
-        height: auto;
+        max-height: 450px;
         object-fit: contain;
         margin-top: 185px;
         margin-bottom: 30px;
@@ -4489,6 +4629,19 @@ a {
         margin-right: auto;
         display: block;
     }
+
+    .goods_pic2{
+        position: absolute;
+        top: 30%;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        opacity: 0;
+        width: auto;
+        height: 660px;
+        display: block;
+        clear: both;
+  }
 
       .goods_detail{
         width: 100%;
@@ -4598,6 +4751,7 @@ a {
         font-weight: bolder;
         margin: 3% 0% 2% 10%;
         cursor: pointer;
+        border: none;
     }
 
       .add_goods_pic{
@@ -4902,6 +5056,7 @@ a {
       width: 30%;
       position: relative;
       transition: all 5s ease-in-out;
+      z-index: 10;
     }
     
     .popup h2 {
@@ -5074,10 +5229,6 @@ a {
         visibility: visible;
         height: auto;
         background: #fff;
-    }
-
-    span {
-        display: none;
     }
       
       @media screen and (max-width: 700px){

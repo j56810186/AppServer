@@ -59,13 +59,13 @@
         <img src="{% static 'images/loading.gif' %}" />
     </div>
 
-        <form class="camera" action="" enctype="multipart/form-data" method="post">{% csrf_token %}
+        <form class="clothes_camera" action="" enctype="multipart/form-data" method="post">{% csrf_token %}
             {% for i in form %}{{ i.errors }}{% endfor %}
-            <div class="camera_icon">
+            <div>
                     {% if not clothe %}
-                        <img id="photo" src="{% static 'images/icon-svg/camera.jpg' %}" style="width: 18rem" />
+                        <img id="photo" class="clothes_input" src="{% static 'images/icon-svg/camera.jpg' %}" style="width: 18rem" />
                     {% else %}
-                        <img id="photo" src="{{ clothe.image.url }}" style="width: 18rem;" />
+                        <img id="photo" class="clothes_input" src="{{ clothe.image.url }}" style="width: 18rem;" />
                     {% endif %}
                     <input id="photo" name="image" type="file" accept="image/*" class="fileInput" style="width: 18rem" multiple=""/>
                     <input type="hidden" name="new_image" value=1 />
@@ -87,12 +87,12 @@
 
         </form>
 
-
-        <form class="clothes_setting" action="" method="post">{% csrf_token %}
+		<div class="add_new_clothes_selection"></div>
+        <form action="" method="post">{% csrf_token %}
             <input type="hidden" name="user" value="{{ user.id }}" />
             <br><br>
             <div>
-            <select name="type" class="sttyle" style="border:1px rgb(199, 199, 199) solid;">
+            <select name="type" class="add_new_clothes_style" style="border:1px rgb(199, 199, 199) solid;">
                 <option {% if not clothe.type %}selected="selected"{% endif %}>種類</option>
                 {% for type in types %}
                     <option {% if clothe.type.id == type.id %}selected="selected"{% endif %} value={{ type.id }}>{{ type.name }}</option>
@@ -102,7 +102,7 @@
             <br>
 
             <div>
-            <select name="color" class="sttyle" style="border:1px rgb(199, 199, 199) solid;">
+            <select name="color" class="add_new_clothes_style" style="border:1px rgb(199, 199, 199) solid;">
                 <option {% if not clothe.color %}selected="selected"{% endif %}>主色彩</option>
                 {% for color in colors %}
                     <option {% if clothe.color.id == color.id %}selected="selected"{% endif %} value={{ color.id }}>{{ color.name }}</option>
@@ -112,7 +112,7 @@
             <br>
 
             <div>
-            <select name="style" class="sttyle" style="border:1px rgb(199, 199, 199) solid;">
+            <select name="style" class="add_new_clothes_style" style="border:1px rgb(199, 199, 199) solid;">
                 <option {% if not clothe.style %}selected="selected"{% endif %}>風格</option>
                 {% for style in styles %}
                     <option {% if clothe.style.id == style.id %}selected="selected"{% endif %} value={{ style.id }}>{{ style.name }}</option>
@@ -121,25 +121,22 @@
             </div>
             <br>
 
-            <div class="sttyle">
-            <select name="company" class="sttyle" style="border:1px rgb(199, 199, 199) solid; ">
+            
+            <select name="company" class="add_new_clothes_style" style="border:1px rgb(199, 199, 199) solid; ">
                 <option {% if not clothe.company %}selected="selected"{% endif %}>品牌</option>
                 {% for company in companies %}
                     <option {% if clothe.company.id == company.id %}selected="selected"{% endif %} value={{ company.id }}>{{ company.name }}</option>
                 {% endfor %}
             </select>
-            <br>
-            </div>
-            <br>
+            
 
-            <div class="sttyle">
-            <select name="is_formal" class="sttyle" style="border:1px rgb(199, 199, 199) solid;">
+            
+            <select name="is_formal" class="add_new_clothes_style" style="border:1px rgb(199, 199, 199) solid;">
                 <option value>正式度</option>
                 <option value="False" {% if not clothe.is_formal %}selected="selected"{% endif %}>休閒</option>
                 <option value="True" {% if clothe.is_formal %}selected="selected"{% endif %}>正式</option>
             </select>
-            </div>
-            <br>
+
             <!--
             <select name="shoeStyle" class="sttyle" style="border:1px rgb(199, 199, 199) solid;">
                     <option>鞋子風格</option>
@@ -152,30 +149,27 @@
             </select>
             </br> -->
 
-            <div id="containerWeather" class="sttyle" style="width:1240px; left: 3%; height:120px; border-radius: 8; background-color: #f5f5f5;">
-                <label class="sttyle">適合溫度</label>
-                <br><br>
+            <div id="containerWeather" class="add_new_clothes_weather">
+                <label class="weather_title">適合溫度</label>
+                
                 <br>
-                <label style="font-size: 45px;"><input type="radio" name="warmness" value="1" {% if clothe.warmness == 1 %}checked{% endif %}>🥶</label>
+                <label style="font-size: 45px;"><input type="radio" name="warmness" value="1" style="width: 20px; height:20px" {% if clothe.warmness == 1 %}checked{% endif %}>🥶</label>
                 <text style="color:#f5f5f5">ab</style>
-                <label style="font-size: 45px;"><input type="radio" name="warmness" value="2" {% if clothe.warmness == 2 %}checked{% endif %}>😰</label>
+                <label style="font-size: 45px;"><input type="radio" name="warmness" value="2" style="width: 20px; height:20px" {% if clothe.warmness == 2 %}checked{% endif %}>😰</label>
                 <text style="color:#f5f5f5">ab</style>
-                <label style="font-size: 45px;"><input type="radio" name="warmness" value="3" {% if clothe.warmness == 3 %}checked{% endif %}>😀</label>
+                <label style="font-size: 45px;"><input type="radio" name="warmness" value="3" style="width: 20px; height:20px" {% if clothe.warmness == 3 %}checked{% endif %}>😀</label>
                 <text style="color:#f5f5f5">ab</style>
-                <label style="font-size: 45px;"><input type="radio" name="warmness" value="4" {% if clothe.warmness == 4 %}checked{% endif %}>😡</label>
+                <label style="font-size: 45px;"><input type="radio" name="warmness" value="4" style="width: 20px; height:20px" {% if clothe.warmness == 4 %}checked{% endif %}>😡</label>
                 <text style="color:#f5f5f5">ab</style>
-                <label style="font-size: 45px;"><input type="radio" name="warmness" value="5" {% if clothe.warmness == 5 %}checked{% endif %}>🥵</label>
+                <label style="font-size: 45px;"><input type="radio" name="warmness" value="5" style="width: 20px; height:20px" {% if clothe.warmness == 5 %}checked{% endif %}>🥵</label>
                 </br>
             </div>
-            <br>
 
-            <p></p>
-            <textarea name="note" style="width:1240px; height:110px; border-radius: 8; border-color: #c0c0c0; color: #957a89; color:#957a89; background-color: #f5f5f5; font-size: 13px;" rows="40" cols="50" id="content" placeholder=" 備註，可選填 ">{% if clothe.note %}{{ clothe.note }}{% endif %}</textarea>
-            <br>
-            <br><br><br><br><br>
+            <textarea name="note" class="add_new_clothes_note" maxlength="500" placeholder=" 備註，可選填 ">{% if clothe.note %}{{ clothe.note }}{% endif %}</textarea>
 
 
-            <button id="submit" class="new_clothes_submit" > <span class="new_clothes_submit_font">新增至我的衣櫃 </span></button>
+
+            <button id="submit" class="new_clothes_submit" > {% if not edit %}新增至我的衣櫃{% else %}儲存變更{% endif %} </button>
         </form>
 
 {% endblock %}

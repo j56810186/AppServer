@@ -20,9 +20,9 @@ class Post(BasePost):
 
     # Foreign key.
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
+    follower = models.ManyToManyField(User, related_name='followedPosts')
     likes = models.ManyToManyField(User, blank=True)
     clothes = models.ManyToManyField(Clothe, blank=True, null=True)
-
 
 
 ''' Base Comment model, all Comment are inherit this models. '''

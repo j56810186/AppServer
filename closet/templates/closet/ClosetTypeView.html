@@ -20,14 +20,17 @@
     </a>
 {% endblock %}
 
-{% block head_bar_right %}
-
-<a href="{% url 'create_closet' %}" class="login_submit1">新增分類</a> <!-- 做彈出視窗 新增名稱跟選擇檔案 -->
-
-{% endblock %}
-
 {% block content %}
-            <div class="addnew">近期新增</div> <img src="{% static 'images/icon-svg/more1.png' %}" class="more">
+		<br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        
+        <div style="margin-top: 150px;"></div>
+        
+            <div class="addnew">近期新增</div>
 
             <div class="imageList" >
                 <br>
@@ -42,39 +45,101 @@
 
                 <br> <br>
             </div>
-                    <img src="{% static 'images/bag.png' %}" class="buyicon"> <!--出不來-->
-
-            <div class="addnew2">已上架</div> <img src="{% static 'images/icon-svg/more1.png' %}" class="more1">
-            <div class="imageList2" >
+                    
+            {% if market_posts %}
+            <div class="addnew">已上架</div>
+            <div class="imageList" >
                 <br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                {% for clothe in clothes %}
+                {% for post in market_posts %}
                 <button>
-                    <a href="{% url 'single_clothe' clothe.id %}">
-                        <img src="{{ clothe.image.url }}" style="width:20rem; height: 25rem;" />
+                    <a href="{% url 'single_clothe' post.product.id %}">
+                        <img src="{{ post.product.image.url }}" style="width:20rem; height: 25rem;" />
                     </a>
                 </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 {% endfor %}
                 <br> <br>
             </div>
-            <img src="{% static 'images/bag.png' %}" class="buyicon"> <!--出不來-->
+            {% endif %}
 
             {% for closet in user_closets %}
-            <div class="addnew3">{{ closet.name }}</div> <img src="{% static 'images/icon-svg/more1.png' %}" class="more2">
-            <div class="imageList3" >
-                <br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                {% for clothe in clothes %}
-                {% if clothe in closet.clothes.all %}
-                <button>
-                    <a href="{% url 'single_clothe' clothe.id %}">
-                        <img src="{{ clothe.image.url }}" style="width:20rem; height: 25rem;" />
-                    </a>
-                </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                {% endif %}
-                {% endfor %}
-                <br> <br>
-            </div>
+                        <div class="addnew">{{ closet.name }}</div> <img src="{% static 'images/icon-svg/more1.png' %}" class="more" id="show2">
+                        <dialog id="infoModal2" class="selection_add_edit2">
+                            <a href="#popup2"><p><h3>編輯分類</h3></p></a>
+                            <hr  color="gainsboro" width="100%"> 
+                            <a href=""><p><h3>刪除分類</h3></p></a>
+                            <hr color="gainsboro"  width="100%"> 
+                            <a href="" id="close2"><p><h3>取消</h3></p></a>
+                            </button>
+                        </dialog>
+                        <script>
+                            let img2=document.querySelector("#show2");
+                            let infoModal2=document.querySelector("#infoModal2");
+                            let close2=document.querySelector("#close2");
+                            img2.addEventListener("click", function(){
+                                infoModal2.showModal();
+                            })
+                            close2.addEventListener("click", function(){
+                                infoModal2.close();
+                            })
+                        </script>
+                        <div class="imageList" >
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {% for clothe in clothes %}
+                    {% if clothe.closet == closet %}
+                    <button>
+                        <a href="{% url 'single_clothe' clothe.id %}">
+                            <img src="{{ clothe.image.url }}" style="width:20rem; height: 25rem;" />
+                        </a>
+                    </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {% endif %}
+                    {% endfor %}
+                    <br> <br>
+                </div>
+                <form action="" method="post"> {% csrf_token %}
+                    <div id="popup2" class="overlay">
+                        <div class="popup">
+                            <h2>分類名稱</h2>
+                            <input type="text" id="username" name="username" value="{{ closet.name }}" required class="likeinput">
+                            <input type="hidden" name="type_id" value="{{ type.id }}">
+                            <input type="hidden" name="closet_id" value="{{ closet.id }}">
+                            <input type="hidden" name="edit" value="1">
+                            <a class="close" href="#">&times;</a>
+                            <h2>選擇衣物</h2>
+                            {% for clothe in clothes %}
+                            <input type="checkbox" name="{{ clothe.id }}" id="{{ clothe.id }}" {% if clothe.closet == closet %}checked{% endif %}>
+                            <label for="{{ clothe.id }}">
+                                <img src="{{ clothe.image.url }}" style="width:7rem; height: 7rem;" />
+                            </label>
+                            {% endfor %}
+                            <input type="submit" value="保存" class="cate_submit" ></input>
+                            
+                        </div>
+                    </div>
+                </form>
             {% endfor %}
-            <img src="{% static 'images/bag.png' %}" class="buyicon"> <!--出不來-->
+
+            <form action="" method="post"> {% csrf_token %}
+            <a class="login_submit1" href="#popup1">新增分類</a>
+                <div id="popup1" class="overlay">
+                    <div class="popup">
+                        <h2>分類名稱</h2>
+                        <input type="text" id="username" name="username" required class="likeinput">
+                        <input type="hidden" name="type_id" value="{{ type.id }}" class="likeinput">
+                        <input type="hidden" name="create" value="1">
+                        <a class="close" href="#">&times;</a>
+                        <h2>選擇衣物</h2>
+                        {% for clothe in clothes %}
+                        <input type="checkbox" name="{{ clothe.id }}" id="{{ clothe.id }}">
+                        <label for="{{ clothe.id }}">
+                            <img src="{{ clothe.image.url }}" style="width:7rem; height: 7rem;" />
+                        </label>
+                        {% endfor %}
+                        <input type="submit" value="保存" class="cate_submit" ></input>
+						
+                    </div>
+                </div>
+            </form>
+
 {% endblock  %}

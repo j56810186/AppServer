@@ -1,6 +1,41 @@
 
+outfit 的刪除的功能 > todo, waiting front-end.
 
-user profile picture 修改的功能沒做
-
+交易賣家的部分有 bug，transaction log 應該合併成一個，不然買家根本還沒 done 賣家就 done 很白癡
 
 試試看寫個 code 做測試資料自動匯入，不然真的要 key 到死，太靠北
+
+
+
+-----------------
+undone templates:
+
+1. "編輯商品" 的 radio button 因為前端那邊有 bug 所以還沒串
+2. 復刻圖片
+3. 穿搭推薦
+4. cart to transaction
+
+------------------
+前端 issues:
+
+1. "穿搭" 跟 "收藏穿搭" 的文字會堆疊 (不能用 class="word1", class="word2" 這樣顯示)
+2. "編輯商品" 的 radio button (全新、近新、二手) 疊在一起了
+3. 各類衣物瀏覽頁新增二個分類以上後，無法跳出 編輯、刪除分類的 box
+4. 購物車總金額沒有顯示 (沒有串上 django 的 html 也是)
+5. "編輯分類" 沒有頁面
+6. 圖片有關的 input 位置會亂跑，目前發現有問題的畫面：使用者資料修改的 profile_picture 的位置跑到最上面、新增衣物的圖片塞滿整個上半部
+7. 多個 bank account 存在時，會重疊
+
+------------------
+後端 issues:
+
+1. 錢包提款功能未實作 --> 不做吧？
+
+4. 搜尋功能 --> todo
+
+------------------
+整合 issues:
+
+1. 穿搭的功能 icons 位置怪怪的 (套上 forms 後)
+2. 編輯穿搭尚未整合好
+

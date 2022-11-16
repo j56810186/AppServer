@@ -10,22 +10,20 @@
     <body>
         <div class="containerrr">
             <div class="mycloset">
-                我的穿搭
+                編輯穿搭
             </div>
             
-            <button class="tabs__btn">
-                <a href="{% url 'personal_outfits' %}">
+            <a href="{% url 'personal_outfits' %}">
                 <img class="icon" src="{% static 'images/icon-svg/arrow_left.png' %}"> 
-                </a>
-            </button> 
+            </a>
 
-            <img src="{% static 'images/icon-svg/user.png' %}" class="icon3">
-
+            <a href="{% url 'settings' %}">
+                <img src="{% static 'images/icon-svg/user.png' %}" class="icon3">
+            </a>
         </div>
     
         <section class="main">
             <div class="addOutfit_left-col">
-                
                 <div class="post">
                     <form action="" enctype="multipart/form-data" method="post">{% csrf_token %}
                     <div class="info">
@@ -93,7 +91,7 @@
                         <br>
                         
                         <input type="submit" value="儲存更新" class="edit_outfit_submit" />
-                        </form>
+                    </form>
                         
                         <form action="{% url 'personal_outfits' %}" method="post">{% csrf_token %}
 

@@ -28,8 +28,8 @@
         <form method="get" id="cart-form" action="{% url 'cart_to_transaction' %}">
         <div class="shopping_cart1">
             <input type="checkbox" name="buy" class="shopping_cart1_checkbox" checked>
-            <p class="shopping_cart_username">jieyu_chen</p>
-                <img src="{% static 'images/jieyu.jpEg' %}" class="shopping_cart_profile-pic" alt="">
+            <p class="shopping_cart_username">{{ user.username }}</p>
+                <img src="{{ user.profile_picture.url }}" class="shopping_cart_profile-pic" alt="">
 
                 <table class="shopping_cart_content">
                     {% for cart in carts %}
@@ -47,15 +47,29 @@
                 </table>
 
         </div>
+        
+        <script>
+        $('#ShoppingCart tr:not(.totalColumn) input:text').bind('keyup change', function() {
+        var $table = $(this).closest('table');
+        var total = 0;
+        var thisNumber = $(this).attr('class').match(/(\d+)/)[1];
+
+        $table.find('tr:not(.totalColumn) .sum'+thisNumber).each(function() {
+            total += +$(this).val();
+        });
+
+        $table.find('.totalColumn td:nth-child('+thisNumber+') input').val(total);
+        });        
+        </script>
 
             <div style="margin-top: 210px; padding-top: 30px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
             <div style="margin-top: 40px; ">
                 <span class="shopping_cart_balance">總金額$ </span>
                 <span class="shopping_cart_balance">799</span>
-                <button id="submit" class="shopping_cart_submit" > <span class="shopping_cart_submit_font">結帳</span></button>
+                <button id="submit" class="shopping_cart_submit" > <div class="shopping_cart_submit_font">下一步</div></button>
             </div>
         </form>
-            <div style="padding-top: 120px;"> </div>
+            <div style="padding-top: 80px;"> </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script>
             submitBtn = document.getElementById('submit');

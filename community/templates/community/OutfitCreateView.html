@@ -17,11 +17,9 @@
                 <img class="icon" src="{% static 'images/icon-svg/arrow_left.png' %}">
             </a>
 
-
             <a href="{% url 'settings' %}">
                 <img src="{% static 'images/icon-svg/user.png' %}" class="icon3">
             </a>
-
         </div>
 
         <section class="main">
@@ -79,7 +77,7 @@
                     </div>
 
                     <div style="display: flex;">
-                        <a href="#tag_popup1" class="tag_link_area"><div> <img src="{% static 'images/icon-svg/add.png' %}"  class="tag_clothes_block"> </div></a>
+                        <a href="#tag_popup1" class="tag_link_area"><div> <img id="123" src="{% static 'images/icon-svg/add.png' %}"  class="tag_clothes_block"> </div></a>
                     
                         <a href="#tag_popup1" class="tag_link_area"><div> <img src="{% static 'images/icon-svg/add.png' %}"  class="tag_clothes_block"> </div></a>
                     
@@ -92,8 +90,8 @@
                         
 
                         <br>
-
-                        <button id="submit" class="new_outfit_submit" > <span class="new_outfit_submit_font">新增我的穿搭 </span></button>
+                        <div id="tagged_clothes"></div>
+                        <button id="submit" class="new_outfit_submit" > 新增我的穿搭 </button>
 
                     </div>
                     </form>
@@ -122,10 +120,10 @@
                             <a class="close" href="#">&times;</a>
                             <h2>選擇衣物</h2>
                             {% for clothe in clothes %}
-                                {% if clothe.type.object.id == 1 %}
+                                {% if clothe.type.id == 2 %}
                                     <a href="#">
                                         <button type="button">
-                                            <img src="{{ clothe.image.url }}"class="tag_select" />
+                                            <img id="{{ clothe.id }}" src="{{ clothe.image.url }}"class="tag_select" />
                                         </button>
                                     </a>
                                 {% endif %}
@@ -141,10 +139,10 @@
                             <a class="close" href="#">&times;</a>
                             <h2>選擇衣物</h2>
                             {% for clothe in clothes %}
-                                {% if clothe.type.object.id == 2 %}
+                                {% if clothe.type.id == 1 %}
                                     <a href="#">
                                         <button type="button">
-                                            <img src="{{ clothe.image.url }}"class="tag_select" />
+                                            <img id="{{ clothe.id }}" src="{{ clothe.image.url }}"class="tag_select" />
                                         </button>
                                     </a>
                                 {% endif %}
@@ -160,10 +158,10 @@
                             <a class="close" href="#">&times;</a>
                             <h2>選擇衣物</h2>
                             {% for clothe in clothes %}
-                                {% if clothe.type.object.id == 1 %}
+                                {% if clothe.type.id == 4 %}
                                     <a href="#">
                                         <button type="button">
-                                            <img src="{{ clothe.image.url }}"class="tag_select" />
+                                            <img id="{{ clothe.id }}" src="{{ clothe.image.url }}"class="tag_select" />
                                         </button>
                                     </a>
                                 {% endif %}
@@ -179,10 +177,10 @@
                             <a class="close" href="#">&times;</a>
                             <h2>選擇衣物</h2>
                             {% for clothe in clothes %}
-                                {% if clothe.type.object.id == 3 %}
+                                {% if clothe.type.id == 3 %}
                                     <a href="#">
                                         <button type="button">
-                                            <img src="{{ clothe.image.url }}"class="tag_select" />
+                                            <img id="{{ clothe.id }}" src="{{ clothe.image.url }}"class="tag_select" />
                                         </button>
                                     </a>
                                 {% endif %}
@@ -198,10 +196,10 @@
                             <a class="close" href="#">&times;</a>
                             <h2>選擇衣物</h2>
                             {% for clothe in clothes %}
-                                {% if clothe.type.object.id == 1 %}
+                                {% if clothe.type.id == 7 %}
                                     <a href="#">
                                         <button type="button">
-                                            <img src="{{ clothe.image.url }}"class="tag_select" />
+                                            <img id="{{ clothe.id }}" src="{{ clothe.image.url }}"class="tag_select" />
                                         </button>
                                     </a>
                                 {% endif %}
@@ -217,10 +215,10 @@
                             <a class="close" href="#">&times;</a>
                             <h2>選擇衣物</h2>
                             {% for clothe in clothes %}
-                                {% if clothe.type.object.id == 1 %}
+                                {% if clothe.object.id == 5 %}
                                     <a href="#">
                                         <button type="button">
-                                            <img src="{{ clothe.image.url }}"class="tag_select" />
+                                            <img id="{{ clothe.id }}" src="{{ clothe.image.url }}"class="tag_select" />
                                         </button>
                                     </a>
                                 {% endif %}
@@ -236,10 +234,10 @@
                             <a class="close" href="#">&times;</a>
                             <h2>選擇衣物</h2>
                             {% for clothe in clothes %}
-                                {% if clothe.type.object.id == 1 %}
+                                {% if clothe.type.id == 6 %}
                                     <a href="#">
                                         <button type="button">
-                                            <img src="{{ clothe.image.url }}"class="tag_select" />
+                                            <img id="{{ clothe.id }}" src="{{ clothe.image.url }}"class="tag_select" />
                                         </button>
                                     </a>
                                 {% endif %}
@@ -256,6 +254,30 @@
 
         </section>
 
+        <script>
+            $(document).ready(function() {
+                $(".tag_select").each(function() {
+                    $(this).on("click", function() {
+                        console.log($(this).attr("src"));
+                        console.log($(this).attr("id"));
+                        clotheImage = $(this).attr("src");
+                        clotheId = $(this).attr("id");
+
+                        $(".tag_clothes_block").each(function() {
+                            if ($(this).attr("src") == '/static/images/icon-svg/add.png') {
+                                $(this).attr("src", clotheImage);
+
+                                var $input = $('<input type="hidden">').attr({ id: clotheId, name: clotheId, value: clotheId });
+                                $("#tagged_clothes").append($input);
+                                return false;
+                            }
+                            
+                        });
+
+                    });
+                });
+            });
+        </script>
 
     </body>
 
