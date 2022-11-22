@@ -1,120 +1,115 @@
-{% extends 'closet/Base.html' %}
 {% load static %}
 <!DOCTYPE html>
-
-{% block title %}
-    Closet
-{% endblock %}
-
-{% block closet_name %}
-    我的衣櫃
-{% endblock %}
-
-{% block header_right %}
-	<a href="{% url 'my_products' %}">
-        <img src="{% static 'images/icon-svg/management2.png' %}" class="icon22">
-    </a>
-    <a href="{% url 'create_clothe' %}">
-        <img class="icon" src="{% static 'images/icon-svg/add_white.png' %}">
-    </a>
-{% endblock %}
-
-{% block head_bar_title %}
-    單品
-{% endblock %}
-
-{% block head_bar_left %}
-    <section>
-    <img id="photo" src="{% static 'images/icon-svg/picture.png' %}"  class="titlee33">
-    <input id="photo" type="file" accept="image/*" class="titlee33_fileInput" multiple=""/>
-    </section>
+<html>
+    <head>
+      <meta charset="utf-8">
+            <title>Closet</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
     
-    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-    <script>    
-        $('input').on('change', function(e){      
-                const file = this.files[0];
-                const objectURL = URL.createObjectURL(file);
-                $("#photo").attr("src", objectURL);
-            });
+    <body>
+        <div class="containerrr">
+            <div class="mycloset">
+                我的衣櫃
+            </div>
+                <a href="{% url 'settings' %}">
+                <img src="{% static 'images/icon-svg/user.png' %}" class="icon3_left">
+                </a>
+    
+                <a href="">
+                    <img src="{% static 'images/icon-svg/closet_selected.png' %}" class="icon2_left">
+                </a>
+    
+                <a href="{% url 'outfits' %}">
+                <img src="{% static 'images/icon-svg/social media.png' %}" class="icon22_left">
+                </a>
+    
+                <a href="{% url 'products' %}">
+                <img src="{% static 'images/icon-svg/store.png' %}" class="icon1_left">
+                </a>
+    
+                <a href="{% url 'create_clothe' %}">
+                <img src="{% static 'images/icon-svg/add_white.png' %}" class="icon22">
+                </a>
+    
+                <a href="{% url 'copy_clothe' %}">
+                <img src="{% static 'images/icon-svg/search photo.png' %}" class="icon2">
+                </a>
                 
-    </script>
-{% endblock %}
-
-{% block head_bar_right %}
-    <a href="{% url 'personal_outfits' %}">
-        <div class="titlee2">>>穿搭</div>
-    </a>
-{% endblock %}
-
-{% block content %}
-<div style="display: flex;  flex-wrap: wrap;">
-    <a href="{% url 'single_type_clothes' typePk=2 %}">
-        {% if t_shirts %}
-        <img src="{{ t_shirts.last.image.url }}" class="block1">
-        {% else %}
-        <img src="{% static 'images/26.jpg' %}" class="block1">
-        {% endif %}
-            <div class="word1">T-Shirt</div>
-        </img>
-    </a>
-
-    <a href="{% url 'single_type_clothes' typePk=1 %}">
-        {% if shirts %}
-        <img src="{{ shirts.last.image.url }}" class="block1">
-        {% else %}
-        <img src="{% static 'images/20.jpeg' %}" class="block1">
-        {% endif %}
-            <div class="word1">襯衫</div>
-        </img>
-    </a>
-
-    <a href="{% url 'single_type_clothes' typePk=4 %}">
-        {% if shorts %}
-        <img src="{{ shorts.last.image.url }}" class="block1">
-        {% else %}
-        <img src="{% static 'images/32.jfif' %}" class="block1">
-        {% endif %}
-            <div class="word1">短褲</div>
-        </img>
-    </a>
-
-    <a href="{% url 'single_type_clothes' typePk=3 %}">
-        {% if pants %}
-        <img src="{{ pants.last.image.url }}" class="block1">
-        {% else %}
-        <img src="{% static 'images/28.jpg' %}" class="block1">
-        {% endif %}
-            <div class="word1">長褲</div>
-        </img>
-    </a>
-
-    <a href="{% url 'single_type_clothes' typePk=5 %}">
-        {% if skirts %}
-        <img src="{{ skirts.last.image.url }}" class="block1">
-        {% else %}
-        <img src="{% static 'images/24.jpeg' %}" class="block1">
-        {% endif %}
-            <div class="word1">裙子</div>
-        </img>
-    </a>
-
-    <a href="{% url 'single_type_clothes' typePk=6 %}">
-        {% if dresses %}
-        <img src="{{ dresses.last.image.url }}" class="block1">
-        {% else %}
-        <img src="{% static 'images/27.jpg' %}" class="block1">
-        {% endif %}
-            <div class="word1">洋裝</div>
-        </img>
-    </a>
-
-    <a href="{% url 'single_type_clothes' typePk=7 %}">
-        {% if shoes %}
-        <img src="{{ shoes.last.image.url }}" class="block1">
-        {% else %}
-        <img src="{% static 'images/1234.jpeg' %}" class="block1">
-        {% endif %}
-            <div class="word1">鞋子</div>
-        </img>
-    </a>
-{% endblock %}
+                <a href="{% url 'my_products' %}">
+                <img src="{% static 'images/icon-svg/management2.png' %}" class="icon3">
+                </a>
+        </div>
+        <div style="display: flex;  flex-wrap: wrap;">
+            <a href="{% url 'single_type_clothes' typePk=2 %}">
+                {% if t_shirts %}
+                <img src="{{ t_shirts.last.image.url }}" class="block1">
+                {% else %}
+                <img src="{% static 'images/26.jpg' %}" class="block1">
+                {% endif %}
+                    <div class="word1">T-Shirt</div>
+                </img>
+            </a>
+        
+            <a href="{% url 'single_type_clothes' typePk=1 %}">
+                {% if shirts %}
+                <img src="{{ shirts.last.image.url }}" class="block1">
+                {% else %}
+                <img src="{% static 'images/20.jpeg' %}" class="block1">
+                {% endif %}
+                    <div class="word1">襯衫</div>
+                </img>
+            </a>
+        
+            <a href="{% url 'single_type_clothes' typePk=4 %}">
+                {% if shorts %}
+                <img src="{{ shorts.last.image.url }}" class="block1">
+                {% else %}
+                <img src="{% static 'images/32.jfif' %}" class="block1">
+                {% endif %}
+                    <div class="word1">短褲</div>
+                </img>
+            </a>
+        
+            <a href="{% url 'single_type_clothes' typePk=3 %}">
+                {% if pants %}
+                <img src="{{ pants.last.image.url }}" class="block1">
+                {% else %}
+                <img src="{% static 'images/28.jpg' %}" class="block1">
+                {% endif %}
+                    <div class="word1">長褲</div>
+                </img>
+            </a>
+        
+            <a href="{% url 'single_type_clothes' typePk=5 %}">
+                {% if skirts %}
+                <img src="{{ skirts.last.image.url }}" class="block1">
+                {% else %}
+                <img src="{% static 'images/24.jpeg' %}" class="block1">
+                {% endif %}
+                    <div class="word1">裙子</div>
+                </img>
+            </a>
+        
+            <a href="{% url 'single_type_clothes' typePk=6 %}">
+                {% if dresses %}
+                <img src="{{ dresses.last.image.url }}" class="block1">
+                {% else %}
+                <img src="{% static 'images/27.jpg' %}" class="block1">
+                {% endif %}
+                    <div class="word1">洋裝</div>
+                </img>
+            </a>
+        
+            <a href="{% url 'single_type_clothes' typePk=7 %}">
+                {% if shoes %}
+                <img src="{{ shoes.last.image.url }}" class="block1">
+                {% else %}
+                <img src="{% static 'images/1234.jpeg' %}" class="block1">
+                {% endif %}
+                    <div class="word1">鞋子</div>
+                </img>
+            </a>
+        </div>
+    </body>
+</html> 

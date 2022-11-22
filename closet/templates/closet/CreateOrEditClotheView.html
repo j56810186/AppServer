@@ -2,7 +2,11 @@
 {% load static %}
 
 {% block title %}
-    Add New Clothes to My Closet
+    {% if not clothe %}
+    新增衣物
+    {% else %}
+    我的衣櫃
+    {% endif %}
 {% endblock %}
 
 {% block style %}
@@ -31,7 +35,7 @@
     </style>
 {% endblock %}
 
-{% block closet_name %}
+{% block h1 %}
     {% if not clothe %}
         新增衣物
     {% else %}
@@ -67,7 +71,7 @@
                     {% else %}
                         <img id="photo" class="clothes_input" src="{{ clothe.image.url }}" style="width: 18rem;" />
                     {% endif %}
-                    <input id="photo" name="image" type="file" accept="image/*" class="fileInput" style="width: 18rem" multiple=""/>
+                    <input id="photo" name="image" type="file" accept="image/*" class="fileInput" style="width: 100%" multiple=""/>
                     <input type="hidden" name="new_image" value=1 />
                     <input type="hidden" name="user" value={{ user.id }} />
                     <input type="hidden" name="closet" value={{ user.closets.first.id }} />

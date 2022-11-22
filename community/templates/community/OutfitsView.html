@@ -1,41 +1,61 @@
 {% load static %}
 <!DOCTYPE html>
-
 <html>
     <head>
-        <meta charset="utf-8">
-              <title>Search Outfits</title>
-              <link rel="stylesheet" href="{% static 'css/style.css' %}">
-              <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-      </head>
-
+      <meta charset="utf-8">
+            <title>Closet</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    
     <body>
         <div class="containerrr">
             <div class="mycloset">
-                探索穿搭
+                我的衣櫃
             </div>
-
-            <a href="{% url 'saved_outfits' %}">
-                <img class="icon" src="{% static 'images/icon-svg/arrow_left.png' %}">
-            </a>
-
-            <button class="tabs__btn">
-                <a href="{% url 'personal_outfits' %}">
-                    <img src="{% static 'images/icon-svg/home.png' %}" class="icon3">
+                <a href="{% url 'settings' %}">
+                <img src="{% static 'images/icon-svg/user.png' %}" class="icon3_left">
                 </a>
-            </button>
+    
+                <a href="{% url 'clothes' %}">
+                <img src="{% static 'images/icon-svg/closet1.png' %}" class="icon2_left">
+                </a>
+    
+                <a href="{% url 'outfits' %}">
+                <img src="{% static 'images/icon-svg/social media_selected.png' %}" class="icon22_left">
+                </a>
+    
+                <a href="{% url 'products' %}">
+                <img src="{% static 'images/icon-svg/store.png' %}" class="icon1_left">
+                </a>
+    
+                <a href="{% url 'create_outfit' %}">
+                <img src="{% static 'images/icon-svg/add_white.png' %}" class="icon22">
+                </a>
+    
+                <a href="{% url 'personal_outfits' %}">
+                    <img src="{% static 'images/icon-svg/album.png' %}" class="icon2">
+                </a>
+                
+                <a href="{% url 'saved_outfits' %}">
+                    <img src="{% static 'images/icon-svg/bookmark_saved.png' %}" class="icon3">
+                </a>
         </div>
-
         <div class="container_search">
-                <span class="container_search_icon"><img src="{% static 'images/icon-svg/search.png' %}" style="width: 2rem;"></span>
+            <span class="container_search_icon"><img src="{% static 'images/icon-svg/search.png' %}" style="width: 2rem;"></span>
+            <form action="" method="get">
                 <input type="search" id="search" placeholder="Search..." />
+
+                <button type="submit">
+                <img src="{% static 'images/icon-svg/search submit.png' %}" class="search_submit">
+                </button>
+            </form>
         </div>
 
         <section class="search_outfits_main">
             <div class="left-col">
 
                 {% for post in object_list reversed %}
-                <div class="post">
+                <div class="second_post">
                     <div class="info">
                         <div class="user">
                             <div class="profile-pic"> <img src="{{ post.user.profile_picture.url }}" alt=""> </div>
@@ -52,39 +72,36 @@
                         <img src="{{ post.image.url }}" class="post-image" alt="">
                     </a>
                     <div class="post-content">
-                        <div class="reaction-wrapper">
+                        <div class="reaction-wrapper" style="margin-left: auto; margin-right:auto;">
                             <form action="" method="post"> {% csrf_token %}
                                 <input type="hidden" value="{{ post.id }}" name="post_id">
                                 <input type="hidden" value="1" name="like">
-                                <input type="image" src="{% static 'images/icon-svg/heart.svg' %}" class="outfit_icon" style="width: 3rem;" alt="Like">
+                                <input type="image" src="{% static 'images/icon-svg/heart.svg' %}" class="outfit_icon link_icon" alt="Like">
                             </form>
 
-                            <a href="{% url 'outfit_comments' postPk=post.id %}">
-                                <img src="{% static 'images/icon-svg/comment.svg' %}" class="outfit_icon" style="width: 8%; height: 8%;" alt="">
+                            <a href="{% url 'outfit_comments' postPk=post.id %}" class="link_icon">
+                                <img src="{% static 'images/icon-svg/comment.svg' %}" class="outfit_icon" alt="">
                             </a>
 
                             {% if user != post.user %}
-                            <a href="{% url 'remake_outfit' postPk=post.id %}">
-                                <img src="{% static 'images/icon-svg/clothes_hanger.svg' %}" class="outfit_icon" style="width: 13%; height: 13%;" alt="">
+                            <a href="{% url 'remake_outfit' postPk=post.id %}" class="link_icon">
+                                <img src="{% static 'images/icon-svg/clothes_hanger.svg' %}" class="outfit_icon" alt="">
                             </a>
                             {% endif %}
 
                             <form action="" method="post"> {% csrf_token %}
                                 <input type="hidden" value="{{ post.id }}" name="post_id">
                                 <input type="hidden" value="1" name="followed">
-                                <input type="image" src="{% static 'images/icon-svg/bookmark.svg' %}" class="outfit_icon" style="width: 3rem;" alt="Save">
+                                <input type="image" src="{% static 'images/icon-svg/bookmark.svg' %}" class="link_icon outfit_icon" alt="Save">
                             </form>
 
 
                         </div>
 
-                        {% if post.likes.count == 1 %}
-                            <p class="likes">{{ post.likes.first.username }} likes this post</p>
-                        {% else %}
-                            <p class="likes">{{ post.likes.count }} likes</p>
-                        {% endif %}
-
-                        <p class="username">{{ post.user.username }}</p> {{ post.content }}<br> <br>{{ post.title }}
+                        <span class="likes">{{ post.likes.count }} likes</span>
+                        <span class="content_username">{{ post.user.username }}</span>
+                        <span class="content_copy">{{ post.content }}</span>
+                        <span class="post-time">{{ post.datetime }}</span>
                     </div>
 
                     &nbsp;&nbsp;&nbsp;&nbsp;
@@ -94,11 +111,11 @@
                     <div class="comment-wrapper">
                         <div class="info">
                             <div class="user">
-                                 <div class="profile-pic"><img src="{% static 'images/money.png' %}" style="left: 15px; width: 3rem;"alt=""></div>
-                             </div>
-                             <p class="username1" style="font-size: 15px;">{{ comment.user.username }}</p>
-                             <p class="post-words" style="font-size: 15px;">{{ comment.text }}</p>
-                         </div>
+                                    <div class="profile-pic"><img src="{% static 'images/money.png' %}" style="left: 15px; width: 3rem;"alt=""></div>
+                                </div>
+                                <p class="username1" style="font-size: 15px;">{{ comment.user.username }}</p>
+                                <p class="post-words" style="font-size: 15px;">{{ comment.text }}</p>
+                            </div>
 
                     </div>
                     {% endfor %}

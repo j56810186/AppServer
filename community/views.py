@@ -158,7 +158,7 @@ class CreateOutfitView(CreateView):
     def get_success_url(self):
         user_closets = Closet.objects.filter(user_id=self.request.user.id)
 
-        return redirect(reverse('personal_outfits'))
+        return reverse('personal_outfits')
 
 
 # 編輯、刪除穿搭 (edit_outfit)
@@ -179,6 +179,13 @@ class EditOutfitView(UpdateView):
         return reverse(
             'personal_outfits',
         )
+
+class DeleteOutfitView(DeleteView):
+    model = Post
+    template_name = 'community/OutfitUpdateView.html'
+    
+    def get_success_url(self):
+        return reverse('personal_outfits')
 
 
 # 留言頁面 (comments)

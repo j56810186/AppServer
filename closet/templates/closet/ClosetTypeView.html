@@ -1,32 +1,15 @@
 {% extends 'closet/Base.html' %}
 {% load static %}
-<!DOCTYPE html>
 
 {% block title %}
     {{ type.name }}
 {% endblock %}
 
-{% block closet_name %}
-    我的衣櫃
-{% endblock %}
-
-{% block head_bar_title %}
+{% block h1 %}
     {{ type.name }}
 {% endblock %}
 
-{% block head_bar_left %}
-    <a href="{% url 'clothes' %}">
-        <img src="{% static 'images/icon-svg/arrow_left.png' %}" class="icon5">
-    </a>
-{% endblock %}
-
 {% block content %}
-		<br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
         
         <div style="margin-top: 150px;"></div>
         
@@ -63,29 +46,29 @@
             {% endif %}
 
             {% for closet in user_closets %}
-                        <div class="addnew">{{ closet.name }}</div> <img src="{% static 'images/icon-svg/more1.png' %}" class="more" id="show2">
-                        <dialog id="infoModal2" class="selection_add_edit2">
-                            <a href="#popup2"><p><h3>編輯分類</h3></p></a>
-                            <hr  color="gainsboro" width="100%"> 
-                            <a href=""><p><h3>刪除分類</h3></p></a>
-                            <hr color="gainsboro"  width="100%"> 
-                            <a href="" id="close2"><p><h3>取消</h3></p></a>
-                            </button>
-                        </dialog>
-                        <script>
-                            let img2=document.querySelector("#show2");
-                            let infoModal2=document.querySelector("#infoModal2");
-                            let close2=document.querySelector("#close2");
-                            img2.addEventListener("click", function(){
-                                infoModal2.showModal();
-                            })
-                            close2.addEventListener("click", function(){
-                                infoModal2.close();
-                            })
-                        </script>
-                        <div class="imageList" >
-                            <br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="addnew">{{ closet.name }}</div> <img src="{% static 'images/icon-svg/more1.png' %}" class="more" id="show2">
+                    <dialog id="infoModal2" class="selection_add_edit2">
+                        <a href="#popup2"><p><h3>編輯分類</h3></p></a>
+                        <hr  color="gainsboro" width="100%"> 
+                        <a href=""><p><h3>刪除分類</h3></p></a>
+                        <hr color="gainsboro"  width="100%"> 
+                        <a href="" id="close2"><p><h3>取消</h3></p></a>
+                        </button>
+                    </dialog>
+                    <script>
+                        let img2=document.querySelector("#show2");
+                        let infoModal2=document.querySelector("#infoModal2");
+                        let close2=document.querySelector("#close2");
+                        img2.addEventListener("click", function(){
+                            infoModal2.showModal();
+                        })
+                        close2.addEventListener("click", function(){
+                            infoModal2.close();
+                        })
+                    </script>
+                    <div class="imageList" >
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     {% for clothe in clothes %}
                     {% if clothe.closet == closet %}
                     <button>

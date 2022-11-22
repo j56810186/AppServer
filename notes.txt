@@ -1,19 +1,22 @@
 
 outfit 的刪除的功能 > todo, waiting front-end.
 
+新增分類有問題
+
 交易賣家的部分有 bug，transaction log 應該合併成一個，不然買家根本還沒 done 賣家就 done 很白癡
 
 試試看寫個 code 做測試資料自動匯入，不然真的要 key 到死，太靠北
 
 
+================================================
+:::today:::
+outfit search
+copy
 
------------------
-undone templates:
 
-1. "編輯商品" 的 radio button 因為前端那邊有 bug 所以還沒串
-2. 復刻圖片
-3. 穿搭推薦
-4. cart to transaction
+
+
+
 
 ------------------
 前端 issues:

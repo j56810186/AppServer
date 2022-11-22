@@ -32,5 +32,8 @@ urlpatterns = [
 
     path('closet/create', views.CreateSubClosetView.as_view(), name='create_closet'),
 
+   # 複製照片中的衣服
+   path('copy', views.copy_clothe, name='copy_clothe'), 
+
     path('', RedirectView.as_view(url='clothes/'), name='root'),
 ]

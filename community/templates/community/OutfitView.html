@@ -1,102 +1,117 @@
+{% extends 'community/Base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-              <title>My outfit</title>
-              <link rel="stylesheet" href="{% static 'css/style.css' %}">
-      </head>
 
-    <body>
-        <div class="containerrr">
-            <div class="mycloset">
-                我的穿搭
-            </div>
-            <a href="{% url 'outfits' %}">
-            	<img class="icon" src="{% static 'images/icon-svg/arrow_left.png' %}">
-            </a>
-            
-            <a href="{% url 'settings' %}">
-            	<img src="{% static 'images/icon-svg/user.png' %}" class="icon3" alt="user">
-            </a>
-        </div>
+{% block title %}
+    {% if post.title %}
+        {{ post.title }}
+    {% else %}
+        穿搭貼文
+    {% endif %}
+{% endblock %}
 
-        <section class="main">
-            <div class="left-col">
-                <div class="post">
-                    <div class="info">
-                        <div class="user">
-                            <div class="profile-pic"> <img src="{{ post.user.profile_picture.url }}" alt=""> </div>
-                            <p class="username">{{ post.user.username }}</p>
-                        </div>
+{% block h1 %}
+    {% if post.title %}
+        {{ post.title }}
+    {% else %}
+        穿搭貼文
+    {% endif %}
+{% endblock %}
 
-                        {% if user == post.user %}
-                        <a href="{% url 'edit_outfit' pk=post.id %}">
-                            <img src="{% static 'images/icon-svg/menu-dots.svg' %}" class="options" alt="">
-                        </a>
-                        {% endif %}
-
-                     </div>
-                    <img src="{{ post.image.url }}" class="post-image" alt="">
-                    <div class="post-content">
-                        <div class="reaction-wrapper">
-                            <form action="" method="post"> {% csrf_token %}
-                                <input type="hidden" value="{{ post.id }}" name="post_id">
-                                <input type="hidden" value="1" name="like">
-                                <input type="image" src="{% static 'images/icon-svg/heart.svg' %}" class="outfit_icon" style="width: 13%; height: 13%;" alt="Like">
-                            </form>
-                            
-                            <a href="{% url 'outfit_comments' postPk=post.id %}">
-                                <img src="{% static 'images/icon-svg/comment.svg' %}" class="outfit_icon" style="width: 13%; height: 13%;" alt="Comments">
-                            </a>
-                            
-                            {% if user != post.user %}
-                            <a href="{% url 'remake_outfit' postPk=post.id %}">
-                                <img src="{% static 'images/icon-svg/clothes_hanger.svg' %}" class="outfit_icon" style="width: 13%; height: 13%;" alt="">
-                            </a>
-                            {% endif %}
-                            
-                            <form action="" method="post"> {% csrf_token %}
-                                <input type="hidden" value="{{ post.id }}" name="post_id">
-                                <input type="hidden" value="1" name="followed">
-                                <input type="image" src="{% static 'images/icon-svg/bookmark.svg' %}" class="outfit_icon" style="width: 13%; height: 13%;" alt="Save">
-                            </form>
-                        </div>
-                        <p class="likes">{{ post.likes.count }} likes</p>
-                        <p class="username">{{ post.user.username }}</p> {{ post.content }}<br> <br>
-						{{ post.title }}
+{% block content %}
+    <section class="main">
+        <div class="left-col">
+            <div class="post">
+                <div class="info">
+                    <div class="user">
+                        <div class="profile-pic"> <img src="{{ post.user.profile_picture.url }}" alt=""> </div>
+                        <p class="username">{{ post.user.username }}</p>
                     </div>
 
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <span style="font-size: 10px; left: -10%;">{{ post.time }}</span>
+                    {% if user == post.user %}
+                    <img class="goods_icon2" src="{% static 'images/icon-svg/more.png' %}" id="show"> 
+                        <dialog id="infoModal" class="selection_edit_delete_clothes">
+                            <a href="{% url 'edit_outfit' post.id %}"><p><h3>編輯穿搭</h3></p></a>
+                            <hr  color="gainsboro" width="100%"> 
+                            <form action="{% url 'delete_outfit' post.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" style="border: none; background-color: white;"><h3>刪除穿搭</h3></button>
+                            </form>
+                            <hr color="gainsboro"  width="100%"> 
+                            <a href="" id="close"><p><h3>取消</h3></p></a>
+                            </button>
+                        </dialog>
+                        <script>
+                            let img=document.querySelector("#show");
+                            let infoModal=document.querySelector("#infoModal");
+                            let close=document.querySelector("#close");
+                            img.addEventListener("click", function(){
+                                 infoModal.showModal();
+                            })
+                            close.addEventListener("click", function(){
+                                 infoModal.close();
+                            })
+                        </script>
+                    {% endif %}
 
-                    {% for comment in post.comments.all %}
-                        <div class="comment-wrapper">
-                            <div class="info">
-                                <div class="user">
-                                     <div class="profile-pic"><img src="{% static 'images/money.png' %}" style="left: 15px; width: 3rem;" alt=""></div>
-                                </div>
-                                <p class="username1" style="font-size: 15px;">{{ comment.user.username }}</p>
-                                <p class="post-words" style="font-size: 15px;">{{ comment.text }}</p>
-                            </div>
-                        </div>
-                    {% endfor %}
-
-                    <form action="" method="post"> {% csrf_token %}
-                        <div class="comment-wrapper">
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="hidden" name="post_id" value="{{ post.id }}">
-                            <img src="{{ user.profile_picture.url }}" class="profile-pic"  alt="">
-                            <input type="text" name="comment" class="comment-box" placeholder="Add a comment">
-                            <input type="submit" value="post" class="comment-btn">
-                        </div>
-                    </form>
-                    <br>
                 </div>
+                <img src="{{ post.image.url }}" class="post-image" alt="">
+                <div class="post-content">
+                    <div class="reaction-wrapper">
+                        <form action="" method="post"> {% csrf_token %}
+                            <input type="hidden" value="{{ post.id }}" name="post_id">
+                            <input type="hidden" value="1" name="like">
+                            <input type="image" src="{% static 'images/icon-svg/heart.svg' %}" class="link_icon outfit_icon" alt="Like">
+                        </form>
+                        
+                        <a href="{% url 'outfit_comments' postPk=post.id %}" class="link_icon">
+                            <img src="{% static 'images/icon-svg/comment.svg' %}" class="outfit_icon" alt="Comments">
+                        </a>
+                        
+                        {% if user != post.user %}
+                        <a href="{% url 'remake_outfit' postPk=post.id %}" class="link_icon">
+                            <img src="{% static 'images/icon-svg/clothes_hanger.svg' %}" class="outfit_icon" alt="">
+                        </a>
+                        {% endif %}
+                        
+                        <form action="" method="post"> {% csrf_token %}
+                            <input type="hidden" value="{{ post.id }}" name="post_id">
+                            <input type="hidden" value="1" name="followed">
+                            <input type="image" src="{% static 'images/icon-svg/bookmark.svg' %}" class="outfit_icon link_icon" alt="Save">
+                        </form>
+                    </div>
+                    <span class="likes">{{ post.likes.count }} likes</span>
+                    <span class="content_username">{{ post.user.username }}</span>
+                    <span class="content_copy">{{ post.content }}</span>
+                    <span class="post-time">{{ post.datetime }}</span>
+                </div>
+
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <span style="font-size: 10px; left: -10%;">{{ post.time }}</span>
+
+                {% for comment in post.comments.all %}
+                    <div class="comment-wrapper">
+                        <div class="info">
+                            <div class="user">
+                                <div class="profile-pic"><img src="{{ comment.user.profile_picture.url }}" alt=""></div>
+                            </div>
+                            <p class="username1" style="font-size: 15px;">{{ comment.user.username }}</p>
+                            <p class="post-words" style="font-size: 15px;">{{ comment.text }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <form action="" method="post"> {% csrf_token %}
+                    <div class="comment-wrapper">
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="hidden" name="post_id" value="{{ post.id }}">
+                        <img src="{{ user.profile_picture.url }}" class="profile-pic"  alt="">
+                        <input type="text" name="comment" class="comment-box" placeholder="Add a comment">
+                        <input type="submit" value="post" class="comment-btn">
+                    </div>
+                </form>
+                <br>
             </div>
+        </div>
 
-        </section>
-    </body>
-
-
-</html>
+    </section>
+{% endblock %}

@@ -134,14 +134,11 @@ time, mark, audio, video {
     background: #c4b2bc;
     width: 450px;
     height: 50px;
-    margin: 10px;
     position: relative;
-    left: auto;
-    top: auto;
-    bottom: 38px;
+    bottom: -45px;
+    right: 10%;
     border-radius: 15px;
     border-style: none;
-    display: inline;
     color: rgba(255,254,247,1);
     font-family: Inter;
     font-weight:  Bold;
@@ -222,6 +219,29 @@ time, mark, audio, video {
 
   .reset:hover{
     background: #a9a9a9;
+  }
+
+  .edit_reset{
+    background: #d9d9d9;
+    width: 450px;
+    height: 50px;
+    position: relative;
+    top: auto;
+    left: 20%;
+    bottom: 5px;
+    border-radius: 15px;
+    border-style: none;
+    display: inline;
+    color: rgba(255,254,247,1);
+    font-family: Inter;
+    font-weight:  Bold;
+    font-size: 20px;
+    opacity: 1;
+      
+  }
+
+  .edit_reset:hover{
+    background: #c4b2bc;
   }
 
   .login_submit{
@@ -549,6 +569,12 @@ a {
     margin: auto;
     max-width: 40px;
     vertical-align : middle;
+}
+
+.link_icon {
+  margin-left: 8%;
+  margin-right: 8%;
+  max-width: 60px;
 }
 
 /*留言的箭頭*/
@@ -964,7 +990,6 @@ a {
   margin-top: 1.45%;
   z-index: 1;
   color: #4f5b66;
-  cursor: pointer;
 }
 
 .nav-items{
@@ -975,9 +1000,9 @@ a {
 .outfit_icon{
     height: 50%;
     cursor: pointer;
-    margin: 0 px;
     display: inline-block;
-    width: 50%
+    width: 50%;
+    margin-left: 8%;
 }
 
 .outfit_icon1{
@@ -1020,7 +1045,7 @@ a {
 
 .search_outfits_main{
     width: 100%;
-    height: 1450px;
+    height: auto;
     padding: 20px 0;
     display: flex;
     justify-content: center;
@@ -1117,9 +1142,8 @@ a {
 /* Home Page的貼文區塊 */
 .post{
     width: 100%;
-    height: auto;
+    height: 100%;
     background: #fff;
-    border: 1px solid #dfdfdf;
     margin-top: 5px;
 }
 
@@ -1127,7 +1151,7 @@ a {
   width: 100%;
   height: auto;
   background: #fff;
-  border: 1px solid #dfdfdf;
+  border-top: 1px solid #dfdfdf;
   margin-top: 10px;
 }
 
@@ -1280,6 +1304,16 @@ a {
     position: relative;
     left: 5%;
     top: 75%;
+    margin-bottom: 5%;
+    font-size: 50px;
+    font-weight: bold;
+  }
+
+  .remake_outfit_tag_clothes_font {
+    color: #9169d5;
+    position: relative;
+    left: 5%;
+    margin-top: 40%;
     margin-bottom: 5%;
     font-size: 50px;
     font-weight: bold;
@@ -1611,6 +1645,15 @@ a {
 
   /*新增穿搭標註單品鍵*/
   .new_outfit_tag_clothes_font {
+    color: rgb(148,122,136,1);
+    position: relative;
+    left: 5%;
+    top: 80%;
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  .remake_outfit_tag_clothes_font {
     color: rgb(148,122,136,1);
     position: relative;
     left: 5%;
@@ -2010,6 +2053,7 @@ a {
 /* Home Page的留言buttom */
 .comment-btn,
 .action-btn{
+    margin-right: 4%;
     width: 70px;
     height: 100%;
     background: none;
@@ -2019,6 +2063,7 @@ a {
     font-size: 16px;
     color: rgb(0, 162, 255);
     opacity: 0.5;
+    cursor: pointer;
 }
 /* Home Page的貼文區塊按讚留言收藏橫bar */
 .reaction-wrapper{
@@ -2080,14 +2125,14 @@ a {
 .img-holder {
     width: 120px;
     height: 120px;
+    top: 160px;
+    left: 45%;
     border-radius: 50%;
     border: 1px solid #d8d8d8;
     background: center / 150% no-repeat;
     display:block;
     margin:auto;
     position: absolute;
-    top: 160px;
-    left: 45%;
 }
 @media screen and (max-width:1000px){ 
   .img-holder{
@@ -2211,6 +2256,16 @@ a {
         clear: both;
     }
 
+    .profile_fileInput{
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      top: 160px;
+      left: 45%;
+      opacity: 0;
+      display: block;
+      clear: both;
+  }
     /*新增衣物、穿搭推薦選項格*/
     .sttyle{
       width: 1240px;
@@ -2968,13 +3023,21 @@ a {
         right: 6%;
     }
 
+    .icon1{
+      width: 35px;
+      height:35px;
+      position: absolute;
+      top: 69px;
+      right: 14%;
+    }
+
     .icon22{
       width: 35px;
       height:35px;
       position: absolute;
       top: 69px;
       right: 10%;
-  }
+    }
 
     .icon3{
         width: 35px;
@@ -2982,6 +3045,56 @@ a {
         position: absolute;
         top: 69px;
         right: 2%;
+    }
+    
+    .search_submit{
+      width: 35px;
+      height:35px;
+      position: absolute;
+      top: 50%;
+      margin-top: 1.45%;
+      right: 8%;
+      cursor: pointer;
+    }
+
+    .icon2_left{
+        width: 42px;
+        height:45px;
+        position: absolute;
+        top: 65px;
+        left: 6%;
+    }
+
+    .icon22_left{
+        width: 37px;
+        height: 37px;
+        position: absolute;
+        top: 69px;
+        left: 10%;
+    }
+
+    .icon3_left{
+        width: 35px;
+        height:35px;
+        position: absolute;
+        top: 69px;
+        left: 2%;
+    }
+
+    .icon1_left{
+      width: 37px;
+      height: 37px;
+      position: absolute;
+      top: 69px;
+      left: 14%;
+    }
+
+    .icon0_left{
+      width: 37px;
+      height: 37px;
+      position: absolute;
+      top: 69px;
+      left: 18%;
     }
 
     .icon4{
@@ -4602,6 +4715,12 @@ a {
         top: 126px;
     }
 
+      .transaction_bar{
+        width: 100%;
+        height: 50px;
+        margin-top: 126px;
+    }
+
       .goods_icon1{
         width: 35px;
         height:35px;
@@ -4821,6 +4940,76 @@ a {
         font-weight: 400;
       }
 
+      .add_recipent_name{
+        font-family: 'Inter';
+        font-weight: bold;
+        font-size: 25px;
+        color: #957A89;
+        margin-left: 2%;
+        margin-top: 2%;
+        position: relative;
+      }
+
+      .add_recipent_name_input{
+        position: relative; 
+        margin-left: 5%; 
+        width: 80%; 
+        height: 50px; 
+        border: 0; 
+        background-color: #ececec;
+        color: #957a89; 
+        font-size: 25px;
+        font-weight: bold;
+      }
+
+      .add_recipent_name_input::placeholder{
+        font-family: 'Inter';
+        font-size: 25px;
+        color: #957A89;
+        font-weight: 400;
+      }
+
+      .add_recipent_phonenumber{
+        font-family: 'Inter';
+        font-weight: bold;
+        font-size: 25px;
+        color: #957A89;
+        margin-left: 2%;
+        margin-top: 2%;
+        position: relative;
+      }
+
+      .add_recipent_phonenumber_input{
+        position: relative; 
+        margin-left: 5%; 
+        width: 80%; 
+        height: 50px; 
+        border: 0; 
+        background-color: #ececec;
+        color: #957a89; 
+        font-size: 25px;
+        font-weight: bold;
+      }
+
+      .add_recipent_phonenumber_input::placeholder{
+        font-family: 'Inter';
+        font-size: 25px;
+        color: #957A89;
+        font-weight: 400;
+      }
+
+      .select_payment{
+        font-family: 'Inter';
+        font-weight: bold;
+        font-size: 25px;
+        color: #957A89;
+        margin-left: 2%;
+        margin-top: 2%;
+        position: relative;
+      }
+
+      
+
       .add_goods_condition{
         font-family: 'Inter';
         font-weight: bold;
@@ -4884,6 +5073,52 @@ a {
         color: #fffff8;
       }
     
+      .select_payment_options{
+        position: relative;
+        width: 35%;
+        white-space: nowrap;
+        height: 50px;
+        margin-left: 5%;
+        border-radius: 25px;
+        border-color: #957A89;
+        background-color: #ececec;
+        color: #957a89;
+        cursor: pointer;
+        display: inline-block;
+      }
+
+      .select_payment_options input{
+        opacity: 0;
+        appearance: none;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+  
+      .select_payment_options label{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 25px;
+      }
+  
+      .select_payment_options div {
+        text-align: center;
+        margin-top: 1%;
+        font-size: 25px;
+        font-family: 'Inter';
+        font-weight: bolder;
+    }
+  
+    
+      .select_payment_options input:checked + label  {
+        background: #551a3e;
+        color: #fffff8;
+    }
+  
+      .select_payment_options:hover{
+        background-color: #551a3e;
+    }
     /*
     .condition_button{
       width: 15%;
@@ -4997,6 +5232,7 @@ a {
       bottom: 45px;
       background: #d9d9d9;
       border-radius: 15px;
+      border: none;
       color: #957a89;
       position: relative;
       font-family: Inter;
@@ -5020,7 +5256,7 @@ a {
       bottom: 45px;
       background: #c4b2bc;
       border-radius: 15px;
-      color: rgba(255,254,247,1);
+      border: none;
       position: relative;
       font-family: Inter;
       font-weight:  Bold;
@@ -5813,3 +6049,107 @@ a {
 
         }
 
+      .recipent{
+        position: relative;
+        margin-top: 20px;
+        margin-left: 8%;
+        color: #c4b2bc;
+      }
+
+      .store_name{
+        font-family: 'Inter';
+        font-weight: bold;
+        font-size: 25px;
+        color: #957A89;
+        margin-left: 2%;
+        margin-top: 2%;
+        position: relative;
+      }
+
+      .store_name_input{
+        position: relative; 
+        margin-left: 5%; 
+        width: 80%; 
+        height: 50px; 
+        border: 0; 
+        background-color: #ececec;
+        color: #957a89; 
+        font-size: 25px;
+        font-weight: bold;
+      }
+
+      .store_name_input::placeholder{
+        position: relative; 
+        margin-left: 5%; 
+        width: 80%; 
+        height: 50px; 
+        border: 0; 
+        background-color: #ececec;
+        color: #957a89; 
+        font-size: 25px;
+        font-weight: 400;
+      }
+
+      .transaction_balance{
+        position: relative;
+        text-align: right;
+        left: 60%;
+        bottom: 80px;
+        color: #957a89;
+        font-size: 30px;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: bold;
+    }
+
+      .transaction_submit{
+        position: relative;
+        width: 15%;
+        height: 50px;
+        bottom: 80px;
+        left: 63%;
+        background: #c4b2bc;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+    }
+
+      .transaction_submit:hover{
+        background: #551a3e;
+    }
+    
+      .transaction_submit_font {
+        color: rgba(255,254,247,1);
+        position: relative;
+        font-family: Inter;
+        font-weight:  Bold;
+        font-size: 20px;
+        opacity: 1;
+    }
+
+    .check_order_submit{
+      position: relative;
+      width: 20%;
+      height: 50px;
+      bottom: 60px;
+      left: 60%;
+      background: #c4b2bc;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+  }
+
+    .check_order_submit:hover{
+      background: #551a3e;
+  }
+  
+    .check_order_submit_font {
+      color: rgba(255,254,247,1);
+      position: relative;
+      font-family: Inter;
+      font-weight:  Bold;
+      font-size: 20px;
+      opacity: 1;
+      text-align: center;
+      vertical-align:baseline;
+  }

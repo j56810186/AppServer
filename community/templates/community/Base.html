@@ -2,43 +2,48 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8">
         <title>{% block title %}{% endblock %}</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         {% block style %}{% endblock %}
     </head>
+    
     <body>
         <div class="containerrr">
             <div class="mycloset">
-                {% block closet_name %}{% endblock %}
+                {% block h1 %}{% endblock %}
             </div>
-
-            {% block header_right %}
-            {% endblock %}
-
-            {% block header_left %}
-                <a href="{% url 'products' %}">
-                    <img src="{% static 'images/icon-svg/store.png' %}" class="icon2">
-                </a>
                 <a href="{% url 'settings' %}">
-                    <img src="{% static 'images/icon-svg/user.png' %}" class="icon3">
+                <img src="{% static 'images/icon-svg/user.png' %}" class="icon3_left">
                 </a>
-            {% endblock %}
-
-            <div class="titlee">
-                {% block head_bar_title %}{% endblock %}
-            </div>
-
-            {% block head_bar_left %}{% endblock %}
-
-            {% block head_bar_right %}{% endblock %}
-
+    
+                <a href="{% url 'clothes' %}">
+                <img src="{% static 'images/icon-svg/closet1.png' %}" class="icon2_left">
+                </a>
+    
+                <a href="{% url 'outfits' %}">
+                <img src="{% static 'images/icon-svg/social media.png' %}" class="icon22_left">
+                </a>
+    
+                <a href="{% url 'products' %}">
+                <img src="{% static 'images/icon-svg/store.png' %}" class="icon1_left">
+                </a>
+    
+                <a href="{% url 'create_outfit' %}">
+                <img src="{% static 'images/icon-svg/add_white.png' %}" class="icon22">
+                </a>
+    
+                <a href="{% url 'personal_outfits' %}">
+                <img src="{% static 'images/icon-svg/album.png' %}" class="icon2">
+                </a>
+                
+                <a href="{% url 'saved_outfits' %}">
+                <img src="{% static 'images/icon-svg/bookmark_saved.png' %}" class="icon3">
+                </a>
         </div>
 
         {% block content %}{% endblock %}
-
         {% block script %}{% endblock %}
 
-    </body>
-</html>
+    <body>
+<html>

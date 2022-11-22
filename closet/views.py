@@ -365,6 +365,12 @@ class CreateSubClosetView(CreateView):
         )
 
 
+# 複製照片中的衣服 (copy)
+def copy_clothe(request, *args, **kwargs):
+    # TODO:  this method have not been implement.
+    pass
+
+
 # 穿搭推薦 (recommend)
 class RecommendView(View):
 

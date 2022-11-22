@@ -202,7 +202,7 @@ class CartToTransactionView(View):
         _selected_carts = Cart.objects.filter(id__in=selected_carts)
         amount = 0
         for cart in _selected_carts:
-            amount += cart.amount
+            amount += cart.post.amount
         context = {
             'amount': amount,
             'selected_carts': selected_carts,
@@ -275,7 +275,7 @@ class CartToTransactionView(View):
             # delete the cart.
             cart.delete()
 
-        return redirect('carts')
+        return redirect('transaction_logs')
 
 
 # 交易紀錄頁面 (transaction_list)

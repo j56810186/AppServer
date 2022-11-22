@@ -2,34 +2,11 @@
 {% load static %}
 
 {% block title %}
-    My Outfits
-{% endblock %}
-
-{% block closet_name %}
     我的穿搭
 {% endblock %}
 
-{% block header_right %}
-    <a href="{% url 'create_outfit' %}">
-        <img class="icon" src="{% static 'images/icon-svg/add_white.png' %}">
-    </a>
-{% endblock %}
-
-{% block head_bar_title %}
-    穿搭
-{% endblock %}
-
-{% block head_bar_left %}
-    <a href="{% url 'clothes' %}">
-        <div class="titlee3"> 單品<<
-        </div>
-    </a>
-{% endblock %}
-
-{% block head_bar_right %}
-    <a href="{% url 'saved_outfits' %}">
-        <img src="{% static 'images/save-.png' %}" class="icon4">
-    </a>
+{% block h1 %}
+    我的穿搭
 {% endblock %}
 
 {% block content %}
