@@ -1,102 +1,76 @@
+{% extends 'community/Base.html' %}
+
 {% load static %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-              <title>Remake the Outfit</title>
-              <link rel="stylesheet" href="{% static 'css/style.css' %}">
-      </head>
-    
-    <body>
-        <div class="containerrr">
-            <div class="mycloset">
-                復刻穿搭
-            </div>
-            
-            <button class="tabs__btn" onclick="window.location.href='/clothes'">
-                <a href="{% url 'outfits' %}">
-                <img class="icon" src="{% static 'images/icon-svg/arrow_left.png' %}"> 
-                </a>
-            </button> 
 
-            <img src="{% static 'images/icon-svg/refresh.png' %}" class="icon3">
+{% block title %}
+復刻穿搭
+{% endblock %}
 
-        </div>
-    
-        <section class="main">
-            <div class="addOutfit_left-col">
-                <div class="post">
-                    <div class="info">
-                        <div class="user">
-                            
-                            <div class="profile-pic"> <img src="{% static 'images/selfie.jpg' %}" alt=""> </div>
-                            <p class="username" style="color: rgba(148,122,136,1);">{{ post.user.username }}</p>
-                        </div>
-                     </div>
-                     <form>
-                     <div class="post-image">
-
-                        <form action="" enctype="multipart/form-data" method="">
-                            <div class="post_camera_icon">
-
-                                    <img id="photo" class="post-image" style="z-index: 1;" src="{{ post.image.url }}"/>
-                                    
-                                    <div style="position: absolute; left: 675px; top: 475px; width: 150px; height: 90px; border:2px solid whitesmoke; color: transparent; z-index:1000; "></div>
-                                    <div style="position: absolute; left: 700px; top: 600px; width: 150px; height: 90px; border:2px solid whitesmoke; color: transparent; z-index:1000; "></div>
-                                    <div style="position: absolute; left: 550px; top: 890px; width: 270px; height: 75px; border:2px solid whitesmoke; color: transparent; z-index:1000; "></div>
-
-                                    <input id="photo" type="file" accept="image/*" class="remake_fileInput"  multiple=""/>
-                
-                            </div>
-                
-                            <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-                            <script>
-                                    
-                                    $('input').on('change', function(e){      
-                                        const file = this.files[0];
-                                        const objectURL = URL.createObjectURL(file);
-                                        $("#photo").attr("src", objectURL);
-                                    });
-                                        
-                            </script>
-                
-                        </form>
-                    </div>
-                    
-                    <div >
-                        <div style="padding-bottom: 25px;"></div>
+{% block content %}
+    <section class="main">
+        <div class="addOutfit_left-col">
+            <div class="post">
+                <div class="info">
+                    <div class="user">
                         
-                            <input type="text" class="remake_clothes_font" value="復刻單品" style="background-color:#f3f3f3; border:0; width: 90%; text-align: left;" />  
-
-                        <hr size="1px" color= "#e6e6e6" width="100%"> 
-
-
+                        <div class="profile-pic"> <img src="{{ post.user.profile_picture.url }}" alt=""> </div>
+                        <p class="username" style="color: rgba(148,122,136,1);">{{ post.user.username }}</p>
                     </div>
-
-                    <div>
-
-                        {% for clothe in clothes %}
-                            <a href="{% url 'single_clothe' clothe.id %}">
-                                <div> <img src="{{ clothe.image.url }}" class="remake_clothes_block{{ forloop.counter }}"> </div>
-                            </a>
-                        {% endfor %}
-                        <hr size="1px" color= "#e6e6e6" width="100%"> 
-
-                        <br>
-
-
                     </div>
+                    <form>
+                    <div class="post-image">
+
+                    <form action="" enctype="multipart/form-data" method="">
+                        <div class="post_camera_icon">
+
+                                <img id="photo" class="post-image" style="z-index: 1; display: block; margin-left: auto; margin-right: auto;" src="{{ post.image.url }}"/>
+                                <input id="photo" type="file" accept="image/*" class="remake_fileInput"  multiple=""/>
+            
+                        </div>
+            
+                        <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+                        <script>
+                                
+                                $('input').on('change', function(e){      
+                                    const file = this.files[0];
+                                    const objectURL = URL.createObjectURL(file);
+                                    $("#photo").attr("src", objectURL);
+                                });
+                                    
+                        </script>
+            
                     </form>
+                </div>
+                
+                <div >
+                    <div style="padding-bottom: 25px;"></div>
+                    
+                        <input type="text" class="remake_clothes_font" value="復刻單品" style="background-color:#f3f3f3; border:0; width: 90%; text-align: left;" />  
+
+                    <hr size="1px" color= "#e6e6e6" width="100%"> 
 
 
                 </div>
-                
+
+                <div>
+
+                    {% for clothe in clothes %}
+                        <a href="{% url 'single_clothe' clothe.id %}">
+                            <div> <img src="{{ clothe.image.url }}" class="remake_clothes_block{{ forloop.counter }}"> </div>
+                        </a>
+                    {% endfor %}
+                    <hr size="1px" color= "#e6e6e6" width="100%"> 
+
+                    <br>
+
+
+                </div>
+                </form>
+
+
             </div>
-        
-        </section>
-
-
-    </body>
-
-
-</html>
+            
+        </div>
+    
+    </section>
+{% endblock %}
