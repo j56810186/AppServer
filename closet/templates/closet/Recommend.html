@@ -1,28 +1,15 @@
+{% extends 'closet/Base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-    <head>
-      <meta charset="utf-8">
-            <title>Recommend Outfits</title>
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    </head>
-    
-    <body>
-        <div class="containerrr">
-            <div class="mycloset">
-                穿搭推薦
-            </div>
 
-            <a href="{% url 'settings' %}">
-            <img src="{% static 'images/icon-svg/user.png' %}" class="icon3">
-            </a>
-        </div>
+{% block title %}
+    穿搭推薦
+{% endblock %}
 
-        <div class="goods_bar">
-            <a href="{% url 'single_type_clothes' clothe.type.id %}">
-                <img class="goods_icon1" src="{% static 'images/icon-svg/arrow_left.png' %}"> 
-            </a>
-            
+{% block h1 %}
+    穿搭推薦 
+{% endblock %}
+
+{% block content %}
             <form action="" method="post">
                 {% csrf_token %}
                 <input type="hidden" name="used_clothes" value="{{ used_clothes }}" />
@@ -61,8 +48,4 @@
             <div style="margin-top: 10px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div> 
 
         </div>
-
-
-
-    <body>
-<html>
+{% endblock %}

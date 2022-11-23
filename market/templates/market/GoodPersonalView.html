@@ -1,98 +1,96 @@
+{% extends 'market/Base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-    <head>
-      <meta charset="utf-8">
-            <title>View My Goods</title>
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    </head>
 
-    <body>
-        <div class="containerrr">
-            <div class="mycloset">
-                我的商品
-            </div>
+{% block title %}
+    {% if post.title %}
+        {{ post.title }}
+    {% else %}
+        我的商品
+    {% endif %} 
+{% endblock %}
 
-            <a href="{% url 'settings' %}">
-            <img src="{% static 'images/icon-svg/user.png' %}" class="icon3">
+{% block h1 %}
+    {% if post.title %}
+        {{ post.title }}
+    {% else %}
+        我的商品
+    {% endif %} 
+{% endblock %}
+
+{% block content %}
+    <div class="goods_bar">
+        <a href="{% url 'my_products' %}">
+        <img class="goods_icon1" src="{% static 'images/icon-svg/arrow_left.png' %}">
+        </a>
+
+        <img class="goods_icon2" src="{% static 'images/icon-svg/more.png' %}" id="show">
+        
+        <dialog id="infoModal" class="selection_edit_delete_clothes">
+            <a href=""><p><h3>下架商品</h3></p></a>
+            <hr color="gainsboro"  width="100%"> 
+            <a href="" id="close"><p><h3>取消</h3></p></a>
+            </button>
+        </dialog>
+        <script>
+            let img=document.querySelector("#show");
+            let infoModal=document.querySelector("#infoModal");
+            let close=document.querySelector("#close");
+            img.addEventListener("click", function(){
+                    infoModal.showModal();
+            })
+            close.addEventListener("click", function(){
+                    infoModal.close();
+            })
+        </script>
+
+        <img src="{{ post.product.image.url }}" class="goods_pic">
+
+        <div style="margin-top: 10px; padding-top: 20px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
+
+    </div>
+    <div class="goods_detail">
+        <button type="value" name="type" class="goods_label">{{ post.product.type }}</button>
+        <button type="value" name="color" class="goods_label">{{ post.product.color }}</button>
+        <button type="value" name="style" class="goods_label">{{ post.product.style }}</button>
+        <button type="value" name="company" class="goods_label">{{ post.product.company }}</button>
+        <button type="value" name="isFormal" class="goods_label">{% if post.product.isFormal %}正式{% else %}休閒{% endif %}</button>
+
+        <div style="margin-top: 10px; padding-top: 10px;"> </div>
+        
+        <span class="goods_note" name="note" style="font-weight: bold;">備註:{{ post.content }}</span>
+        <span class="goods_note" name="note">{{ post.product.note }}</span>
+
+        <div style="margin-top: 10px; margin-bottom: 20px; padding-top: 20px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
+
+
+    </div>
+
+    <div class="recommendation"><span class="recommendation_title">相關穿搭</span>
+        <div style="margin-top: 10px; margin-bottom: 10px; padding-top: 10px;">  </div>
+        {% for related_post in post.product.post_set.all %}
+            <a href="{% url 'outfit' related_post.id %}">
+                <img src="{{ related_post.image.url }}" class="recommendation_pic">
             </a>
-        </div>
-
-        <div class="goods_bar">
-            <a href="{% url 'my_products' %}">
-            <img class="goods_icon1" src="{% static 'images/icon-svg/arrow_left.png' %}">
-            </a>
-
-            <img class="goods_icon2" src="{% static 'images/icon-svg/more.png' %}" id="show">
-            
-            <dialog id="infoModal" class="selection_edit_delete_clothes">
-                <a href=""><p><h3>下架商品</h3></p></a>
-                <hr color="gainsboro"  width="100%"> 
-                <a href="" id="close"><p><h3>取消</h3></p></a>
-                </button>
-            </dialog>
-            <script>
-                let img=document.querySelector("#show");
-                let infoModal=document.querySelector("#infoModal");
-                let close=document.querySelector("#close");
-                img.addEventListener("click", function(){
-                     infoModal.showModal();
-                })
-                close.addEventListener("click", function(){
-                     infoModal.close();
-                })
-            </script>
-
-            <img src="{{ post.product.image.url }}" class="goods_pic">
-
-            <div style="margin-top: 10px; padding-top: 20px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
-
-        </div>
-        <div class="goods_detail">
-            <button type="value" name="type" class="goods_label">{{ post.product.type }}</button>
-            <button type="value" name="color" class="goods_label">{{ post.product.color }}</button>
-            <button type="value" name="style" class="goods_label">{{ post.product.style }}</button>
-            <button type="value" name="company" class="goods_label">{{ post.product.company }}</button>
-            <button type="value" name="isFormal" class="goods_label">{% if post.product.isFormal %}正式{% else %}休閒{% endif %}</button>
-
-            <div style="margin-top: 10px; padding-top: 10px;"> </div>
-			
-			<span class="goods_note" name="note" style="font-weight: bold;">備註:</span>
-            <span class="goods_note" name="note">{{ post.product.note }}</span>
-
-            <div style="margin-top: 10px; margin-bottom: 20px; padding-top: 20px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
+        {% endfor %}
 
 
-        </div>
+        <div style="margin-top: 10px; margin-bottom: 30px; padding-top: 2px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
 
-        <div class="recommendation"><span class="recommendation_title">相關穿搭</span>
-            <div style="margin-top: 10px; margin-bottom: 10px; padding-top: 10px;">  </div>
-            {% for related_post in post.product.post_set.all %}
-                <a href="{% url 'outfit' related_post.id %}">
-                    <img src="{{ related_post.image.url }}" class="recommendation_pic">
-                </a>
-            {% endfor %}
+    </div>
 
+    <div class="goods_function">
 
-            <div style="margin-top: 10px; margin-bottom: 30px; padding-top: 2px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
+        <a href="{% url 'create_outfit' %}">
+        <button type="value" name="type" class="goods_function_button" style="background-color: #c4b2bb; color: #6a5460"><img src="{% static 'images/icon-svg/shirt.png' %}" style="width: 30px;"><br>新增穿搭</button>
+        </a>
 
-        </div>
+        <a href="{% url 'my_product_update' post.id %}">
+        <button type="value" name="color" class="goods_function_button" style="background-color: #b8b8b8; color: #676767"><img src="{% static 'images/icon-svg/bag.png' %}" style="width: 30px;"><br>編輯商品</button>
+        </a>
 
-        <div class="goods_function">
+        <a href="{% url 'recommend' post.product.id %}">
+        <button type="value" name="style" class="goods_function_button" style="background-color: #e9e7be; color: #787764"><img src="{% static 'images/icon-svg/light.png' %}" style="width: 30px;"><br>穿搭推薦</button>
+        </a>
 
-            <a href="{% url 'create_outfit' %}">
-            <button type="value" name="type" class="goods_function_button" style="background-color: #c4b2bb; color: #6a5460"><img src="{% static 'images/icon-svg/shirt.png' %}" style="width: 30px;"><br>新增穿搭</button>
-            </a>
-
-            <a href="{% url 'my_product_update' post.id %}">
-            <button type="value" name="color" class="goods_function_button" style="background-color: #b8b8b8; color: #676767"><img src="{% static 'images/icon-svg/bag.png' %}" style="width: 30px;"><br>編輯商品</button>
-            </a>
-
-            <a href="{% url 'recommend' post.product.id %}">
-            <button type="value" name="style" class="goods_function_button" style="background-color: #e9e7be; color: #787764"><img src="{% static 'images/icon-svg/light.png' %}" style="width: 30px;"><br>穿搭推薦</button>
-            </a>
-
-        </div>
-
-    <body>
-<html>
+    </div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+            <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        {% block style %}{% endblock %}
+    </head>
+    
+    <body>
+        <div class="containerrr">
+            <div class="mycloset">
+                {% block h1 %}{% endblock %}
+            </div>
+            <a href="{% url 'settings' %}">
+            <img src="{% static 'images/icon-svg/user.png' %}" class="icon3_left">
+            </a>
+
+            <a href="{% url 'clothes' %}">
+            <img src="{% static 'images/icon-svg/closet1.png' %}" class="icon2_left">
+            </a>
+
+            <a href="{% url 'outfits' %}">
+            <img src="{% static 'images/icon-svg/social media.png' %}" class="icon22_left">
+            </a>
+
+            <a href="{% url 'products' %}">
+            <img src="{% static 'images/icon-svg/store.png' %}" class="icon1_left">
+            </a>
+
+            <a href="{% url 'carts' %}">
+            <img src="{% static 'images/icon-svg/shopping-cart1.png' %}" class="icon22">
+            </a>
+
+            <a href="{% url 'my_products' %}">
+            <img src="{% static 'images/icon-svg/management2.png' %}" class="icon2">
+            </a>
+            
+            <a href="{% url 'transaction_logs' %}">
+            <img src="{% static 'images/icon-svg/list.png' %}" class="icon3">
+            </a>
+        </div>
+
+        {% block content %}{% endblock %}
+        {% block script %}{% endblock %}
+    <body>
+<html>

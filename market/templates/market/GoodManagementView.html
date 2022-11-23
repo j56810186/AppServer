@@ -1,46 +1,34 @@
+{% extends 'market/Base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-    <head>
-      <meta charset="utf-8">
-            <title>Manage Goods</title>
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    </head>
 
-    <body>
-        <div class="containerrr">
-            <div class="mycloset">
-                商品管理
-            </div>
-            <button class="tabs__btn">
-                <a href="{% url 'clothes' %}">
-                <img class="icon" src="{% static 'images/icon-svg/arrow_left.png' %}">
-                </a>
+{% block title %}
+    我的商品
+{% endblock %}
+
+{% block h1 %}
+    我的商品
+{% endblock %}
+
+{% block content %}
+    <div class="container_search">
+        <span class="container_search_icon"><img src="{% static 'images/icon-svg/search.png' %}" style="width: 2rem;"></span>
+        <form action="" method="get">
+            <input type="search" id="search" placeholder="Search..." />
+
+            <button type="submit">
+            <img src="{% static 'images/icon-svg/search submit.png' %}" class="search_submit">
             </button>
-
-            <a href="{% url 'carts' %}">
-            <img src="{% static 'images/shopping-cart.png' %}" class="icon2">
+        </form>
+    </div>
+    {% for post in posts %}
+        <div class="buybox">
+            <a href="{% url 'my_product' post.id %}">
+                <div class="goodword">{{ post.title }}</div>
+                <img src="{{ post.product.image.url }}" class="pic1">
             </a>
-
-            <a href="{% url 'products' %}">
-            <img src="{% static 'images/icon-svg/store.png' %}" class="icon3">
-            </a>
-
-            <div class="container_search">
-                <span class="container_search_icon"><img src="{% static 'images/icon-svg/search.png' %}" style="width: 2rem;"></span>
-                <input type="search" id="search" placeholder="Search..." />
+            {% if post.is_sold %}
+                <img src="{% static 'images/sold.png' %}" class="addcart"></a>
+            {% endif %}
         </div>
-            {% for post in posts %}
-                <div class="buybox">
-                    <a href="{% url 'my_product' post.id %}">
-                        <div class="goodword">{{ post.title }}</div>
-                        <img src="{{ post.product.image.url }}" class="pic1">
-                    </a>
-                    {% if post.is_sold %}
-                        <img src="{% static 'images/sold.png' %}" class="addcart"></a>
-                    {% endif %}
-                </div>
-            {% endfor %}
-        </div>
-    <body>
-<html>
+    {% endfor %}
+{% endblock %}

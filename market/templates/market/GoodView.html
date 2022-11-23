@@ -1,131 +1,140 @@
+{% extends 'market/Base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-    <head>
-      <meta charset="utf-8">
-            <title>Goods</title>
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    </head>
 
-    <body>
-        <div class="containerrr">
-            <div class="mycloset">
-                商品頁面
-            </div>
-            <a href="{% url 'carts' %}">
-            <img src="{% static 'images/shopping-cart.png' %}" class="icon2">
-            </a>
-            <a href="{% url 'clothes' %}">
-            <img src="{% static 'images/icon-svg/home.png' %}" class="icon3">
-            </a>
+{% block title %}
+    {% if post.title %}
+        {{ post.title }}
+    {% else %}
+        瀏覽商品
+    {% endif %} 
+{% endblock %}
 
-            <button class="tabs__btn">
-                <a href="{% url 'products' %}">
-                <img class="icon" src="{% static 'images/icon-svg/arrow_left.png' %}">
-                </a>
+{% block h1 %}
+    {% if post.title %}
+        {{ post.title }}
+    {% else %}
+        瀏覽商品
+    {% endif %} 
+{% endblock %}
+
+{% block content %}
+    <div class="goods_bar">
+        <a href="{% url 'my_products' %}">
+        <img class="goods_icon1" src="{% static 'images/icon-svg/arrow_left.png' %}">
+        </a>
+
+        <img class="goods_icon2" src="{% static 'images/icon-svg/more.png' %}" id="show">
+        
+        <dialog id="infoModal" class="selection_edit_delete_clothes">
+            <a href=""><p><h3>下架商品</h3></p></a>
+            <hr color="gainsboro"  width="100%"> 
+            <a href="" id="close"><p><h3>取消</h3></p></a>
             </button>
-        </div>
+        </dialog>
+        <script>
+            let img=document.querySelector("#show");
+            let infoModal=document.querySelector("#infoModal");
+            let close=document.querySelector("#close");
+            img.addEventListener("click", function(){
+                    infoModal.showModal();
+            })
+            close.addEventListener("click", function(){
+                    infoModal.close();
+            })
+        </script>
 
-            <div class="imageList0" >
-                <br>
-                <button>
-                    <a href="{% url 'single_clothe' post.product.id %}">
-                    <img src="{{ post.product.image.url }}" style="width:20rem; height: 20rem;" />
-                    </a>
-                </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                {% for image in post.images.all %}
-                    <button>
-                        <a href="{% url 'single_clothe' post.product.id %}">
-                        <img src="{{ post.image.url }}" style="width:20rem; height: 20rem;" />
-                        </a>
-                    </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                {% endfor %}
-                <br> <br>
-            </div>
+        <img src="{{ post.product.image.url }}" class="goods_pic">
 
-        </div>
-        <div class="goods_detail1">
-            <button type="value" name="type" class="goods_label">{{ post.product.type }}</button>
-            <button type="value" name="color" class="goods_label">{{ post.product.color }}</button>
-            <button type="value" name="style" class="goods_label">{{ post.product.style }}</button>
-            <button type="value" name="company" class="goods_label">{{ post.product.company }}</button>
-            <button type="value" name="isFormal" class="goods_label">{% if post.product.isFormal %}正式{% else %}休閒{% endif %}</button>
+        <div style="margin-top: 10px; padding-top: 20px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
 
-            <div style="margin-top: 10px; padding-top: 10px;"> </div>
+    </div>
+    <div class="goods_detail">
+        <button type="value" name="type" class="goods_label">{{ post.product.type }}</button>
+        <button type="value" name="color" class="goods_label">{{ post.product.color }}</button>
+        <button type="value" name="style" class="goods_label">{{ post.product.style }}</button>
+        <button type="value" name="company" class="goods_label">{{ post.product.company }}</button>
+        <button type="value" name="isFormal" class="goods_label">{% if post.product.isFormal %}正式{% else %}休閒{% endif %}</button>
 
-            <span class="goods_note" name="note">{{ post.product.note }}</span>
-            <div class="comment-wrapper">
-                {% for comment in comments %}
-                    <div class="info">
-                        <div class="user">
-                            <div class="profile-pic"><img src="{{ comment.user.profile_picture.url }}" style="left: 15px; width: 3rem;"alt=""></div>
-                        </div>
-                        <p class="username1" style="font-size: 15px;">{{ comment.user.username }}</p>
-                        <p class="post-words" style="font-size: 15px;">{{ comment.text }}</p>
-                    </div>
-                {% endfor %}
-            </div>
-            <div class="comment-wrapper">
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                {# in the next line, if user.profile_picture, is a very wrong usage, must fix it. #}
-                <img src="{{ user.profile_picture.url }}" class="profile-pic" style="left: 15px;" alt="">
+        <div style="margin-top: 10px; padding-top: 10px;"> </div>
+        
+        <span class="goods_note" name="note" style="font-weight: bold;">備註:{{ post.content }}</span>
+        <span class="goods_note" name="note">{{ post.product.note }}</span>
 
-                <form action="{% url 'product_comments' post.id %}?prev_page={% url 'product' post.id %}" method="post">{% csrf_token %}
-                    <input type="text" name="comment" class="comment-box" placeholder="Add a comment">
-                    <button type="submit" class="comment-btn">post</button>
-                </form>
-
-            </div>
-            <div class="moreeee">
-                <a href="{% url 'product_comments' post.id %}">
-                    顯示更多
-                </a>
-            </div>
-
-            <div style="margin-top: 10px; margin-bottom: 20px; padding-top: 20px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
+        <div style="margin-top: 10px; margin-bottom: 20px; padding-top: 20px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
 
 
-        </div>
+    </div>
 
-        <div class="recommendation"><span class="recommendation_title">相關穿搭</span>
-            <div style="margin-top: 10px; margin-bottom: 10px; padding-top: 10px;">  </div>
-            {% for related_post in post.product.post_set.all %}
-                <a href="{% url 'viewPost' related_post.id %}">
-                    <img src="{{ related_post.image.url }}" class="recommendation_pic">
-                </a>
-            {% endfor %}
-
-            <div style="margin-top: 10px; margin-bottom: 30px; padding-top: 2px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
-
-        </div>
-
-            <div class="word13">猜你喜歡</div>
+    <div class="recommendation"><span class="recommendation_title">相關穿搭</span>
+        <div style="margin-top: 10px; margin-bottom: 10px; padding-top: 10px;">  </div>
+        {% for related_post in post.product.post_set.all %}
+            <a href="{% url 'outfit' related_post.id %}">
+                <img src="{{ related_post.image.url }}" class="recommendation_pic">
+            </a>
+        {% endfor %}
 
 
-            <hr class="ddc" size="3px" align="center" width="100%" color="gray" >
+        <div style="margin-top: 10px; margin-bottom: 30px; padding-top: 2px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
 
-            {% for prob_like_post in prob_like_posts %}
-                <a href="{% url 'product' prob_like_post.id %}">
-                    <img src="{{ prob_like_post.product.image.url }}" class="pic0">
-                </a>
-            {% endfor %}
-            <form id="cart-form" method="post" action="{% url 'cart_create' %}?prevPage={% url 'products' %}">{% csrf_token %}
-                <input type="hidden" name="user" value="{{ user.id }}" />
-                <input type="hidden" name="post" value="{{ post.id }}" />
-                <div class="bottom-bar2">
-                    <font size="5">加入購物車</font>
+    </div>
+
+    <div class="comment-wrapper">
+        {% for comment in comments %}
+            <div class="info">
+                <div class="user">
+                    <div class="profile-pic"><img src="{{ comment.user.profile_picture.url }}" style="left: 15px; width: 3rem;"alt=""></div>
                 </div>
-            </form>
-            <script>
-                var font = document.querySelector('.bottom-bar2');
-                var showtxt = document.querySelector('.show');
+                <p class="username1" style="font-size: 15px;">{{ comment.user.username }}</p>
+                <p class="post-words" style="font-size: 15px;">{{ comment.text }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="comment-wrapper">
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        {# in the next line, if user.profile_picture, is a very wrong usage, must fix it. #}
+        <img src="{{ user.profile_picture.url }}" class="profile-pic" style="left: 15px;" alt="">
 
-                function popup(e) {
-                    window.confirm('已加入購物車');
-                    document.getElementById("cart-form").submit();
-                };
-                font.addEventListener('click', popup);
-            </script>
-        </div>
-    <body>
-<html>
+        <form action="{% url 'product_comments' post.id %}?prev_page={% url 'product' post.id %}" method="post">{% csrf_token %}
+            <input type="text" name="comment" class="comment-box" placeholder="Add a comment">
+            <button type="submit" class="comment-btn">post</button>
+        </form>
+    </div>
+    <div class="moreeee">
+        <a href="{% url 'product_comments' post.id %}">
+            顯示更多
+        </a>
+    </div>
+
+    <div style="margin-top: 10px; margin-bottom: 20px; padding-top: 20px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
+    </div>
+
+    <div class="recommendation"><span class="recommendation_title">猜你喜歡</span>
+        <div style="margin-top: 10px; margin-bottom: 10px; padding-top: 10px;">  </div>
+        {% for prob_like_post in prob_like_posts %}
+            <a href="{% url 'product' prob_like_post.id %}">
+                <img src="{{ prob_like_post.product.image.url }}" class="recommendation_pic">
+            </a>
+        {% endfor %}
+        <form id="cart-form" method="post" action="{% url 'cart_create' %}?prevPage={% url 'products' %}">{% csrf_token %}
+            <input type="hidden" name="user" value="{{ user.id }}" />
+            <input type="hidden" name="post" value="{{ post.id }}" />
+            <div class="bottom-bar2">
+                <font size="5">加入購物車</font>
+            </div>
+        </form>
+        <script>
+            var font = document.querySelector('.bottom-bar2');
+            var showtxt = document.querySelector('.show');
+
+            function popup(e) {
+                window.confirm('已加入購物車');
+                document.getElementById("cart-form").submit();
+            };
+            font.addEventListener('click', popup);
+        </script>
+
+
+        <div style="margin-top: 10px; margin-bottom: 30px; padding-top: 2px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
+
+    </div>
+{% endblock %}

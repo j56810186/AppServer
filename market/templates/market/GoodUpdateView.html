@@ -1,33 +1,23 @@
+{% extends 'market/Base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-    <head>
-      <meta charset="utf-8">
-            <title>Edit Goods</title>
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    </head>
 
-    <body>
-        <div class="containerrr">
-            <div class="mycloset">
-                編輯商品
-            </div>
+{% block title %}
+    {% if post.title %}
+        {{ post.title }}
+    {% else %}
+        我的商品
+    {% endif %} 
+{% endblock %}
 
-            <button class="tabs__btn">
-                <a href="{% url 'my_product' post.id %}">
-                <img class="icon" src="{% static 'images/icon-svg/arrow_left.png' %}">
-                </a>
-            </button>
+{% block h1 %}
+    {% if post.title %}
+        {{ post.title }}
+    {% else %}
+        我的商品
+    {% endif %} 
+{% endblock %}
 
-            <a href="{% url 'edit_clothe' clothe.id %}">
-                <img src="{% static 'images/icon-svg/edit.png' %}" class="icon2">
-            </a>
-
-            <a href="{% url 'profile' user.id %}">
-            <img src="{% static 'images/icon-svg/user.png' %}" class="icon3">
-            </a>
-        </div>
-
+{% block content %}
         <form action="" enctype="multipart/form-data" method="post">{% csrf_token %}
             <div class="goods_bar">
                 <img src="{{ clothe.image.url }}" class="add_goods_pic">
@@ -136,7 +126,5 @@
         <button type="submit" name="goods_delete" class="goods_delete">刪除商品</button>
     </form>
 
-        <div style="margin-top: 10px; margin-bottom: 50px; padding-top: 2px;"> </div>
-
-    <body>
-<html>
+    <div style="margin-top: 10px; margin-bottom: 50px; padding-top: 2px;"> </div>
+{% endblock %}

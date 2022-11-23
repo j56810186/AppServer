@@ -6,57 +6,76 @@
             <title>Search Goods</title>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
     </head>
-
+    
     <body>
         <div class="containerrr">
             <div class="mycloset">
-                探索商品
+                搜尋商品
             </div>
-
-            <button class="tabs__btn">
-                <a href="{% url 'clothes' %}">
-                <img class="icon" src="{% static 'images/icon-svg/arrow_left.png' %}">
-                </a>
-            </button>
-            <a href="{% url 'carts' %}">
-            <img src="{% static 'images/shopping-cart.png' %}" class="icon2">
+            <a href="{% url 'settings' %}">
+            <img src="{% static 'images/icon-svg/user.png' %}" class="icon3_left">
             </a>
+
+            <a href="{% url 'clothes' %}">
+            <img src="{% static 'images/icon-svg/closet1.png' %}" class="icon2_left">
+            </a>
+
+            <a href="{% url 'outfits' %}">
+            <img src="{% static 'images/icon-svg/social media.png' %}" class="icon22_left">
+            </a>
+
+            <a href="{% url 'products' %}">
+            <img src="{% static 'images/icon-svg/store_selected.png' %}" class="icon1_left">
+            </a>
+
+            <a href="{% url 'carts' %}">
+            <img src="{% static 'images/icon-svg/shopping-cart1.png' %}" class="icon22">
+            </a>
+
+            <a href="{% url 'my_products' %}">
+            <img src="{% static 'images/icon-svg/management2.png' %}" class="icon2">
+            </a>
+            
             <a href="{% url 'transaction_logs' %}">
             <img src="{% static 'images/icon-svg/list.png' %}" class="icon3">
             </a>
-
-            <div class="container_search">
-                <span class="container_search_icon"><img src="{% static 'images/icon-svg/search.png' %}" style="width: 2rem;"></span>
-                <input type="search" id="search" placeholder="Search..." />
-            </div>
-            {% for post in posts %}
-                <div>
-                    <div class="buybox">
-                        <a href="{% url 'product' post.id %}">
-                            <div class="goodword">{{ post.title }}<br> $ {{ post.amount }}</div>
-                            <img src="{{ post.product.image.url }}" class="pic1">
-                        </a>
-                        <img id="addcart{{ post.id }}" src="{% static 'images/add-to-cart.png' %}" class="addcart0">
-                    </div>
-
-                    <form id="post_add_cart{{ post.id }}" method="post" action="{% url 'cart_create' %}?prevPage={% url 'products' %}">{% csrf_token %}
-                        <input type="hidden" name="user" value="{{ user.id }}" />
-                        <input type="hidden" name="post" value="{{ post.id }}" />
-                        <input type="image" src="{% static 'images/add-to-cart.png' %}" class="addcart" alt="Submit Form" />
-                    </form>
-                    <script>
-                        var img = document.querySelector('#addcart{{ post.id }}');
-                        var showtxt2 = document.querySelector('.show');
-
-                        function popup2(e) {
-                            if (window.confirm('已加入購物車') == true) {
-                                document.getElementById('post_add_cart{{ post.id }}').submit();
-                            }
-                        };
-                        img.addEventListener('click', popup2);
-                    </script>
-                </div>
-            {% endfor %}
         </div>
+
+        <div class="container_search">
+            <span class="container_search_icon"><img src="{% static 'images/icon-svg/search.png' %}" style="width: 2rem;"></span>
+            <form action="" method="get">
+                <input type="search" id="search" placeholder="Search..." />
+
+                <button type="submit">
+                <img src="{% static 'images/icon-svg/search submit.png' %}" class="search_submit">
+                </button>
+            </form>
+        </div>
+
+        {% for post in posts %}
+            <a href="{% url 'product' post.id %}">
+                <div class="buybox">
+                <div class="goodword">{{ post.title }}<br> $ {{ post.amount }}</div>
+                <img src="{{ post.product.image.url }}" class="pic1">
+            </a>
+            <img id="addcart{{ post.id }}" src="{% static 'images/add-to-cart.png' %}" class="addcart0">
+
+            <form id="post_add_cart{{ post.id }}" method="post" action="{% url 'cart_create' %}?prevPage={% url 'products' %}">{% csrf_token %}
+                <input type="hidden" name="user" value="{{ user.id }}" />
+                <input type="hidden" name="post" value="{{ post.id }}" />
+            </form>
+            <script>
+                var img = document.querySelector('#addcart{{ post.id }}');
+                var showtxt2 = document.querySelector('.show');
+
+                function popup2(e) {
+                    if (window.confirm('已加入購物車') == true) {
+                        document.getElementById('post_add_cart{{ post.id }}').submit();
+                    }
+                };
+                img.addEventListener('click', popup2);
+            </script>
+        </div>
+        {% endfor %}
     <body>
 <html>
