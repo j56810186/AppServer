@@ -1,28 +1,23 @@
+{% extends 'market/Base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-              <title>Wallet Setting</title>
-              <link rel="stylesheet" href="{% static 'css/style.css' %}">
-              <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-      </head>
 
-    <body>
-        <div class="containerrr">
-            <div class="mycloset">
-                錢包設定
-            </div>
+{% block title %}
+    {% if post.title %}
+        {{ post.title }}
+    {% else %}
+        我的商品
+    {% endif %}
+{% endblock %}
 
-            <a href="{% url 'my_wallet' %}">
-                <img class="icon" src="{% static 'images/icon-svg/arrow_left.png' %}">
-            </a>
+{% block h1 %}
+    {% if post.title %}
+        {{ post.title }}
+    {% else %}
+        我的商品
+    {% endif %}
+{% endblock %}
 
-            <a href="{% url 'clothes' %}">
-                <img src="{% static 'images/icon-svg/home.png' %}" class="icon3">
-            </a>
-        </div>
-
+{% block content %}
         <div class="wallet_title1">銀行帳號</div>
         <div>
             {% for account in bankaccounts %}
@@ -62,8 +57,6 @@
 
         </div>
 
-        <div style="margin-top: 500px; padding-top: 60px;"> <hr size="1px" color= "#d9d9d9" width="100%"> 
+        <div style="margin-top: 500px; padding-top: 60px;"> <hr size="1px" color= "#d9d9d9" width="100%">
         </div>
-    </body>
-
-</html>
+{% endblock %}

@@ -1,29 +1,15 @@
+{% extends 'market/Base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-              <title>My Wallet</title>
-              <link rel="stylesheet" href="{% static 'css/style.css' %}">
-      </head>
 
-    <body>
-        <div class="containerrr">
-            <div class="mycloset">
-                我的錢包
-            </div>
+{% block title %}
+    我的錢包
+{% endblock %}
 
-            <a href="{% url 'settings' %}">
-                <img class="icon" src="{% static 'images/icon-svg/arrow_left.png' %}">
-            </a>
+{% block h1 %}
+    我的錢包
+{% endblock %}
 
-
-            <a href="{% url 'set_my_wallet' %}">
-                <img src="{% static 'images/icon-svg/gear.png' %}" class="icon3">
-            </a>
-
-        </div>
-
+{% block content %}
         <div class="myWallet_title1">錢包餘額</div>
 
             <div class="balance_title">$
@@ -37,9 +23,8 @@
         <div class="myWallet_title2"> 提款 <br>
             <form>
             <input type="text" placeholder="輸入金額 $" name="withdraw_account" class="withdraw_input"><br>
-            <button id="submit" class="withdraw_submit" > <div class="withdraw_submit_font">新增銀行帳號 </div></button>
-
             </form>
+            <button type="button" onclick="location.href='{% url 'set_my_wallet' %}'" id="submit" class="withdraw_submit" > <div class="withdraw_submit_font">新增銀行帳號 </div></button>
             <div style="margin-top: 150px; padding-top: 30px;"> <hr size="1px" color= "#d9d9d9" width="100%">
             </div>
         </div>
@@ -51,47 +36,25 @@
                     <th style="font-weight: bold; font-size: 25px;">紀錄</th>
                     <th style="font-weight: bold; font-size: 25px;">金額</th>
                 </tr>
+                {% if wallet.transactionlog_set.all %}
+                    {% for log in wallet.transactionlog_set.all %}
+                        <tr>
+                            <td>{{ log.date }}</td>
+                            <td>訂單款項</td>
+                            <td>{% if wallet.user == log.buyer %}-{% else %}+{% endif %}NT$ {{ log.amount }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
                 <tr>
-                    <td>2022/06/09</td>
-                    <td>訂單款項</td>
-                    <td>+NT$580</td>
+                    <td>
+                    目前暫無交易紀錄
+                    </td>
                 </tr>
-                <tr>
-                    <tr>
-                    <td>2022/05/28</td>
-                    <td>訂單款項</td>
-                    <td>+NT$400</td>
-                </tr>
-                    <td>2022/05/26</td>
-                    <td>提款</td>
-                    <td>-NT$2520</td>
-                </tr>
-                <tr>
-                    <td>2022/05/23</td>
-                    <td>訂單款項</td>
-                    <td>+NT$720</td>
-                </tr>
-                <tr>
-                    <td>2022/05/18</td>
-                    <td>訂單款項</td>
-                    <td>+NT$380</td>
-                </tr>
-                <tr>
-                    <td>2022/05/14</td>
-                    <td>訂單款項</td>
-                    <td>+NT$1020</td>
-                </tr>
-                <tr>
-                    <td>2022/05/08</td>
-                    <td>訂單款項</td>
-                    <td>+NT$400</td>
-                </tr>
+                {% endif %}
             </table>
 
         </div>
 
         <div style="margin-top: 310px; padding-top: 30px;">
         </div>
-    </body>
-
-</html>
+{% endblock %}
