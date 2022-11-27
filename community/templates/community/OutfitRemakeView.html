@@ -103,18 +103,18 @@
                 }
             })
         })
-        function drawRectangle(left, top, width, height) {
-            var canvas = document.getElementById('canvas');
-            var context = canvas.getContext('2d');
-            var img = document.getElementById('image');
-            context.beginPath();
-            context.lineWidth = "4";
-            context.strokeStyle = "white";
-            context.rect(left, top, width, height);
-            context.stroke();
-        }
+        // function drawRectangle(left, top, width, height) {
+        //     var canvas = document.getElementById('canvas');
+        //     var context = canvas.getContext('2d');
+        //     var img = document.getElementById('image');
+        //     context.beginPath();
+        //     context.lineWidth = "4";
+        //     context.strokeStyle = "white";
+        //     context.rect(left, top, width, height);
+        //     context.stroke();
+        // }
         function getResult() {
-            drawRectangle(selectResult[0], selectResult[1], selectResult[2], selectResult[3]);
+            // drawRectangle(selectResult[0], selectResult[1], selectResult[2], selectResult[3]);
             regions.push(selectResult);
             element.setAttribute("hidden","False");
         }

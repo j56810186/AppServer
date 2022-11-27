@@ -367,8 +367,15 @@ class CreateSubClosetView(CreateView):
 
 # 複製照片中的衣服 (copy)
 def copy_clothe(request, *args, **kwargs):
-    # TODO:  this method have not been implement.
-    pass
+    if request.method == 'GET':
+        return render(request, 'closet/Copy.html')
+    else: # request method == 'POST'
+        response = CreateClotheView().post(request, *args, **kwargs)
+        print(response.object)
+
+        # TODO: create a new clothe and predict it with color and type model. Then, query the same color and type clothes, and remove the new clothe.
+        # finally return the query results.
+        pass
 
 
 # 穿搭推薦 (recommend)

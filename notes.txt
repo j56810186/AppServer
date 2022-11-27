@@ -1,8 +1,4 @@
 
-outfit 的刪除的功能 > todo, waiting front-end.
-
-新增分類有問題
-
 交易賣家的部分有 bug，transaction log 應該合併成一個，不然買家根本還沒 done 賣家就 done 很白癡
 
 試試看寫個 code 做測試資料自動匯入，不然真的要 key 到死，太靠北
@@ -14,15 +10,6 @@ outfit search
 good search
 my good search
 copy clothe
-
-templates:
-wallet edit view
-wallet view
-
-
-
-
-
 
 ------------------
 前端 issues:
@@ -38,16 +25,18 @@ wallet view
 ------------------
 後端 issues:
 
-1. 錢包提款功能未實作 --> 不做吧？
+1. 錢包提款功能未實作 --> 作假的
 
-4. 搜尋功能 --> todo
 
-------------------
-整合 issues:
+搜尋穿搭標題
+搜尋相似衣服
+新增商品
+社群顯示名字
+編輯商品跑版
 
-1. 穿搭的功能 icons 位置怪怪的 (套上 forms 後)
-2. 編輯穿搭尚未整合好
 
+
+新增刪除分類
 
 =====================================
 classify model preload
