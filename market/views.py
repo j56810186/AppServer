@@ -25,14 +25,19 @@ from market.models import Bank, BankAccount, Cart, Comment, Post, TransactionLog
 # 二手拍賣個人頁面 (mysecondhand)
 def get_my_products(request):
     posts = Post.objects.filter(user=request.user)
+    query = request.GET.get('q')
+    if query:
+        posts = posts.filter(title__contains=query)
     context = {'posts': posts}
-
     return render(request, 'market/GoodManagementView.html', context=context)
 
 
 # 二手拍賣首頁 (secondhand_list)
 def get_products(request):
     posts = Post.objects.filter(is_sold=False).exclude(user=request.user).order_by('-id')
+    query = request.GET.get('q')
+    if query:
+        posts = posts.filter(title__contains=query)
     context = {'posts': posts}
     return render(request, 'market/GoodsView.html', context=context)
 

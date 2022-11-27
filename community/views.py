@@ -67,6 +67,12 @@ class OutfitView(ListView):
         context['user_closets'] = user_closets
         return context
 
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        if query:
+            return self.model.objects.filter(title__contains=query)
+        return super().get_queryset()
+
     def get(self, request):
         if not request.user.is_authenticated:
             return redirect('login')
@@ -183,7 +189,7 @@ class EditOutfitView(UpdateView):
 class DeleteOutfitView(DeleteView):
     model = Post
     template_name = 'community/OutfitUpdateView.html'
-    
+
     def get_success_url(self):
         return reverse('personal_outfits')
 
@@ -251,10 +257,10 @@ def select_remake_outfit(request, postPk):
             regions.append(
                 [int(each) for each in ''.join([i for i in value if i not in '[]']).split(',')]
             )
-    
+
     # cut the selected regions.
     orig_img = cv2.imread(orig_img_path)
-    
+
     # conversion of the image size between on the webpage and the original image.
     web_img_height = int(request.POST.get('img_height'))
     img_size_ratio = orig_img.shape[0] / web_img_height

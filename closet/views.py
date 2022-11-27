@@ -6,6 +6,7 @@ from pathlib import Path
 from django.contrib import auth, messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.files.storage import default_storage
 from django.core.mail import send_mail
 from django.db.models import Q
 from django.http import HttpResponseRedirect
@@ -214,14 +215,15 @@ class ShowSingleTypeClotheView(ListView):
                 if self.request.POST.get(str(clothe.id)):
                     clothe.closet = new_closet
                     clothe.save()
-            
+
         elif self.request.POST.get('edit'):
             closet = Closet.objects.get(id=self.request.POST.get('closet_id'))
             name = self.request.POST.get('username')
-            closet.update(name=name)
+            closet.name = name
+            closet.save()
             for clothe in self.get_queryset():
                 if self.request.POST.get(str(clothe.id)):
-                    clothe.closet = new_closet
+                    clothe.closet = closet
                     clothe.save()
 
         return redirect(reverse(
@@ -370,12 +372,22 @@ def copy_clothe(request, *args, **kwargs):
     if request.method == 'GET':
         return render(request, 'closet/Copy.html')
     else: # request method == 'POST'
-        response = CreateClotheView().post(request, *args, **kwargs)
-        print(response.object)
-
-        # TODO: create a new clothe and predict it with color and type model. Then, query the same color and type clothes, and remove the new clothe.
-        # finally return the query results.
-        pass
+        file = request.FILES['new_image']
+        img = default_storage.save(file.name, file)
+        user = request.user
+        clothe = Clothe.objects.create(
+            user=user,
+            closet=user.closets.first(),
+            image=img
+        )
+        predict_image(clothe)
+        similar_clothes = Clothe.objects.filter(
+            user=user,
+            color=clothe.color,
+            type=clothe.type,
+        ).exclude(id=clothe.id)
+        clothe.delete()
+        return render(request, 'closet/CopyResult.html', context={'similar_clothes': similar_clothes, 'image': img})
 
 
 # 穿搭推薦 (recommend)
@@ -410,17 +422,17 @@ class RecommendView(View):
         if recommends:
             if len(recommends) > 4:
                 recommends = recommends[:4]
-        
+
         used_clothes = ','.join(used_clothes)
         for item in recommends:
             if not used_clothes:
                 used_clothes = f'{item.id}'
             used_clothes += f',{item.id}'
-        
+
         context['clothe'] = clothe
         context['recommends'] = recommends
         context['used_clothes'] = used_clothes
-        
+
         return context
 
 

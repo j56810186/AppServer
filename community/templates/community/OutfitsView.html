@@ -6,7 +6,7 @@
             <title>Closet</title>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
     </head>
-    
+
     <body>
         <div class="containerrr">
             <div class="mycloset">
@@ -15,27 +15,27 @@
                 <a href="{% url 'settings' %}">
                 <img src="{% static 'images/icon-svg/user.png' %}" class="icon3_left">
                 </a>
-    
+
                 <a href="{% url 'clothes' %}">
                 <img src="{% static 'images/icon-svg/closet1.png' %}" class="icon2_left">
                 </a>
-    
+
                 <a href="{% url 'outfits' %}">
                 <img src="{% static 'images/icon-svg/social media_selected.png' %}" class="icon22_left">
                 </a>
-    
+
                 <a href="{% url 'products' %}">
                 <img src="{% static 'images/icon-svg/store.png' %}" class="icon1_left">
                 </a>
-    
+
                 <a href="{% url 'create_outfit' %}">
                 <img src="{% static 'images/icon-svg/add_white.png' %}" class="icon22">
                 </a>
-    
+
                 <a href="{% url 'personal_outfits' %}">
                     <img src="{% static 'images/icon-svg/album.png' %}" class="icon2">
                 </a>
-                
+
                 <a href="{% url 'saved_outfits' %}">
                     <img src="{% static 'images/icon-svg/bookmark_saved.png' %}" class="icon3">
                 </a>
@@ -43,8 +43,7 @@
         <div class="container_search">
             <span class="container_search_icon"><img src="{% static 'images/icon-svg/search.png' %}" style="width: 2rem;"></span>
             <form action="" method="get">
-                <input type="search" id="search" placeholder="Search..." />
-
+                <input name="q" type="search" id="search" placeholder="Search..." />
                 <button type="submit">
                 <img src="{% static 'images/icon-svg/search submit.png' %}" class="search_submit">
                 </button>
@@ -100,7 +99,7 @@
 
                         <span class="likes">{{ post.likes.count }} likes</span>
                         <span class="content_username">{{ post.user.username }}</span>
-                        <span class="content_copy">{{ post.content }}</span>
+                        <span class="content_copy">{{ post.title }}</span>
                         <span class="post-time">{{ post.datetime }}</span>
                     </div>
 

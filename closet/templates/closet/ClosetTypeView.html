@@ -10,9 +10,9 @@
 {% endblock %}
 
 {% block content %}
-        
+
         <div style="margin-top: 150px;"></div>
-        
+
             <div class="addnew">近期新增</div>
 
             <div class="imageList" >
@@ -28,7 +28,7 @@
 
                 <br> <br>
             </div>
-                    
+
             {% if market_posts %}
             <div class="addnew">已上架</div>
             <div class="imageList" >
@@ -46,15 +46,17 @@
             {% endif %}
 
             {% for closet in user_closets %}
-                    <div class="addnew">{{ closet.name }}</div> <img src="{% static 'images/icon-svg/more1.png' %}" class="more" id="show2">
-                    <dialog id="infoModal2" class="selection_add_edit2">
-                        <a href="#popup2"><p><h3>編輯分類</h3></p></a>
-                        <hr  color="gainsboro" width="100%"> 
-                        <a href=""><p><h3>刪除分類</h3></p></a>
-                        <hr color="gainsboro"  width="100%"> 
-                        <a href="" id="close2"><p><h3>取消</h3></p></a>
-                        </button>
-                    </dialog>
+                    <div class="addnew">{{ closet.name }}</div> <a href="#popup3"><img src="{% static 'images/icon-svg/more1.png' %}" class="more" id="show2"></a>
+                    <div id="popup3" class="overlay">
+                        <div class="popup">
+                            <a href="#popup2"><p><h3>編輯分類</h3></p></a>
+                            <hr  color="gainsboro" width="100%">
+                            <a href=""><p><h3>刪除分類</h3></p></a>
+                            <hr color="gainsboro"  width="100%">
+                            <a href="" id="close2"><p><h3>取消</h3></p></a>
+                            </button>
+                        </div>
+                    </div>
                     <script>
                         let img2=document.querySelector("#show2");
                         let infoModal2=document.querySelector("#infoModal2");
@@ -97,7 +99,7 @@
                             </label>
                             {% endfor %}
                             <input type="submit" value="保存" class="cate_submit" ></input>
-                            
+
                         </div>
                     </div>
                 </form>
@@ -120,7 +122,7 @@
                         </label>
                         {% endfor %}
                         <input type="submit" value="保存" class="cate_submit" ></input>
-						
+
                     </div>
                 </div>
             </form>

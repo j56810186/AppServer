@@ -6,7 +6,7 @@
             <title>Search Goods</title>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
     </head>
-    
+
     <body>
         <div class="containerrr">
             <div class="mycloset">
@@ -35,7 +35,7 @@
             <a href="{% url 'my_products' %}">
             <img src="{% static 'images/icon-svg/management2.png' %}" class="icon2">
             </a>
-            
+
             <a href="{% url 'transaction_logs' %}">
             <img src="{% static 'images/icon-svg/list.png' %}" class="icon3">
             </a>
@@ -44,8 +44,7 @@
         <div class="container_search">
             <span class="container_search_icon"><img src="{% static 'images/icon-svg/search.png' %}" style="width: 2rem;"></span>
             <form action="" method="get">
-                <input type="search" id="search" placeholder="Search..." />
-
+                <input name="q" type="search" id="search" placeholder="Search..." />
                 <button type="submit">
                 <img src="{% static 'images/icon-svg/search submit.png' %}" class="search_submit">
                 </button>
