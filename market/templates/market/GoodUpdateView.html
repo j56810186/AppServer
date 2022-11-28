@@ -20,9 +20,9 @@
 {% block content %}
         <form action="" enctype="multipart/form-data" method="post">{% csrf_token %}
             <div class="goods_bar">
-                <img src="{{ clothe.image.url }}" class="add_goods_pic">
-                <img src="{% static 'images/icon-svg/add.png' %}" class="add_goods_pic" id="photo">
-                <input id="photo" name="image" type="file" accept="image/*" class="goods_fileInput" style="width: 250px" multiple=""/>
+                <img src="{{ clothe.image.url }}" class="add_goods_pic" style="width: 250px;height: 250px;">
+            <img src="{% static 'images/icon-svg/add.png' %}" class="add_goods_pic" id="photo" style="width: 250px;height: 250px;">
+            <input name="image" type="file" accept="image/*" class="goods_fileInput" style="width: 250px" multiple=""/>
             </div>
 
 
