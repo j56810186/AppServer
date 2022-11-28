@@ -19,10 +19,12 @@
             <table class="shopping_cart_content">
                 {% for cart in carts %}
                     <tr>
-                        <td><input type="checkbox" name="buy" value="{{ cart.id }}" class="shopping_cart_content_checkbox"></td>
+                        <td><input id="buy{{ cart.id }}" type="checkbox" name="buy" value="{{ cart.id }}" class="shopping_cart_content_checkbox"></td>
                         <td><img src="{{ cart.post.product.image.url }}" class="shopping_cart_pic"></td>
                         <td class="shopping_cart_goods_name">{{ cart.post.title }}</td>
-                        <td class="shopping_cart_price">NT$ {{ cart.post.amount }}</td>
+                        <td class="shopping_cart_price">
+                            NT$ <span id="amount{{ cart.id }}">{{ cart.post.amount }}</span>
+                        </td>
                         <td>
                             <input type="hidden" id="shopping_cart_id" value="{{ cart.id }}" />
                             <img src="{% static 'images/icon-svg/trash_can.png' %}" id="cart_delete{{ cart.id }}" class="shopping_cart_trash">
@@ -30,9 +32,8 @@
                     </tr>
                 {% endfor %}
             </table>
-
     </div>
-    
+
     <script>
     $('#ShoppingCart tr:not(.totalColumn) input:text').bind('keyup change', function() {
     var $table = $(this).closest('table');
@@ -44,13 +45,13 @@
     });
 
     $table.find('.totalColumn td:nth-child('+thisNumber+') input').val(total);
-    });        
+    });
     </script>
 
         <div style="margin-top: 210px; padding-top: 30px;"> <hr size="2px" color= "#d9d9d9" width="100%"> </div>
         <div style="margin-top: 40px; ">
             <span class="shopping_cart_balance">總金額$ </span>
-            <span class="shopping_cart_balance">799</span>
+            <span id="total_amount" class="shopping_cart_balance">0</span>
             <button id="submit" class="shopping_cart_submit" > <div class="shopping_cart_submit_font">下一步</div></button>
         </div>
     </form>
@@ -86,6 +87,19 @@
                     });
                 }
             )
+        </script>
+
+        <script>
+            let checkbox{{ cart.id }} = $('#buy{{ cart.id }}');
+            checkbox{{ cart.id }}.change(
+                function() {
+                    var total_amount_span = $('#total_amount')
+                    var total_amount = parseInt(total_amount_span.text());
+                    var cart_amount = parseInt($('#amount{{ cart.id }}').text());
+                    checkbox{{ cart.id }}[0].checked ? total_amount += cart_amount : total_amount -= cart_amount;
+                    total_amount_span.text(total_amount);
+                }
+            );
         </script>
     {% endfor %}
 {% endblock %}
