@@ -1,7 +1,13 @@
 from django.contrib import admin
-from closet.models import Closet, Clothe, Type
+from closet.models import Closet, Clothe, Type, User
 
 # Register your models here.
+
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    search_fields = ['id', 'name']
+    list_filter = ['name']
+    list_display = ['id', 'name']
 
 @admin.register(Closet)
 class ClosetAdmin(admin.ModelAdmin):

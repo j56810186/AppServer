@@ -56,13 +56,12 @@
                         {% csrf_token %}
                         <div class="post_camera_icon">
                             <img id="image" class="post-image" style="width: auto; display: block; margin-left: auto; margin-right: auto;" src="{{ post.image.url }}"/>
-                            <canvas id="canvas" class="post-image" style="width: auto; display: block; margin-left: auto; margin-right: auto;"></canvas>
+                            <canvas id="canvas" style="position: absolute; top: 8px;left: 8px"></canvas>
                         </div>
                         <button type="button" hidden=true id="confirm" onclick="getResult()" class="remake_submit1" > 選擇下一個</button>
                         <button type="submit" class="remake_submit2"> <a href="#popup2" style="color: rgba(255,254,247,1);"> 開始復刻 </button></a>
                     </form>
                 </div>
-
 
             </div>
 

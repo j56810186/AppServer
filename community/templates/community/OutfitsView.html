@@ -72,15 +72,20 @@
                     </a>
                     <div class="post-content">
                         <div class="reaction-wrapper" style="margin-left: auto; margin-right:auto;">
+                            {% if user in post.likes.all %}
+                                <image src="{% static 'images/icon-svg/heart.png' %}" class="outfit_icon link_icon" alt="Like" style="height:35px; width: 35px;" />
+                            {% else %}
                             <form action="" method="post"> {% csrf_token %}
                                 <input type="hidden" value="{{ post.id }}" name="post_id">
                                 <input type="hidden" value="1" name="like">
                                 <input type="image" src="{% static 'images/icon-svg/heart.svg' %}" class="outfit_icon link_icon" alt="Like">
                             </form>
+                            {% endif %}
 
                             <a href="{% url 'outfit_comments' postPk=post.id %}" class="link_icon">
                                 <img src="{% static 'images/icon-svg/comment.svg' %}" class="outfit_icon" alt="">
                             </a>
+
 
                             {% if user != post.user %}
                             <a href="{% url 'remake_outfit' postPk=post.id %}" class="link_icon">
@@ -88,11 +93,15 @@
                             </a>
                             {% endif %}
 
+                            {% if user in post.follower.all %}
+                                <image src="{% static 'images/icon-svg/bookmark_saved1.png' %}" class="outfit_icon link_icon" alt="Saved"style="height:35px; width: 35px;" />
+                            {% else %}
                             <form action="" method="post"> {% csrf_token %}
                                 <input type="hidden" value="{{ post.id }}" name="post_id">
                                 <input type="hidden" value="1" name="followed">
                                 <input type="image" src="{% static 'images/icon-svg/bookmark.svg' %}" class="link_icon outfit_icon" alt="Save">
                             </form>
+                            {% endif %}
 
 
                         </div>

@@ -21,7 +21,7 @@
                 {% for clothe in clothes reversed %}
                 <button>
                     <a href="{% url 'single_clothe' clothe.id %}">
-                        <img src="{{ clothe.image.url }}" style="width:20rem; height: 25rem;" />
+                        <img src="{{ clothe.image.url }}" style="width:20rem; height: 25rem; z-index: 0;" />
                     </a>
                 </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 {% endfor %}
@@ -85,7 +85,7 @@
                 </div>
                 <form action="" method="post"> {% csrf_token %}
                     <div id="popup2" class="overlay">
-                        <div class="popup">
+                        <div class="popup" style="z-index: 1;">
                             <h2>分類名稱</h2>
                             <input type="text" id="username" name="username" value="{{ closet.name }}" required class="likeinput">
                             <input type="hidden" name="type_id" value="{{ type.id }}">
@@ -110,7 +110,7 @@
             <form action="" method="post"> {% csrf_token %}
             <a class="login_submit1" href="#popup1">新增分類</a>
                 <div id="popup1" class="overlay">
-                    <div class="popup">
+                    <div class="popup" style="z-index: 1;">
                         <h2>分類名稱</h2>
                         <input type="text" id="username" name="username" required class="likeinput">
                         <input type="hidden" name="type_id" value="{{ type.id }}" class="likeinput">

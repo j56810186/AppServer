@@ -32,14 +32,14 @@
         <div class="myWallet_title3"> 交易紀錄 <br>
             <table class="transaction_record">
                 <tr>
-                    <th style="font-weight: bold; font-size: 25px;">日期</th>
-                    <th style="font-weight: bold; font-size: 25px;">紀錄</th>
-                    <th style="font-weight: bold; font-size: 25px;">金額</th>
+                    <th style="font-weight: bold; font-size: 25px; width: 30%;">日期</th>
+                    <th style="font-weight: bold; font-size: 25px; width: 40%;">紀錄</th>
+                    <th style="font-weight: bold; font-size: 25px; width: 30%;">金額</th>
                 </tr>
                 {% if wallet.transactionlog_set.all %}
                     {% for log in wallet.transactionlog_set.all %}
                         <tr>
-                            <td>{{ log.date }}</td>
+                            <td>{{ log.datetime }}</td>
                             <td>訂單款項</td>
                             <td>{% if wallet.user == log.buyer %}-{% else %}+{% endif %}NT$ {{ log.amount }}</td>
                         </tr>
