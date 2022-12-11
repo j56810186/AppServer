@@ -56,26 +56,18 @@
                         {% csrf_token %}
                         <div class="post_camera_icon">
                             <img id="image" class="post-image" style="width: auto; display: block; margin-left: auto; margin-right: auto;" src="{{ post.image.url }}"/>
-                            <canvas id="canvas" style="position: absolute; top: 8px;left: 8px"></canvas>
+                            <canvas id="canvas" class="post-image" style="width: auto; display: block; margin-left: auto; margin-right: auto;"></canvas>
                         </div>
                         <button type="button" hidden=true id="confirm" onclick="getResult()" class="remake_submit1" > 選擇下一個</button>
                         <button type="submit" class="remake_submit2"> <a href="#popup2" style="color: rgba(255,254,247,1);"> 開始復刻 </button></a>
                     </form>
                 </div>
-                
-                <div >
-                    <div style="padding-bottom: 25px;"></div>
-                    
-                        <input type="text" class="remake_clothes_font" value="復刻單品" style="background-color:#f3f3f3; border:0; width: 90%; text-align: left;" />  
-
-                    <hr size="1px" color= "#e6e6e6" width="100%"> 
 
 
-                </div>
             </div>
-            
+
         </div>
-    
+
     </section>
 {% endblock %}
 

@@ -5,9 +5,9 @@ from closet.models import Closet, Clothe, Type
 
 @admin.register(Closet)
 class ClosetAdmin(admin.ModelAdmin):
-    search_fields = ['id', 'name', 'user']
-    list_filter = ['name', 'user']
-    list_display = ['id', 'name', 'user']
+    search_fields = ['id', 'name', 'user', 'type']
+    list_filter = ['name', 'user', 'type']
+    list_display = ['id', 'name', 'user', 'type']
 
 @admin.register(Clothe)
 class ClotheAdmin(admin.ModelAdmin):

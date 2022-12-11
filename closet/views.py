@@ -202,14 +202,15 @@ class ClosetView(LoginRequiredMixin, ListView):
 class ShowSingleTypeClotheView(ListView):
     model = Clothe
     template_name = 'closet/ClosetTypeView.html'
-    paginate_by = 4
+    # paginate_by = 4
     context_object_name = 'clothes'
 
     def post(self, *args, **kwargs):
         type_id = self.request.POST.get('type_id')
         if self.request.POST.get('create'):
             closet_name = self.request.POST.get('username')
-            new_closet = Closet.objects.create(name=closet_name, user=self.request.user)
+            _type = Type.objects.get(id=type_id)
+            new_closet = Closet.objects.create(name=closet_name, user=self.request.user, type=_type)
 
             for clothe in self.get_queryset():
                 if self.request.POST.get(str(clothe.id)):
@@ -305,21 +306,26 @@ class CreateClotheView(CreateView):
 # 編輯衣物 (edit_clothe)
 class EditClotheView(UpdateView):
     model = Clothe
-    fields = ['name', 'image', 'is_formal', 'warmness', 'color', 'company', 'style', 'shoe_style', 'type', 'note']
+    fields = ['name', 'is_formal', 'warmness', 'color', 'company', 'style', 'shoe_style', 'type', 'note']
     template_name = 'closet/CreateOrEditClotheView.html'
     context_object_name = 'clothe'
     # template_name = 'app/ClotheUpdateView.html'
 
     def form_invalid(self, form):
-        if not form.cleaned_data['image']:
-            form.cleaned_data['image'] = self.get_object().image
+        if self.request.POST.get('new_image', None):
+            self.form_valid(form)
         return UpdateView.form_invalid(self, form)
 
     def form_valid(self, form):
-        self.object = form.save()
-        object = self.object
-        if self.request.POST.get('new_image'):
-            predict_image(object)
+        if self.request.POST.get('new_image', None):
+            file = self.request.FILES.get('image', None)
+            img = default_storage.save(file.name, file)
+            obj = self.object
+            obj.image = img
+            obj.save()
+            predict_image(obj)
+        else:
+            self.object = form.save()
 
         return HttpResponseRedirect(self.get_success_url())
 
@@ -412,13 +418,16 @@ class RecommendView(View):
 
     def get_context_data(self, request, *args, **kwargs):
         used_clothes = kwargs.get('used_clothes', [])
-        print(used_clothes)
         context = {}
         clothe = Clothe.objects.get(id=kwargs['pk'])
+        if clothe.type.id in Type.UPPER_BODY_TYPES:
+            same_part_types = Type.UPPER_BODY_TYPES
+        else: # in lower body types
+            same_part_types = Type.LOWER_BODY_TYPES
         recommends = Clothe.objects.filter(
             user=clothe.user,
             style=clothe.style,
-        ).exclude(Q(type=clothe.type) | Q(id__in=used_clothes))
+        ).exclude(Q(type__id__in=same_part_types) | Q(id__in=used_clothes))
         if recommends:
             if len(recommends) > 4:
                 recommends = recommends[:4]
@@ -464,7 +473,7 @@ CONVERT_PREDICT_TYPE = {
     'shorts': 4,
     'skirt': 5,
     'dress': 6,
-    'footwear': 7
+    'shoes': 7
 }
 
 # ai models.

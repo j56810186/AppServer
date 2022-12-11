@@ -14,6 +14,7 @@ urlpatterns = [
     path('outfits/', views.OutfitView.as_view(), name='outfits'),
     path('outfits/<int:pk>', views.outfit, name='outfit'),
     path('outfits/create', views.CreateOutfitView.as_view(), name='create_outfit'),
+    path('outfits/create/<int:clotheId>', views.CreateOutfitView.as_view(), name='create_outfit_with_clothe'),
     path('outfits/<int:pk>/edit', views.EditOutfitView.as_view(), name='edit_outfit'),
     path('outfits/<int:pk>/delete', views.DeleteOutfitView.as_view(), name='delete_outfit'),
     path('outfits/<int:postPk>/comments', views.comments, name='outfit_comments'),

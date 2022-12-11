@@ -12,7 +12,7 @@
             <div class="post">
                 <div class="info">
                     <div class="user">
-                        
+
                         <div class="profile-pic"> <img src="{{ post.user.profile_picture.url }}" alt=""> </div>
                         <p class="username" style="color: rgba(148,122,136,1);">{{ post.user.username }}</p>
                     </div>
@@ -25,29 +25,29 @@
 
                                 <img id="photo" class="post-image" style="z-index: 1; display: block; margin-left: auto; margin-right: auto;" src="{{ post.image.url }}"/>
                                 <input id="photo" type="file" accept="image/*" class="remake_fileInput"  multiple=""/>
-            
+
                         </div>
-            
+
                         <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
                         <script>
-                                
-                                $('input').on('change', function(e){      
+
+                                $('input').on('change', function(e){
                                     const file = this.files[0];
                                     const objectURL = URL.createObjectURL(file);
                                     $("#photo").attr("src", objectURL);
                                 });
-                                    
+
                         </script>
-            
+
                     </form>
                 </div>
-                
+
                 <div >
                     <div style="padding-bottom: 25px;"></div>
-                    
-                        <input type="text" class="remake_clothes_font" value="復刻單品" style="background-color:#f3f3f3; border:0; width: 90%; text-align: left;" />  
 
-                    <hr size="1px" color= "#e6e6e6" width="100%"> 
+                        <input type="text" class="remake_clothes_font" value="復刻單品" style="background-color:#f3f3f3; border:0; width: 90%; text-align: left;" />
+
+                    <hr size="1px" color= "#e6e6e6" width="100%">
 
 
                 </div>
@@ -59,7 +59,7 @@
                             <div> <img src="{{ clothe.image.url }}" class="remake_clothes_block{{ forloop.counter }}"> </div>
                         </a>
                     {% endfor %}
-                    <hr size="1px" color= "#e6e6e6" width="100%"> 
+                    <hr size="1px" color= "#e6e6e6" width="100%">
 
                     <br>
 
@@ -69,8 +69,8 @@
 
 
             </div>
-            
+
         </div>
-    
+
     </section>
 {% endblock %}

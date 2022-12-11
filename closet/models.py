@@ -44,6 +44,8 @@ class Closet(models.Model):
     # Foreign key setting.
     user = models.ForeignKey('User', on_delete=models.CASCADE, related_name='closets')
 
+    type = models.ForeignKey('Type', on_delete=models.CASCADE, blank=True, null=True)
+
 @receiver(post_save, sender=User)
 def create_new_closet(instance, **kwargs):
     if kwargs.get('created', None):
@@ -80,7 +82,7 @@ class Clothe(models.Model):
     # Foreign keys.
     user = models.ForeignKey('User', on_delete=models.CASCADE)
     closet = models.ForeignKey('Closet', on_delete=models.CASCADE, related_name='clothes')
-    company = models.ForeignKey('Company', on_delete=models.CASCADE, blank=True, null=True)
+    company = models.ForeignKey('Company', on_delete=models.CASCADE, default=27)
     color = models.ForeignKey('Color', on_delete=models.CASCADE, blank=True, null=True)
     type = models.ForeignKey('Type', on_delete=models.CASCADE, blank=True, null=True)
     style = models.ForeignKey('Style', on_delete=models.CASCADE, blank=True, null=True)
@@ -97,7 +99,8 @@ class Company(models.Model):
 
 
 class Type(models.Model):
-
+    UPPER_BODY_TYPES = (1, 2, 6)
+    LOWER_BODY_TYPES = (3, 4, 5, 6)
     name = models.CharField(max_length=50)
 
     def __str__(self):

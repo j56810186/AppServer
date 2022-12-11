@@ -138,6 +138,10 @@ class CreateOutfitView(CreateView):
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
         context_data['clothes'] = Clothe.objects.filter(user=self.request.user)
+        origin_clothe_id = self.kwargs.get('clotheId')
+        if origin_clothe_id:
+            origin_clothe = Clothe.objects.get(id=origin_clothe_id)
+            context_data['origin_clothe'] = origin_clothe
 
         return context_data
 

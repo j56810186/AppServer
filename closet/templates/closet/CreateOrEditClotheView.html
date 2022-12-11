@@ -64,7 +64,6 @@
     </div>
 
         <form class="clothes_camera" action="" enctype="multipart/form-data" method="post">{% csrf_token %}
-            {% for i in form %}{{ i.errors }}{% endfor %}
             <div>
                     {% if not clothe %}
                         <img id="photo" class="clothes_input" src="{% static 'images/icon-svg/camera.jpg' %}" style="width: 18rem" />
@@ -125,16 +124,16 @@
             </div>
             <br>
 
-            
+
             <select name="company" class="add_new_clothes_style" style="border:1px rgb(199, 199, 199) solid; ">
                 <option {% if not clothe.company %}selected="selected"{% endif %}>品牌</option>
                 {% for company in companies %}
                     <option {% if clothe.company.id == company.id %}selected="selected"{% endif %} value={{ company.id }}>{{ company.name }}</option>
                 {% endfor %}
             </select>
-            
 
-            
+
+
             <select name="is_formal" class="add_new_clothes_style" style="border:1px rgb(199, 199, 199) solid;">
                 <option value>正式度</option>
                 <option value="False" {% if not clothe.is_formal %}selected="selected"{% endif %}>休閒</option>
@@ -155,7 +154,7 @@
 
             <div id="containerWeather" class="add_new_clothes_weather">
                 <label class="weather_title">適合溫度</label>
-                
+
                 <br>
                 <label style="font-size: 45px;"><input type="radio" name="warmness" value="1" style="width: 20px; height:20px" {% if clothe.warmness == 1 %}checked{% endif %}>🥶</label>
                 <text style="color:#f5f5f5">ab</style>

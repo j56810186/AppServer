@@ -66,21 +66,25 @@
                 </div>
 
                 <div style="display: flex;">
-                    <a href="#tag_popup1" class="tag_link_area"><div> <img id="123" src="{% static 'images/icon-svg/add.png' %}"  class="tag_clothes_block"> </div></a>
-                
+                    <a href="#tag_popup1" class="tag_link_area"><div>
+                        <img src="{%if origin_clothe %}{{ origin_clothe.image.url }}{% else %}{% static 'images/icon-svg/add.png' %}{% endif %}"  class="tag_clothes_block">
+                    </div></a>
+
                     <a href="#tag_popup1" class="tag_link_area"><div> <img src="{% static 'images/icon-svg/add.png' %}"  class="tag_clothes_block"> </div></a>
-                
-                    <a href="#tag_popup1" class="tag_link_area"><div> <img src="{% static 'images/icon-svg/add.png' %}" class="tag_clothes_block"> </div></a>
 
                     <a href="#tag_popup1" class="tag_link_area"><div> <img src="{% static 'images/icon-svg/add.png' %}" class="tag_clothes_block"> </div></a>
 
+                    <a href="#tag_popup1" class="tag_link_area"><div> <img src="{% static 'images/icon-svg/add.png' %}" class="tag_clothes_block"> </div></a>
+
                     <a href="#tag_popup1" class="tag_link_area"><div> <img src="{% static 'images/icon-svg/add.png' %}"  class="tag_clothes_block"> </div></a>
-                
-                    
+
+
 
                     <br>
-                    <div id="tagged_clothes"></div>
-                    <button id="submit" class="new_outfit_submit" > 
+                    <div id="tagged_clothes">
+                        {%if origin_clothe %}<input type="hidden" id="{{ origin_clothe.id }}" name="{{ origin_clothe.id }}" value="{{ origin_clothe.id }}">{% endif %}
+                    </div>
+                    <button id="submit" class="new_outfit_submit" >
                         <div class="new_outfit_submit_font">新增我的穿搭</div>
                     </button>
 
@@ -88,7 +92,7 @@
                 </form>
 
                 <div style="padding-bottom: 250px;"></div>
-                
+
                 <div id="tag_popup1" class="tag_overlay">
                     <div class="tag_popup">
                         <h2 >選擇種類</h2>
@@ -103,7 +107,7 @@
                         <a class="close" href="#">&times;</a>
                     </div>
                 </div>
-                
+
                 <div id="tag_tshirt" class="tag_tshirt_overlay">
                     <div class="tag_tshirt_popup">
                         <h2>標註 Tshirt</h2>
@@ -119,10 +123,10 @@
                                 </a>
                             {% endif %}
                         {% endfor %}
-                        
+
                     </div>
                 </div>
-                
+
                 <div id="tag_shirt" class="tag_tshirt_overlay">
                     <div class="tag_tshirt_popup">
                         <h2>標註 Shirt</h2>
@@ -138,10 +142,10 @@
                                 </a>
                             {% endif %}
                         {% endfor %}
-                        
+
                     </div>
                 </div>
-                
+
                 <div id="tag_shorts" class="tag_tshirt_overlay">
                     <div class="tag_tshirt_popup">
                         <h2>標註 Shorts</h2>
@@ -157,10 +161,10 @@
                                 </a>
                             {% endif %}
                         {% endfor %}
-                        
+
                     </div>
                 </div>
-                
+
                 <div id="tag_pants" class="tag_tshirt_overlay">
                     <div class="tag_tshirt_popup">
                         <h2>標註 Pants</h2>
@@ -176,10 +180,10 @@
                                 </a>
                             {% endif %}
                         {% endfor %}
-                        
+
                     </div>
                 </div>
-                
+
                 <div id="tag_shoes" class="tag_tshirt_overlay">
                     <div class="tag_tshirt_popup">
                         <h2>標註 Shoes</h2>
@@ -195,10 +199,10 @@
                                 </a>
                             {% endif %}
                         {% endfor %}
-                        
+
                     </div>
                 </div>
-                
+
                 <div id="tag_skirt" class="tag_tshirt_overlay">
                     <div class="tag_tshirt_popup">
                         <h2>標註 Skirt</h2>
@@ -214,10 +218,10 @@
                                 </a>
                             {% endif %}
                         {% endfor %}
-                        
+
                     </div>
                 </div>
-                
+
                 <div id="tag_dress" class="tag_tshirt_overlay">
                     <div class="tag_tshirt_popup">
                         <h2>標註 Dress</h2>
@@ -233,11 +237,11 @@
                                 </a>
                             {% endif %}
                         {% endfor %}
-                        
+
                     </div>
                 </div>
-                
-                
+
+
 
             </div>
 
@@ -264,7 +268,7 @@
                             $("#tagged_clothes").append($input);
                             return false;
                         }
-                        
+
                     });
 
                 });

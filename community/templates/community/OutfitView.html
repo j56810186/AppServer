@@ -28,15 +28,15 @@
                     </div>
 
                     {% if user == post.user %}
-                    <img class="goods_icon2" src="{% static 'images/icon-svg/more.png' %}" id="show"> 
+                    <img class="goods_icon2" src="{% static 'images/icon-svg/more.png' %}" id="show">
                         <dialog id="infoModal" class="selection_edit_delete_clothes">
                             <a href="{% url 'edit_outfit' post.id %}"><p><h3>編輯穿搭</h3></p></a>
-                            <hr  color="gainsboro" width="100%"> 
+                            <hr  color="gainsboro" width="100%">
                             <form action="{% url 'delete_outfit' post.id %}" method="post">
                                 {% csrf_token %}
                                 <button type="submit" style="border: none; background-color: white;"><h3>刪除穿搭</h3></button>
                             </form>
-                            <hr color="gainsboro"  width="100%"> 
+                            <hr color="gainsboro"  width="100%">
                             <a href="" id="close"><p><h3>取消</h3></p></a>
                             </button>
                         </dialog>
@@ -62,17 +62,17 @@
                             <input type="hidden" value="1" name="like">
                             <input type="image" src="{% static 'images/icon-svg/heart.svg' %}" class="link_icon outfit_icon" alt="Like">
                         </form>
-                        
+
                         <a href="{% url 'outfit_comments' postPk=post.id %}" class="link_icon">
                             <img src="{% static 'images/icon-svg/comment.svg' %}" class="outfit_icon" alt="Comments">
                         </a>
-                        
+
                         {% if user != post.user %}
                         <a href="{% url 'remake_outfit' postPk=post.id %}" class="link_icon">
                             <img src="{% static 'images/icon-svg/clothes_hanger.svg' %}" class="outfit_icon" alt="">
                         </a>
                         {% endif %}
-                        
+
                         <form action="" method="post"> {% csrf_token %}
                             <input type="hidden" value="{{ post.id }}" name="post_id">
                             <input type="hidden" value="1" name="followed">
@@ -114,4 +114,21 @@
         </div>
 
     </section>
+    <div>
+
+        <br><br>
+        <input type="button" class="new_outfit_tag_clothes_font" value="相關單品" style="border:0; width: 90%; cursor:pointer" />
+        <hr size="1px" color= "#e6e6e6" width="100%">
+
+
+    </div>
+    <div style="display: flex;">
+        {% for clothe in post.clothes.all %}
+        <a href="{% url 'single_clothe' pk=clothe.id %}" class="tag_link_area">
+            <div>
+            <img src="{{ clothe.image.url }}"  class="tag_clothes_block">
+            </div>
+        </a>
+        {% endfor %}
+    </div>
 {% endblock %}

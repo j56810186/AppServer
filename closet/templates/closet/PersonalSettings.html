@@ -6,7 +6,7 @@
             <title>個人設定</title>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
     </head>
-    
+
     <body>
         <div class="containerrr">
           <a href="{% url 'settings' %}">
@@ -28,21 +28,21 @@
         <div class="purplewords">
         {{ user.name }} </div>
         <a href="{% url 'logout' %}"><div class="purplewords1">登出</div></a>
-        <img src="{% static 'images/user1/user1_profilephoto.jpg' %}" class="stats__img-holder1" >  
-        <hr class="aaa" size="3px" width="100%" color="gray"> 
-        
+        <img src="{{ user.profile_picture.url }}" class="stats__img-holder1" >
+        <hr class="aaa" size="3px" width="100%" color="gray">
+
         <a href="{% url 'carts' %}"><img src="{% static 'images/icon-svg/shopping-cart.png' %}" class="up" >
         <div class="buycart">購物車</div></a>
 
         <a href="{% url 'transaction_logs' %}"><img src="{% static 'images/icon-svg/files.png' %}" class="up1" >
         <div class="listm">購買記錄</div></a>
-        
+
         <a href="{% url 'my_products' %}"><img src="{% static 'images/icon-svg/management.png' %}" class="up2" >
         <div class="listg">商品管理</div></a>
-        
+
         <a href="{% url 'my_wallet' %}"><img src="{% static 'images/icon-svg/women-purse.png' %}" class="up3" >
         <div class="mypurse">我的錢包</div></a>
-        <hr class="aab" size="3px" width="100%" color="gray"> 
+        <hr class="aab" size="3px" width="100%" color="gray">
 
         <div class="purplewords2">
         <a href ="{% url 'edit_user' user.id %}">修改基本資料</a>
@@ -51,4 +51,4 @@
         <a href="{% url 'set_my_wallet' %}">錢包設定</a></div>
 
     </body>
-</html> 
+</html>

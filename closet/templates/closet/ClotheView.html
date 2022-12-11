@@ -15,18 +15,18 @@
             <img class="goods_icon1" src="{% static 'images/icon-svg/arrow_left1.png' %}">
         </a>
 
-        
+
         <img id="show" class="goods_icon2" src="{% static 'images/icon-svg/more.png' %}" />
-        
-        
+
+
         <dialog id="infoModal" class="selection_edit_delete_clothes">
             <a href="{% url 'edit_clothe' clothe.id %}"><p><h3>編輯衣物</h3></p></a>
-            <hr  color="gainsboro" width="100%"> 
+            <hr  color="gainsboro" width="100%">
             <form action="{% url 'delete_clothe' clothe.id %}" method="post">
                 {% csrf_token %}
                 <button type="submit" style="border: none; background-color: white;"><h3>刪除衣物</h3></button>
             </form>
-            <hr color="gainsboro"  width="100%"> 
+            <hr color="gainsboro"  width="100%">
             <a href="" id="close"><p><h3>取消</h3></p></a>
             </button>
         </dialog>
@@ -78,7 +78,7 @@
     </div>
 
     <div class="goods_function">
-        <a href="{% url 'create_outfit' %}">
+        <a href="{% url 'create_outfit_with_clothe' clotheId=clothe.id %}">
             <button type="value" name="type" class="goods_function_button" style="background-color: #c4b2bb; color: #6a5460">
                 <img src="{% static 'images/icon-svg/shirt.png' %}" style="width: 30px;">
                 <br>新增穿搭

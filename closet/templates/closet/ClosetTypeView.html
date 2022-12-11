@@ -46,6 +46,7 @@
             {% endif %}
 
             {% for closet in user_closets %}
+                {% if forloop.first or closet.type == type %}
                     <div class="addnew">{{ closet.name }}</div> <a href="#popup3"><img src="{% static 'images/icon-svg/more1.png' %}" class="more" id="show2"></a>
                     <div id="popup3" class="overlay">
                         <div class="popup">
@@ -103,6 +104,7 @@
                         </div>
                     </div>
                 </form>
+                {% endif %}
             {% endfor %}
 
             <form action="" method="post"> {% csrf_token %}
