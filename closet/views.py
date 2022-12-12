@@ -424,13 +424,28 @@ class RecommendView(View):
             same_part_types = Type.UPPER_BODY_TYPES
         else: # in lower body types
             same_part_types = Type.LOWER_BODY_TYPES
-        recommends = Clothe.objects.filter(
+        raw_recommends = Clothe.objects.filter(
             user=clothe.user,
             style=clothe.style,
         ).exclude(Q(type__id__in=same_part_types) | Q(id__in=used_clothes))
+
+        # for-loop check if same type.
+        _used_type = []
+        recommends = []
+        for r in raw_recommends:
+            _id = r.type.id
+            if _id not in _used_type:
+                recommends.append(r)
+                if _id in Type.UPPER_BODY_TYPES:
+                    _used_type.extend(Type.UPPER_BODY_TYPES)
+                elif _id in Type.LOWER_BODY_TYPES:
+                    _used_type.extend(Type.LOWER_BODY_TYPES)
+                else:
+                    _used_type.append(7) # this is shoes type.
+
         if recommends:
-            if len(recommends) > 4:
-                recommends = recommends[:4]
+            if len(recommends) > 2:
+                recommends = recommends[:2]
 
         used_clothes = ','.join(used_clothes)
         for item in recommends:
